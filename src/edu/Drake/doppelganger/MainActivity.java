@@ -1,3 +1,5 @@
+/*I would make this the feed*/
+
 package edu.Drake.doppelganger;
 
 import android.os.Bundle;
@@ -18,5 +20,6 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
+	
 
 }
