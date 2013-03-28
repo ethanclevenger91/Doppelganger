@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <application
@@ -21,6 +21,31 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.MoreInfo"
+            android:label="@string/title_activity_more_info" >
+        </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.Post"
+            android:label="@string/title_activity_post" >
+        </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.TakePicture"
+            android:label="@string/title_activity_take_picture" >
+        </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.Celebrities"
+            android:label="@string/title_activity_celebrities" >
+        </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.Notifications"
+            android:label="@string/title_activity_notifications" >
         </activity>
     </application>
 
