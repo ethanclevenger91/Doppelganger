@@ -1,22 +1,40 @@
 package edu.Drake.doppelganger;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-public class MoreInfo extends Activity {
+public class MoreInfo extends Fragment {
+	
+@Override
+public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+    /*ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.activity_more_info, container, false);
+    
+    boolean shouldCreateChild = getArguments().getBoolean("shouldYouCreateAChildFragment");
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_more_info);
-	}
+    if (shouldCreateChild) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_more_info, menu);
-		return true;
-	}
+        fm.beginTransaction();
+        Fragment fragTwo = new MoreInfo();
+        Bundle arguments = new Bundle();
+        arguments.putBoolean("shouldYouCreateAChildFragment", false);
+        fragTwo.setArguments(arguments);
+        ft.replace(R.id.fragment_container, fragTwo);
+        ft.addToBackStack(null);
+        ft.commit();
 
+    }
+
+    return layout;
+    */
+	
+	
+        return inflater.inflate(R.layout.activity_more_info, container, false);
+    
+}
+	
 }
