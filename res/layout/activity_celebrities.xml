@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     tools:context=".Celebrities" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Celebrities" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:maxHeight="1200dp"
+        android:maxWidth="800dp"
+        android:src="@raw/celebrities" />
 
 </RelativeLayout>

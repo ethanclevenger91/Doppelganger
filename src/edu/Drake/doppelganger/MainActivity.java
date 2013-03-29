@@ -8,8 +8,10 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 
 
 
@@ -67,6 +69,12 @@ public class MainActivity extends Activity {
         actionBar.addTab(FeedTab);
         actionBar.addTab(NoteTab);
         
+	}
+	
+	public void moreInfo(View v) {
+	    // does something very interesting
+		Intent intent = new Intent(v.getContext(), MoreInfo.class);
+		startActivity(intent);
 	}
 
 	@Override
