@@ -53,7 +53,8 @@ public final class R {
         public static final int feed=0x7f040002;
         public static final int moreinfo=0x7f040003;
         public static final int notifications=0x7f040004;
-        public static final int zooey=0x7f040005;
+        public static final int postscreen=0x7f040005;
+        public static final int zooey=0x7f040006;
     }
     public static final class string {
         public static final int action_sign_in_register=0x7f05000c;
