@@ -13,6 +13,7 @@
         android:maxHeight="1200dp"
         android:maxWidth="800dp"
         android:src="@raw/postscreen" />
+    
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
