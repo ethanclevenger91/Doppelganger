@@ -10,6 +10,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,11 @@ import android.view.View;
 
 public class MainActivity extends Activity {
 	
+	private static final String TAG = "MainActivity";
+	
 	public static Context appContext;
+	
+	private String myTag;
 	
 	protected class MyTabsListener implements ActionBar.TabListener {
 
@@ -40,11 +45,10 @@ public class MainActivity extends Activity {
 	    	if(fm.getBackStackEntryCount()>0) {
 	    		
 	    		//get the more info fragment
-	    		Fragment infoFragment = (Fragment)getFragmentManager().findFragmentByTag("MORE_INFO");
-	    		Fragment postFragment = (Fragment)getFragmentManager().findFragmentByTag("POST");
+	    		Fragment myFragment = (Fragment)getFragmentManager().findFragmentByTag(myTag);
 	    		
 	    		//if more info is visible
-	    		if (infoFragment.isVisible() || postFragment.isVisible()) {
+	    		if (myFragment.isVisible()) {
 	    			
 	    			//pop the current fragment off the stack
 	    			fm.popBackStack();
@@ -67,12 +71,17 @@ public class MainActivity extends Activity {
 	    	if(fm.getBackStackEntryCount()>0) {
 	    		
 	    		//get the more info fragment if it is visible
-	    		Fragment myFragment = (Fragment)getFragmentManager().findFragmentByTag("MORE_INFO");
-	    		Fragment postFragment = (Fragment)getFragmentManager().findFragmentByTag("POST");
-	    		if (myFragment.isVisible() || postFragment.isVisible()) {
+	    		
+	    	    Fragment myFragment = (Fragment) getFragmentManager().findFragmentByTag(myTag);
+	    		
+	    		if (myFragment.isVisible()) {
+	    			
+	    			Log.v(TAG, "before popback");
 	    			
 	    			//pop back to previous fragment
 	    			fm.popBackStack();
+	    			
+	    			Log.v(TAG, "after popback");
 	    			
 	    			//disable up button
 	    			getActionBar().setDisplayHomeAsUpEnabled(false);
@@ -145,6 +154,7 @@ public class MainActivity extends Activity {
         
         //replaces the current fragment with the more info fragment
         ft.replace(R.id.fragment_container, fragOne, "MORE_INFO");
+        myTag = "MORE_INFO";
         
         //adds the current fragment to the backstack in case the back button is pressed
         ft.addToBackStack(null);
@@ -175,9 +185,11 @@ public class MainActivity extends Activity {
 	        	
 	        	//if there are fragments in the stack
 	        	 if(fm.getBackStackEntryCount()>0){
-	        		 
 	        		 //pops back to a fragment at the top of stack
+	        		 
 	        		 fm.popBackStack();
+	        		 Log.v(TAG, "up pressed");
+	        		 
 	        		 
 	        		 //disables the up button
 	        		 getActionBar().setDisplayHomeAsUpEnabled(false);
@@ -203,6 +215,9 @@ public class MainActivity extends Activity {
 		        //creates a fragment transaction which is used for transitions
 		        FragmentTransaction ft = fm.beginTransaction();
 
+		      //adds the current fragment to the backstack in case the back button is pressed
+		        ft.addToBackStack(null);
+		        
 		        //starts the transaction
 		        fm.beginTransaction();
 		        Fragment fragOne = new Post();
@@ -214,6 +229,7 @@ public class MainActivity extends Activity {
 		        
 		        //replaces the current fragment with the more info fragment
 		        ft.replace(R.id.fragment_container, fragOne, "POST");
+		        myTag = "POST";
 		        
 		        //adds the current fragment to the backstack in case the back button is pressed
 		        ft.addToBackStack(null);
