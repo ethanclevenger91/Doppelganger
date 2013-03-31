@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -129,6 +130,11 @@ public class MainActivity extends Activity {
         actionBar.addTab(CelebritiesTab);
         actionBar.addTab(FeedTab);
         actionBar.addTab(NoteTab);
+        
+      //redirect to login
+        //TODO: check if cached login information
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
         
 	}
 	

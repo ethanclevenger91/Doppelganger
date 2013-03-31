@@ -87,6 +87,10 @@ public class LoginActivity extends Activity {
 	}
 
 	@Override
+	public void onBackPressed() {
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.activity_login, menu);
@@ -216,7 +220,7 @@ public class LoginActivity extends Activity {
 			}
 
 			// TODO: register the new account here.
-			return true;
+			return false;
 		}
 
 		@Override
