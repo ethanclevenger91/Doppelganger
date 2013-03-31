@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".Post" >
 
+<<<<<<< HEAD
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,5 +17,16 @@
         android:id="@+id/fragment_container"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
+=======
+    <ImageView
+    android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:maxHeight="1200dp"
+        android:maxWidth="800dp"
+        android:src="@raw/postscreen" />
+>>>>>>> 6da8b81b0c62713c20fc7dbb0d67479eac7b2c06
 
 </RelativeLayout>
