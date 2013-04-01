@@ -15,10 +15,10 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int button_capture=0x7f080018;
-        public static final int button_retake=0x7f080017;
-        public static final int button_use=0x7f080019;
-        public static final int camera_preview=0x7f080016;
+        public static final int button_capture=0x7f080019;
+        public static final int button_retake=0x7f080018;
+        public static final int button_use=0x7f08001a;
+        public static final int camera_preview=0x7f080017;
         public static final int editText1=0x7f080011;
         public static final int editText2=0x7f080013;
         public static final int editText3=0x7f080012;
@@ -26,16 +26,17 @@ public final class R {
         public static final int editText5=0x7f080015;
         public static final int email=0x7f080006;
         public static final int fragment_container=0x7f08000a;
+        public static final int gallery=0x7f080016;
         public static final int imageView1=0x7f080000;
         public static final int image_button1=0x7f080001;
         public static final int login=0x7f080008;
         public static final int login_form=0x7f080005;
         public static final int login_status=0x7f080003;
         public static final int login_status_message=0x7f080004;
-        public static final int menu_cancel=0x7f08001b;
-        public static final int menu_compose=0x7f08001d;
-        public static final int menu_forgot_password=0x7f08001c;
-        public static final int menu_settings=0x7f08001a;
+        public static final int menu_cancel=0x7f08001c;
+        public static final int menu_compose=0x7f08001e;
+        public static final int menu_forgot_password=0x7f08001d;
+        public static final int menu_settings=0x7f08001b;
         public static final int password=0x7f080007;
         public static final int select_celeb=0x7f08000c;
         public static final int select_pic=0x7f08000b;
@@ -73,13 +74,14 @@ public final class R {
         public static final int celebrities=0x7f040000;
         public static final int clickimage=0x7f040001;
         public static final int feed=0x7f040002;
-        public static final int moreinfo=0x7f040003;
-        public static final int notifications=0x7f040004;
-        public static final int postscreen=0x7f040005;
-        public static final int selectceleb=0x7f040006;
-        public static final int selectpic=0x7f040007;
-        public static final int takepicture=0x7f040008;
-        public static final int zooey=0x7f040009;
+        public static final int gallery=0x7f040003;
+        public static final int moreinfo=0x7f040004;
+        public static final int notifications=0x7f040005;
+        public static final int postscreen=0x7f040006;
+        public static final int selectceleb=0x7f040007;
+        public static final int selectpic=0x7f040008;
+        public static final int takepicture=0x7f040009;
+        public static final int zooey=0x7f04000a;
     }
     public static final class string {
         public static final int action_sign_in_register=0x7f05000e;
@@ -104,8 +106,6 @@ public final class R {
         public static final int title_activity_more_info=0x7f050004;
         public static final int title_activity_notifications=0x7f050008;
         public static final int title_activity_post=0x7f050005;
-        /** <<<<<<< HEAD 
-         */
         public static final int title_activity_register=0x7f050009;
         public static final int title_activity_take_picture=0x7f050006;
     }

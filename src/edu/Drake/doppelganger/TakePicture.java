@@ -1,16 +1,21 @@
 package edu.Drake.doppelganger;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class TakePicture extends Activity {
 
 	Camera mCamera;
 	Preview mPreview;
+	Button galleryButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,16 @@ public class TakePicture extends Activity {
 		
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
+		 
+		 galleryButton = (Button) findViewById(R.id.gallery);
+		 galleryButton.setOnClickListener(new OnClickListener() {
+			 @Override
+			 public void onClick(View v) {
+				 Intent intent = new Intent(Intent.ACTION_PICK,
+					     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				 startActivityForResult(intent, 0);
+			 }
+		 });
 	}
 
 	@Override
