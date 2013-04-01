@@ -10,5 +10,6 @@
     <string name="title_activity_take_picture">TakePicture</string>
     <string name="title_activity_celebrities">Celebrities</string>
     <string name="title_activity_notifications">Notifications</string>
+    <string name="title_activity_register">RegisterActivity</string>
 
 </resources>

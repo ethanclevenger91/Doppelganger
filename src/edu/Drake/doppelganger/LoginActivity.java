@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ public class LoginActivity extends Activity {
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
 	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {
+	private static String[] DUMMY_CREDENTIALS = new String[] {
 			"foo@example.com:hello", "bar@example.com:world" };
 
 	/**
@@ -84,6 +85,7 @@ public class LoginActivity extends Activity {
 						attemptLogin();
 					}
 				});
+		
 	}
 
 	@Override
@@ -219,7 +221,9 @@ public class LoginActivity extends Activity {
 				}
 			}
 
-			// TODO: register the new account here.
+			Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
+			register.putExtra("email",mEmail);
+			startActivity(register);
 			return false;
 		}
 
