@@ -1,7 +1,6 @@
 /*I would make this the feed - EC*/
 
 package edu.Drake.doppelganger;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -9,6 +8,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -111,9 +111,9 @@ public class MainActivity extends Activity {
 	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	    
 	  //initiating both tabs and set text to it.
+	    ActionBar.Tab FeedTab = actionBar.newTab().setText("News Feed");
         ActionBar.Tab CelebritiesTab = actionBar.newTab().setText("Celebrities");
         ActionBar.Tab NoteTab = actionBar.newTab().setText("Notifications");
-        ActionBar.Tab FeedTab = actionBar.newTab().setText("News Feed");
         
       //create the two fragments we want to use for display content
         Fragment CelebritiesFragment = new CelebritiesFragment();
@@ -130,6 +130,17 @@ public class MainActivity extends Activity {
         actionBar.addTab(FeedTab);
         actionBar.addTab(NoteTab);
         
+        actionBar.setSelectedNavigationItem(1);
+	}
+	
+	public void selectCeleb(View v) {
+		Intent intent = new Intent(v.getContext(), Celebrities.class);
+		startActivity(intent);
+	}
+	
+	public void selectPic(View v) {
+		Intent intent = new Intent(v.getContext(), TakePicture.class);
+		startActivity(intent);
 	}
 	
 	public void moreInfo(View v) {
