@@ -103,7 +103,8 @@ public class Custom_CameraActivity extends Activity {
     
  // Called when shutter is opened
     ShutterCallback shutterCallback = new ShutterCallback() { 
-        public void onShutter() {
+        @Override
+		public void onShutter() {
             isPicTaken = true;  //set flag true only when shutter is called.
             // 
         }
@@ -111,7 +112,8 @@ public class Custom_CameraActivity extends Activity {
 
     // Handles data for raw picture
     PictureCallback rawCallback = new PictureCallback() {
-        public void onPictureTaken(byte[] data, Camera camera) {
+        @Override
+		public void onPictureTaken(byte[] data, Camera camera) {
             //
         }
     };

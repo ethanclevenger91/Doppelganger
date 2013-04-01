@@ -1,6 +1,5 @@
 package edu.Drake.doppelganger;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +28,7 @@ public class FeedFragment extends Fragment implements OnClickListener{
 		View rootView = inflater.inflate(R.layout.activity_feed, container, false);
 		ImageButton buttonimage = (ImageButton) rootView.findViewById(R.id.image_button1);
 		
-		((ImageButton)buttonimage).setOnClickListener(this);
+		buttonimage.setOnClickListener(this);
 		
 		// Inflate the layout for this fragment
         return inflater.inflate(R.layout.activity_feed, container, false);

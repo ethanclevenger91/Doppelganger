@@ -2,8 +2,6 @@ package edu.Drake.doppelganger;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 

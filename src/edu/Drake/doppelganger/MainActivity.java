@@ -36,7 +36,8 @@ public class MainActivity extends Activity {
 	    }
 
 	    //used when a tab is selected again when the user is still on the tab
-	    public void onTabReselected(Tab tab, FragmentTransaction ft) {
+	    @Override
+		public void onTabReselected(Tab tab, FragmentTransaction ft) {
 	    	
 	    	//gets the fragment manager
 	    	FragmentManager fm= getFragmentManager();
@@ -45,7 +46,7 @@ public class MainActivity extends Activity {
 	    	if(fm.getBackStackEntryCount()>0) {
 	    		
 	    		//get the more info fragment
-	    		Fragment myFragment = (Fragment)getFragmentManager().findFragmentByTag(myTag);
+	    		Fragment myFragment = getFragmentManager().findFragmentByTag(myTag);
 	    		
 	    		//if more info is visible
 	    		if (myFragment.isVisible()) {
@@ -62,7 +63,8 @@ public class MainActivity extends Activity {
 	    }
 
 	    //used when a new tab is selected
-	    public void onTabSelected(Tab tab, FragmentTransaction ft) {
+	    @Override
+		public void onTabSelected(Tab tab, FragmentTransaction ft) {
 	        
 	    	//get the current fragment manager
 	    	FragmentManager fm= getFragmentManager();
@@ -72,7 +74,7 @@ public class MainActivity extends Activity {
 	    		
 	    		//get the more info fragment if it is visible
 	    		
-	    	    Fragment myFragment = (Fragment) getFragmentManager().findFragmentByTag(myTag);
+	    	    Fragment myFragment = getFragmentManager().findFragmentByTag(myTag);
 	    		
 	    		if (myFragment.isVisible()) {
 	    			
@@ -94,7 +96,8 @@ public class MainActivity extends Activity {
 	    }
 
 	    //used when a tab is unselected
-	    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+	    @Override
+		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 	        // some people needed this line as well to make it work: 
 	        ft.remove(fragment);
 	    }
