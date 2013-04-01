@@ -222,7 +222,7 @@ public class LoginActivity extends Activity {
 			}
 
 			//changed
-			Intent register = new Intent(LoginActivity.this, Post.class);
+			Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
 			register.putExtra("email",mEmail);
 			startActivity(register);
 			return false;
