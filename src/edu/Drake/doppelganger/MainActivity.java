@@ -139,8 +139,10 @@ public class MainActivity extends Activity {
 	}
 	
 	public void selectPic(View v) {
-		Intent intent = new Intent(v.getContext(), TakePicture.class);
+		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
+		Log.v(TAG, "new Intent");
 		startActivity(intent);
+		Log.v(TAG, "starting new activity");
 	}
 	
 	public void moreInfo(View v) {

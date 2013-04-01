@@ -47,25 +47,6 @@
             android:name="edu.Drake.doppelganger.Notifications"
             android:label="@string/title_activity_notifications" >
         </activity>
-        <activity
-<<<<<<< HEAD
-            android:name="edu.Drake.doppelganger.RegisterActivity"
-            android:label="@string/title_activity_register" >
-        </activity>
-=======
-            android:name="edu.Drake.doppelganger.CameraDemo"
-            android:label="@string/title_activity_camerademo">
-        </activity>
-        <activity
-            android:name="edu.Drake.doppelganger.Custom_CameraActivity"
-            android:label="@string/title_activity_camerademo">
-        </activity>
-        
->>>>>>> myContribution
     </application>
 
-    <uses-feature android:name="android.hardware.camera" />
- 	<uses-permission android:name="android.permission.CAMERA" />
- 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    
 </manifest>

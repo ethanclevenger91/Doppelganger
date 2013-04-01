@@ -1,16 +1,23 @@
 package edu.Drake.doppelganger;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.hardware.Camera;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class TakePicture extends Activity {
 
+	Camera mCamera;
+	Preview mPreview;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_take_picture);
+		
+		//safeCameraOpen(0);
 		
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,5 +53,28 @@ public class TakePicture extends Activity {
 	private void cancelMenuItem() {
 		onBackPressed();
 	}
+	/*
+	private boolean safeCameraOpen(int id) {
+	    boolean qOpened = false;
+	  
+	    try {
+	        releaseCameraAndPreview();
+	        mCamera = Camera.open(id);
+	        qOpened = (mCamera != null);
+	    } catch (Exception e) {
+	        Log.e(getString(R.string.app_name), "failed to open Camera");
+	        e.printStackTrace();
+	    }
 
+	    return qOpened;    
+	}
+
+	private void releaseCameraAndPreview() {
+	    mPreview.setCamera(mCamera);
+	    if (mCamera != null) {
+	        mCamera.release();
+	        mCamera = null;
+	    }
+	}
+	*/
 }
