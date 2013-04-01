@@ -47,6 +47,19 @@
             android:name="edu.Drake.doppelganger.Notifications"
             android:label="@string/title_activity_notifications" >
         </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.CameraDemo"
+            android:label="@string/title_activity_camerademo">
+        </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.Custom_CameraActivity"
+            android:label="@string/title_activity_camerademo">
+        </activity>
+        
     </application>
 
+    <uses-feature android:name="android.hardware.camera" />
+ 	<uses-permission android:name="android.permission.CAMERA" />
+ 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    
 </manifest>
