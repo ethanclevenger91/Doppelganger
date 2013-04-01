@@ -1,7 +1,6 @@
 /*I would make this the feed - EC*/
 
 package edu.Drake.doppelganger;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -112,9 +111,9 @@ public class MainActivity extends Activity {
 	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	    
 	  //initiating both tabs and set text to it.
+	    ActionBar.Tab FeedTab = actionBar.newTab().setText("News Feed");
         ActionBar.Tab CelebritiesTab = actionBar.newTab().setText("Celebrities");
         ActionBar.Tab NoteTab = actionBar.newTab().setText("Notifications");
-        ActionBar.Tab FeedTab = actionBar.newTab().setText("News Feed");
         
       //create the two fragments we want to use for display content
         Fragment CelebritiesFragment = new CelebritiesFragment();
@@ -131,11 +130,17 @@ public class MainActivity extends Activity {
         actionBar.addTab(FeedTab);
         actionBar.addTab(NoteTab);
         
-      //redirect to login
-        //TODO: check if cached login information
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-        
+        actionBar.setSelectedNavigationItem(1);
+	}
+	
+	public void selectCeleb(View v) {
+		Intent intent = new Intent(v.getContext(), Celebrities.class);
+		startActivity(intent);
+	}
+	
+	public void selectPic(View v) {
+		Intent intent = new Intent(v.getContext(), TakePicture.class);
+		startActivity(intent);
 	}
 	
 	public void moreInfo(View v) {

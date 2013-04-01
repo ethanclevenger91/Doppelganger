@@ -14,12 +14,33 @@
         android:maxWidth="800dp"
         android:src="@raw/postscreen" />
     
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world" />
+    <ImageButton
+       android:id="@+id/select_pic"
+       android:layout_width="230dp"
+       android:layout_height="250dp"
+       android:layout_alignParentLeft="true"
+       android:layout_marginLeft="60dp"
+       android:layout_marginTop="95dp"
+       android:scaleType="fitCenter"
+       android:adjustViewBounds="true"
+       android:maxHeight="300dp"
+       android:maxWidth="200dp"
+       android:onClick="selectPic"
+       android:src="@raw/selectpic" />
+    
+    <ImageButton
+       android:id="@+id/select_celeb"
+       android:layout_width="230dp"
+       android:layout_height="250dp"
+       android:layout_alignParentRight="true"
+       android:layout_marginRight="60dp"
+       android:layout_marginTop="95dp"
+       android:scaleType="fitCenter"
+       android:adjustViewBounds="true"
+       android:maxHeight="1200dp"
+       android:maxWidth="800dp"
+       android:onClick="selectCeleb"
+       android:src="@raw/selectceleb" />
     
     <LinearLayout
         android:orientation="vertical"
