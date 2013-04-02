@@ -76,14 +76,6 @@ public class Custom_CameraActivity extends Activity {
             }
         });
         
-        
-    
-        
-        
-        
-        
-        
-        
     }
 
     /**

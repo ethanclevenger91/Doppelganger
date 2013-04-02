@@ -2,20 +2,24 @@ package edu.Drake.doppelganger;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class TakePicture extends Activity {
 
 	Camera mCamera;
 	private static final String TAG = "TakePicture";
 	ImageButton galleryButton;
+	ImageView theImage;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class TakePicture extends Activity {
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
 		 
+		 theImage = (ImageView) findViewById(R.id.localpic);
+		 
 		 galleryButton = (ImageButton) findViewById(R.id.gallery);
 		 galleryButton.setOnClickListener(new OnClickListener() {
 			 @Override
@@ -38,10 +44,14 @@ public class TakePicture extends Activity {
 			 }
 		 });
 	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		theImage.setImageDrawable(Drawable.createFromPath(data.getStringExtra("imagePath")));
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		Log.v(TAG, "fucked up here");
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_take_picture, menu);
 		
