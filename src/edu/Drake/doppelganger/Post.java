@@ -20,6 +20,10 @@ public class Post extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post);
+		
+		//disables the up button
+    	getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		takePhoto = (ImageButton) findViewById(R.id.select_pic);
 		takePhoto.setOnClickListener(new OnClickListener() {
 			 @Override
