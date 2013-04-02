@@ -4,41 +4,11 @@
     android:layout_height="match_parent"
     tools:context=".Notifications" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Notifications" />
-    
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:maxHeight="600dp"
-        android:maxWidth="420dp"
-        android:src="@raw/notifications" />
-    
-    
-    <Button
-        android:id="@+id/select_pic"
+     <ListView
+        android:id="@+id/mylist"
         android:layout_width="match_parent"
-        android:layout_height="99dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="95dp"
-        android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        android:maxHeight="300dp"
-        android:maxWidth="200dp"
-        android:onClick="findTags"
-        android:scaleType="fitCenter"
-        android:text="Jessica Harris" >
-	</Button>
-
+        android:layout_height="wrap_content" >
+    </ListView>
+    
+    
 </RelativeLayout>

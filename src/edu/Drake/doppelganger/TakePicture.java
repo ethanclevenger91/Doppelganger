@@ -41,7 +41,6 @@ public class TakePicture extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		Log.v(TAG, "fucked up here");
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_take_picture, menu);
 		
@@ -60,7 +59,7 @@ public class TakePicture extends Activity {
 	        case android.R.id.home:
 	            
 	        	onBackPressed();
-	        		 
+	        		 //
 	        	//disables the up button
 	        	getActionBar().setDisplayHomeAsUpEnabled(false);
 	        		 
@@ -74,6 +73,8 @@ public class TakePicture extends Activity {
 	}
 	
 	private void cancelMenuItem() {
+		//disables the up button
+    	getActionBar().setDisplayHomeAsUpEnabled(false);
 		onBackPressed();
 	}
 	/*

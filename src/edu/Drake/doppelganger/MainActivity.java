@@ -47,20 +47,12 @@ public class MainActivity extends Activity {
 	    	//if there is a stack of fragments
 	    	if(fm.getBackStackEntryCount()>0) {
 	    		
-	    		//get the more info fragment
-	    		Fragment myFragment = getFragmentManager().findFragmentByTag(myTag);
-	    		
-	    		//if more info is visible
-	    		if (myFragment.isVisible()) {
 	    			
 	    			//pop the current fragment off the stack
 	    			fm.popBackStack();
 	    			
 	    			//remove the up button
 	    			getActionBar().setDisplayHomeAsUpEnabled(false);
-	    			
-	    		}
-	    		
 	    	}
 	    }
 
@@ -74,11 +66,6 @@ public class MainActivity extends Activity {
 	    	//if there is a stack of fragments
 	    	if(fm.getBackStackEntryCount()>0) {
 	    		
-	    		//get the more info fragment if it is visible
-	    		
-	    	    Fragment myFragment = getFragmentManager().findFragmentByTag(myTag);
-	    		
-	    		if (myFragment.isVisible()) {
 	    			
 	    			Log.v(TAG, "before popback");
 	    			
@@ -90,7 +77,7 @@ public class MainActivity extends Activity {
 	    			//disable up button
 	    			getActionBar().setDisplayHomeAsUpEnabled(false);
 	    			
-	    		}
+	    		
 	    	}
 	    	
 	    	//adds the selected fragment to the fragment container
@@ -110,6 +97,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//disables the up button
+		 getActionBar().setDisplayHomeAsUpEnabled(false);
 		
 		// setup action bar for tabs
 	    ActionBar actionBar = getActionBar();
@@ -138,15 +128,6 @@ public class MainActivity extends Activity {
         actionBar.setSelectedNavigationItem(1);
 	}
 	
-	public void selectCeleb(View v) {
-		Intent intent = new Intent(v.getContext(), Celebrities.class);
-		startActivity(intent);
-	}
-	
-	public void selectPic(View v) {
-		Intent intent = new Intent(v.getContext(), TakePicture.class);
-		startActivity(intent);
-	}
 	public void findTags(View v) {
 		moreInfo(v);
 	}
@@ -174,37 +155,10 @@ public class MainActivity extends Activity {
 	}
 	
 	public void moreInfo(View v) {
-		
-		//sets the content view to the current xml file
-		setContentView(R.layout.activity_more_info);
 
-		//gets the current fragment manager
-        FragmentManager fm = getFragmentManager();
-        
-        //creates a fragment transaction which is used for transitions
-        FragmentTransaction ft = fm.beginTransaction();
-
-        //starts the transaction
-        fm.beginTransaction();
-        Fragment fragOne = new MoreInfo();
-        Bundle arguments = new Bundle();
-        
-        //sets argument in the new fragment
-        arguments.putBoolean("shouldYouCreateAChildFragment", true);
-        fragOne.setArguments(arguments);
-        
-        //replaces the current fragment with the more info fragment
-        ft.replace(R.id.fragment_container, fragOne, "MORE_INFO");
-        myTag = "MORE_INFO";
-        
-        //adds the current fragment to the backstack in case the back button is pressed
-        ft.addToBackStack(null);
-        
-        //commits the changes so that the more info fragment is shown
-        ft.commit();
-        
-        //shows the back button
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+            Intent intent = new Intent(getBaseContext(), MoreInfo.class);
+    		startActivity(intent);
+    		
 	}
 
 	@Override
@@ -247,38 +201,7 @@ public class MainActivity extends Activity {
 	}
 	    
 	private void composeMenuItem() {
-		//sets the content view to the current xml file
-        setContentView(R.layout.activity_post);
-
-        //gets the current fragment manager
-            FragmentManager fm = getFragmentManager();
-            
-            //creates a fragment transaction which is used for transitions
-            FragmentTransaction ft = fm.beginTransaction();
-
-          //adds the current fragment to the backstack in case the back button is pressed
-            ft.addToBackStack(null);
-            
-            //starts the transaction
-            fm.beginTransaction();
-            Fragment fragOne = new Post();
-            Bundle arguments = new Bundle();
-            
-            //sets argument in the new fragment
-            arguments.putBoolean("shouldYouCreateAChildFragment", true);
-            fragOne.setArguments(arguments);
-            
-            //replaces the current fragment with the more info fragment
-            ft.replace(R.id.fragment_container, fragOne, "POST");
-            myTag = "POST";
-            
-            //adds the current fragment to the backstack in case the back button is pressed
-            ft.addToBackStack(null);
-            
-            //commits the changes so that the more info fragment is shown
-            ft.commit();
-            
-			//shows the back button
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+            Intent intent = new Intent(getBaseContext(), Post.class);
+    		startActivity(intent);
    }
 }
