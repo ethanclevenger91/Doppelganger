@@ -23,6 +23,10 @@ public class Celebrities extends Activity {
 		getMenuInflater().inflate(R.menu.activity_celebrities, menu);
 		return true;
 	}
+	
+	public void useAsDoppelganger(View v) {
+		onBackPressed();
+	}
 
 	@Override
 	//this is used on the up button press
