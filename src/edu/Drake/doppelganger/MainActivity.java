@@ -145,8 +145,8 @@ public class MainActivity extends Activity {
 	}
 	
 	public void selectPic(View v) {
-		Intent intent = new Intent(v.getContext(), TakePicture.class);
-		startActivity(intent);
+		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
+		startActivityForResult(intent,1);
 	}
 	
 	public void onActivityResult(int requestcode, int resultcode, Intent data) {
