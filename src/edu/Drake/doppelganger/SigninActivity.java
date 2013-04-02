@@ -18,25 +18,18 @@ public class SigninActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signin);	
 		
-		signup = (ImageButton) findViewById(R.id.signup);
-		signup.setOnClickListener(new OnClickListener() {
-			public void onClick(View v)
-			{
-				Intent signup = new Intent(SigninActivity.this, FacebookActivity.class);
-				startActivity(signup);
-			}
-		});
-		
-		login = (ImageButton) findViewById(R.id.signup);
-		signup.setOnClickListener(new OnClickListener() {
-			public void onClick(View v)
-			{
-				Intent login = new Intent(SigninActivity.this, MainActivity.class);
-				startActivity(login);
-			}
-		});
 	}
 
+	public void signUp(View v) {
+		Intent signup = new Intent(SigninActivity.this, FacebookActivity.class);
+		startActivity(signup);
+	}
+	
+	public void logIn(View v) {
+		Intent login = new Intent(SigninActivity.this, MainActivity.class);
+		startActivity(login);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

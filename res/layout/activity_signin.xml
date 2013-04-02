@@ -22,6 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="124dp"
         android:scaleType="fitCenter"
+        android:onClick="signUp"
         android:src="@raw/signup" />
 
     <ImageButton
@@ -32,6 +33,7 @@
         android:layout_alignTop="@+id/signup"
         android:layout_marginTop="87dp"
         android:scaleType="fitCenter"
+        android:onClick="logIn"
         android:src="@raw/login" />
     
 </RelativeLayout>
