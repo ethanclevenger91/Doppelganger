@@ -24,10 +24,6 @@ public class Celebrities extends Activity {
 		return true;
 	}
 	
-	public void useAsDoppelganger(View v) {
-		onBackPressed();
-	}
-
 	@Override
 	//this is used on the up button press
 	public boolean onOptionsItemSelected(MenuItem item) {

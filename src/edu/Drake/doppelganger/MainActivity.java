@@ -147,57 +147,12 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(v.getContext(), TakePicture.class);
 		startActivity(intent);
 	}
-	
-<<<<<<< HEAD
 	public void findTags(View v) {
 		moreInfo(v);
 	}
-	
-	public void useAsDoppelganger(View v){
-
-	}
-	
-=======
 	public void useAsDoppelganger(View v) {
 		
 	}
-	
-	public void findTags(View v) {
-		
-		//sets the content view to the current xml file
-				setContentView(R.layout.activity_more_info);
-
-				//gets the current fragment manager
-		        FragmentManager fm = getFragmentManager();
-		        
-		        //creates a fragment transaction which is used for transitions
-		        FragmentTransaction ft = fm.beginTransaction();
-
-		        //starts the transaction
-		        fm.beginTransaction();
-		        Fragment fragOne = new MoreInfo();
-		        Bundle arguments = new Bundle();
-		        
-		        //sets argument in the new fragment
-		        arguments.putBoolean("shouldYouCreateAChildFragment", true);
-		        fragOne.setArguments(arguments);
-		        
-		        //replaces the current fragment with the more info fragment
-		        ft.replace(R.id.fragment_container, fragOne, "MORE_INFO");
-		        myTag = "MORE_INFO";
-		        
-		        //adds the current fragment to the backstack in case the back button is pressed
-		        ft.addToBackStack(null);
-		        
-		        //commits the changes so that the more info fragment is shown
-		        ft.commit();
-		        
-		        //shows the back button
-		        getActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		
-	}
->>>>>>> mineBranch
 	
 	public void onActivityResult(int requestcode, int resultcode, Intent data) {
 		Log.v(TAG, "in method");
