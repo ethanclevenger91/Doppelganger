@@ -4,33 +4,30 @@ import android.app.Activity;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class TakePicture extends Activity {
 
 	Camera mCamera;
 	Preview mPreview;
-	Button galleryButton;
-	
-	private static final String TAG = "TakePicture";
+	ImageButton galleryButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_take_picture);
 		
-		
 		//safeCameraOpen(0);
 		
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
 		 
-		 galleryButton = (Button) findViewById(R.id.gallery);
+		 galleryButton = (ImageButton) findViewById(R.id.gallery);
 		 galleryButton.setOnClickListener(new OnClickListener() {
 			 @Override
 			 public void onClick(View v) {
@@ -43,10 +40,8 @@ public class TakePicture extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		Log.v(TAG, "fucked up here");
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_take_picture, menu);
-		
 		return true;
 	}
 	
@@ -73,28 +68,10 @@ public class TakePicture extends Activity {
 	private void cancelMenuItem() {
 		onBackPressed();
 	}
-	/*
-	private boolean safeCameraOpen(int id) {
-	    boolean qOpened = false;
-	  
-	    try {
-	        releaseCameraAndPreview();
-	        mCamera = Camera.open(id);
-	        qOpened = (mCamera != null);
-	    } catch (Exception e) {
-	        Log.e(getString(R.string.app_name), "failed to open Camera");
-	        e.printStackTrace();
-	    }
-
-	    return qOpened;    
+	
+	public void selectPic(View v) {
+		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
+		startActivityForResult(intent,1);
 	}
-
-	private void releaseCameraAndPreview() {
-	    mPreview.setCamera(mCamera);
-	    if (mCamera != null) {
-	        mCamera.release();
-	        mCamera = null;
-	    }
-	}
-	*/
+	
 }
