@@ -104,8 +104,6 @@ public final class R {
         public static final int title_activity_more_info=0x7f050004;
         public static final int title_activity_notifications=0x7f050008;
         public static final int title_activity_post=0x7f050005;
-        /** <<<<<<< HEAD 
-         */
         public static final int title_activity_register=0x7f050009;
         public static final int title_activity_take_picture=0x7f050006;
     }
