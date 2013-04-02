@@ -25,7 +25,6 @@
        android:adjustViewBounds="true"
        android:maxHeight="300dp"
        android:maxWidth="200dp"
-       android:onClick="selectPic"
        android:src="@raw/selectpic" />
     
     <ImageButton
@@ -39,7 +38,6 @@
        android:adjustViewBounds="true"
        android:maxHeight="1200dp"
        android:maxWidth="800dp"
-       android:onClick="selectCeleb"
        android:src="@raw/selectceleb" />
     
     <LinearLayout
