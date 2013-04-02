@@ -9,11 +9,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 
 
@@ -143,9 +146,26 @@ public class MainActivity extends Activity {
 	
 	public void selectPic(View v) {
 		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
-		Log.v(TAG, "new Intent");
-		startActivity(intent);
-		Log.v(TAG, "starting new activity");
+		startActivityForResult(intent,1);
+	}
+	
+	public void onActivityResult(int requestcode, int resultcode, Intent data) {
+		Log.v(TAG, "in method");
+		if(requestcode==1)
+		{
+			Log.v(TAG, "changing image soon");
+			if(resultcode==RESULT_OK)
+			{
+				ImageButton myImageView = (ImageButton)findViewById(R.id.select_pic);
+				Log.v(TAG, "changing image");
+				
+				String path = data.getStringExtra("imagePath");
+				Log.v("MainActivity", path);
+				
+				Bitmap bmp = BitmapFactory.decodeFile(path);
+				myImageView.setImageBitmap(bmp);
+			}
+		}
 	}
 	
 	public void moreInfo(View v) {
