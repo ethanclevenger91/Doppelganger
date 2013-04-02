@@ -17,10 +17,13 @@ public class TakePicture extends Activity {
 	Preview mPreview;
 	Button galleryButton;
 	
+	private static final String TAG = "TakePicture";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_take_picture);
+		
 		
 		//safeCameraOpen(0);
 		
@@ -40,8 +43,10 @@ public class TakePicture extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.v(TAG, "fucked up here");
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_take_picture, menu);
+		
 		return true;
 	}
 	
