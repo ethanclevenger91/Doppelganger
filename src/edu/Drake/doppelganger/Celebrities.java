@@ -1,9 +1,10 @@
 package edu.Drake.doppelganger;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class Celebrities extends Activity {
 
@@ -41,6 +42,10 @@ public class Celebrities extends Activity {
 	    }
 	    //returns the item selected, in this case the up button
 	    return super.onOptionsItemSelected(item);
+	}
+	
+	public void useAsDoppelganger(View v){
+		onBackPressed();
 	}
 	
 	private void cancelMenuItem() {

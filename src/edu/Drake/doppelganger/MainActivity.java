@@ -23,7 +23,6 @@ import android.widget.ImageButton;
 public class MainActivity extends Activity {
 	
 	private static final String TAG = "MainActivity";
-	
 	public static Context appContext;
 	
 	private String myTag;
@@ -147,6 +146,14 @@ public class MainActivity extends Activity {
 	public void selectPic(View v) {
 		Intent intent = new Intent(v.getContext(), TakePicture.class);
 		startActivity(intent);
+	}
+	
+	public void findTags(View v) {
+		moreInfo(v);
+	}
+	
+	public void useAsDoppelganger(View v){
+
 	}
 	
 	
