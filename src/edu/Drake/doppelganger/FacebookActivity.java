@@ -5,13 +5,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 
 public class FacebookActivity extends Activity {
+	
+	ImageButton start;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_facebook);	
+		
+		start = (ImageButton) findViewById(R.id.start);
+		start.setOnClickListener(new OnClickListener() {
+			public void onClick(View v)
+			{
+				Intent start = new Intent(FacebookActivity.this, MainActivity.class);
+				startActivity(start);
+			}
+		});
 	}
 
 	@Override

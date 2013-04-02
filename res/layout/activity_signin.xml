@@ -1,22 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <Button
-        android:id="@+id/select_pic"
-        android:layout_width="match_parent"
-        android:layout_height="99dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="95dp"
-        android:adjustViewBounds="true"
-        android:maxHeight="300dp"
-        android:maxWidth="200dp"
-        android:onClick="signin"
-        android:scaleType="fitCenter"
-        android:text="Sign in with Facebook" >
-</Button>
-    
+    tools:context=".FacebookActivity" >
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@raw/signin" />
+
+    <ImageButton
+        android:id="@+id/signup"
+        android:layout_width="250dp"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="124dp"
+        android:scaleType="fitCenter"
+        android:src="@raw/signup" />
+
+    <ImageButton
+        android:id="@+id/login"
+        android:layout_width="250dp"
+        android:layout_height="130dp"
+        android:layout_alignLeft="@+id/signup"
+        android:layout_alignTop="@+id/signup"
+        android:layout_marginTop="87dp"
+        android:scaleType="fitCenter"
+        android:src="@raw/login" />
+    
+</RelativeLayout>

@@ -11,20 +11,13 @@ import android.widget.ImageButton;
 
 public class RegisterActivity extends Activity {
 
-	ImageButton start;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
-		start = (ImageButton) findViewById(R.id.start);
-		start.setOnClickListener(new OnClickListener() {
-			public void onClick(View v)
-			{
-				Intent start = new Intent(RegisterActivity.this, MainActivity.class);
-				startActivity(start);
-			}
-		});
+		
 	}
 
 	@Override
