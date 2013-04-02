@@ -13,8 +13,6 @@ import android.widget.ImageButton;
 
 public class TakePicture extends Activity {
 
-	Camera mCamera;
-	Preview mPreview;
 	ImageButton galleryButton;
 	
 	@Override
