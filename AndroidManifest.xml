@@ -16,11 +16,7 @@
         <activity
             android:name="edu.Drake.doppelganger.MainActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity
             android:name="edu.Drake.doppelganger.LoginActivity"
@@ -48,13 +44,22 @@
             android:label="@string/title_activity_notifications" >
         </activity>
         <activity
-            android:name="edu.Drake.doppelganger.CameraDemo"
-            android:label="@string/title_activity_camerademo">
-        </activity>
-        <activity
             android:name="edu.Drake.doppelganger.Custom_CameraActivity"
             android:label="@string/title_activity_camerademo">
         </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.FacebookActivity"
+            android:label="@string/title_activity_facebook">
+        </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.SigninActivity"
+            android:label="@string/title_activity_signin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
     </application>
 
     <uses-feature android:name="android.hardware.camera" />

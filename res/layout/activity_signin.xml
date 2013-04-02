@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <Button
+        android:id="@+id/select_pic"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="95dp"
+        android:adjustViewBounds="true"
+        android:maxHeight="300dp"
+        android:maxWidth="200dp"
+        android:onClick="signin"
+        android:scaleType="fitCenter"
+        android:text="Sign in with Facebook" >
+</Button>
+    
+
+</LinearLayout>
