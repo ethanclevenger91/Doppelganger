@@ -14,14 +14,8 @@ import android.widget.Button;
 public class TakePicture extends Activity {
 
 	Camera mCamera;
-	Preview mPreview;
 	Button galleryButton;
-<<<<<<< HEAD
-	
 	private static final String TAG = "TakePicture";
-=======
->>>>>>> parent of b8de7a1... hooked up the Ttake picture screen and the custom_cameraactivity
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
