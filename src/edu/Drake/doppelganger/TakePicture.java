@@ -48,6 +48,11 @@ public class TakePicture extends Activity {
 		return true;
 	}
 	
+	public void cameraClick(View v){
+		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
+		startActivityForResult(intent,1);
+	}
+	
 	@Override
 	//this is used on the up button press
 	public boolean onOptionsItemSelected(MenuItem item) {
