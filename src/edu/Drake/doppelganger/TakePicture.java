@@ -10,12 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class TakePicture extends Activity {
 
 	Camera mCamera;
-	Button galleryButton;
 	private static final String TAG = "TakePicture";
+	ImageButton galleryButton;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,7 +29,7 @@ public class TakePicture extends Activity {
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
 		 
-		 galleryButton = (Button) findViewById(R.id.gallery);
+		 galleryButton = (ImageButton) findViewById(R.id.gallery);
 		 galleryButton.setOnClickListener(new OnClickListener() {
 			 @Override
 			 public void onClick(View v) {
