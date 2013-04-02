@@ -250,9 +250,6 @@ public class MainActivity extends Activity {
 		        
 		        //creates a fragment transaction which is used for transitions
 		        FragmentTransaction ft = fm.beginTransaction();
-
-		      //adds the current fragment to the backstack in case the back button is pressed
-		        ft.addToBackStack(null);
 		        
 		        //starts the transaction
 		        fm.beginTransaction();
