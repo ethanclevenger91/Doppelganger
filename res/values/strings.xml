@@ -12,5 +12,7 @@
     <string name="title_activity_notifications">Notifications</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_camerademo">Camera Demo</string>
+    <string name="title_activity_signin">Sign in</string>
+    <string name="title_activity_facebook">Facebook</string>
 
 </resources>

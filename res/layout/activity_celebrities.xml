@@ -14,6 +14,20 @@
         android:maxWidth="800dp"
         android:src="@raw/celebrities" />
 
+     <Button
+        android:id="@+id/select_pic"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="95dp"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:maxHeight="300dp"
+        android:maxWidth="200dp"
+        android:onClick="useAsDoppelganger"
+        android:scaleType="fitCenter"
+        android:text="Adam Savage" >
+	</Button>
     
     
 </RelativeLayout>

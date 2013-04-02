@@ -24,5 +24,21 @@
         android:maxHeight="600dp"
         android:maxWidth="420dp"
         android:src="@raw/notifications" />
+    
+    
+    <Button
+        android:id="@+id/select_pic"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="95dp"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:maxHeight="300dp"
+        android:maxWidth="200dp"
+        android:onClick="findTags"
+        android:scaleType="fitCenter"
+        android:text="Jessica Harris" >
+	</Button>
 
 </RelativeLayout>
