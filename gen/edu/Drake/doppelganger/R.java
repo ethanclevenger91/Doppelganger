@@ -15,41 +15,27 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int button_capture=0x7f080014;
-        public static final int button_retake=0x7f080013;
-        public static final int button_use=0x7f080015;
-<<<<<<< HEAD
+        public static final int button_capture=0x7f080015;
+        public static final int button_retake=0x7f080014;
+        public static final int button_use=0x7f080016;
         public static final int camera=0x7f080011;
-=======
-        public static final int camera=0x7f080010;
->>>>>>> 51f55017bab4d691000a072dc90053eae271e0d4
-        public static final int camera_preview=0x7f080012;
+        public static final int camera_preview=0x7f080013;
         public static final int email=0x7f080008;
         public static final int fragment_container=0x7f08000c;
         public static final int gallery=0x7f080010;
         public static final int imageView1=0x7f080000;
         public static final int image_button1=0x7f080003;
-<<<<<<< HEAD
-        public static final int label=0x7f080016;
-=======
-        public static final int localpic=0x7f080011;
->>>>>>> 51f55017bab4d691000a072dc90053eae271e0d4
+        public static final int label=0x7f080017;
+        public static final int localpic=0x7f080012;
         public static final int login=0x7f08000a;
         public static final int login_form=0x7f080007;
         public static final int login_status=0x7f080005;
         public static final int login_status_message=0x7f080006;
-<<<<<<< HEAD
-        public static final int menu_cancel=0x7f080018;
-        public static final int menu_compose=0x7f08001a;
-        public static final int menu_forgot_password=0x7f080019;
-        public static final int menu_settings=0x7f080017;
+        public static final int menu_cancel=0x7f080019;
+        public static final int menu_compose=0x7f08001b;
+        public static final int menu_forgot_password=0x7f08001a;
+        public static final int menu_settings=0x7f080018;
         public static final int mylist=0x7f08000d;
-=======
-        public static final int menu_cancel=0x7f080017;
-        public static final int menu_compose=0x7f080019;
-        public static final int menu_forgot_password=0x7f080018;
-        public static final int menu_settings=0x7f080016;
->>>>>>> 51f55017bab4d691000a072dc90053eae271e0d4
         public static final int password=0x7f080009;
         public static final int select_celeb=0x7f08000e;
         public static final int select_pic=0x7f080001;
