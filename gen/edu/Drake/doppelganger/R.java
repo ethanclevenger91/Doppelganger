@@ -18,23 +18,38 @@ public final class R {
         public static final int button_capture=0x7f080014;
         public static final int button_retake=0x7f080013;
         public static final int button_use=0x7f080015;
+<<<<<<< HEAD
         public static final int camera=0x7f080011;
+=======
+        public static final int camera=0x7f080010;
+>>>>>>> 51f55017bab4d691000a072dc90053eae271e0d4
         public static final int camera_preview=0x7f080012;
         public static final int email=0x7f080008;
         public static final int fragment_container=0x7f08000c;
         public static final int gallery=0x7f080010;
         public static final int imageView1=0x7f080000;
         public static final int image_button1=0x7f080003;
+<<<<<<< HEAD
         public static final int label=0x7f080016;
+=======
+        public static final int localpic=0x7f080011;
+>>>>>>> 51f55017bab4d691000a072dc90053eae271e0d4
         public static final int login=0x7f08000a;
         public static final int login_form=0x7f080007;
         public static final int login_status=0x7f080005;
         public static final int login_status_message=0x7f080006;
+<<<<<<< HEAD
         public static final int menu_cancel=0x7f080018;
         public static final int menu_compose=0x7f08001a;
         public static final int menu_forgot_password=0x7f080019;
         public static final int menu_settings=0x7f080017;
         public static final int mylist=0x7f08000d;
+=======
+        public static final int menu_cancel=0x7f080017;
+        public static final int menu_compose=0x7f080019;
+        public static final int menu_forgot_password=0x7f080018;
+        public static final int menu_settings=0x7f080016;
+>>>>>>> 51f55017bab4d691000a072dc90053eae271e0d4
         public static final int password=0x7f080009;
         public static final int select_celeb=0x7f08000e;
         public static final int select_pic=0x7f080001;
@@ -78,17 +93,18 @@ public final class R {
         public static final int facebook=0x7f040003;
         public static final int feed=0x7f040004;
         public static final int gallery=0x7f040005;
-        public static final int login=0x7f040006;
-        public static final int moreinfo=0x7f040007;
-        public static final int notifications=0x7f040008;
-        public static final int postscreen=0x7f040009;
-        public static final int selectceleb=0x7f04000a;
-        public static final int selectpic=0x7f04000b;
-        public static final int signin=0x7f04000c;
-        public static final int signup=0x7f04000d;
-        public static final int start=0x7f04000e;
-        public static final int takepicture=0x7f04000f;
-        public static final int zooey=0x7f040010;
+        public static final int localpic=0x7f040006;
+        public static final int login=0x7f040007;
+        public static final int moreinfo=0x7f040008;
+        public static final int notifications=0x7f040009;
+        public static final int postscreen=0x7f04000a;
+        public static final int selectceleb=0x7f04000b;
+        public static final int selectpic=0x7f04000c;
+        public static final int signin=0x7f04000d;
+        public static final int signup=0x7f04000e;
+        public static final int start=0x7f04000f;
+        public static final int takepicture=0x7f040010;
+        public static final int zooey=0x7f040011;
     }
     public static final class string {
         public static final int action_sign_in_register=0x7f050010;
