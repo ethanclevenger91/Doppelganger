@@ -69,6 +69,7 @@ public class TakePicture extends Activity {
             cursor.close();
             
             theImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+        }
 	}
 
 	@Override
