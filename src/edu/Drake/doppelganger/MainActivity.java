@@ -1,4 +1,4 @@
-/*I would make this the feed - EC*/
+
 
 package edu.Drake.doppelganger;
 import android.app.ActionBar;
