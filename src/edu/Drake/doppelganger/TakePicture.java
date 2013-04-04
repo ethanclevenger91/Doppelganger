@@ -27,6 +27,7 @@ public class TakePicture extends Activity {
 	ImageView theImage;
 	
 	private static int RESULT_LOAD_IMAGE = 1;
+	private static int TAKE_CUSTOM_PIC = 38124;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class TakePicture extends Activity {
 						  startActivityForResult(i, RESULT_LOAD_IMAGE);
 			 }
 		 });
+		 
+		 
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -70,6 +73,10 @@ public class TakePicture extends Activity {
             
             theImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         }
+        if (requestCode == TAKE_CUSTOM_PIC && resultCode == RESULT_OK && null != data) {
+        	theImage.setImageBitmap(BitmapFactory.decodeFile(data.getStringExtra("imagePath")));
+        }
+        
 	}
 
 	@Override
@@ -82,7 +89,7 @@ public class TakePicture extends Activity {
 	
 	public void cameraClick(View v){
 		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
-		startActivityForResult(intent,1);
+		startActivityForResult(intent, TAKE_CUSTOM_PIC);
 	}
 	
 	@Override

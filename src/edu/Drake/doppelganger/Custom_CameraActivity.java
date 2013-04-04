@@ -11,6 +11,8 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
@@ -129,6 +131,7 @@ public class Custom_CameraActivity extends Activity {
                 sendBroadcast(new Intent(
             		    Intent.ACTION_MEDIA_MOUNTED,
             		    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
                
                 
             } catch (FileNotFoundException e) {
