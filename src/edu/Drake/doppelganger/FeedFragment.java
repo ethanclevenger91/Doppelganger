@@ -35,6 +35,7 @@ public class FeedFragment extends ListFragment{
 	@Override
 	  public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
+	    
 	    /*
 	    ListView listView = (ListView) getActivity().findViewById(R.id.mylist);
 	    String[] values = new String[] { "Android", "iPhone", "WindowsMobile",

@@ -18,7 +18,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	  private final Activity context;
 
 	  public FeedInteractiveArrayAdapter(Fragment context, List<FeedsModel> list) {
-	    super(context.getActivity(), R.layout.notificationsrowbuttonlayout, list);
+	    super(context.getActivity(), R.layout.activity_notifications, list);
 	    this.context = context.getActivity();
 	    this.list = list;
 	  }
@@ -31,7 +31,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 
 	  @Override
 	  public View getView(int position, View convertView, ViewGroup parent) {
-	    View view = null;
+	    View view = convertView;
 	    if (convertView == null) {
 	      LayoutInflater inflator = context.getLayoutInflater();
 	      view = inflator.inflate(R.layout.activity_feed, null);

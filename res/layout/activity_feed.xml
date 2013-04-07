@@ -1,41 +1,62 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".Feed" >
-
-   <ImageView
-       android:id="@+id/imageView1"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_marginLeft="0dp"
-       android:adjustViewBounds="true"
-       android:scaleType="fitCenter"
-       android:maxHeight="1200dp"
-       android:maxWidth="800dp"
-       android:src="@raw/feed" />
-   
-   <ImageButton
-       android:id="@+id/image_button1"
-       android:layout_width="400dp"
-       android:layout_height="250dp"
-       android:layout_alignParentLeft="true"
-       android:layout_marginLeft="20dp"
-       android:layout_marginTop="85dp"
-       android:scaleType="fitCenter"
-       android:adjustViewBounds="true"
-       android:maxHeight="1200dp"
-       android:maxWidth="800dp"
-       android:onClick="moreInfo"
-       android:src="@raw/clickimage" />
 
    <TextView
        android:id="@+id/textView1"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignParentRight="true"
-       android:layout_alignTop="@+id/image_button1"
-       android:text="Click Picture"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentTop="true"
+       android:layout_marginLeft="29dp"
+       android:text="Clayton Brady"
        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+   <ImageButton
+       android:id="@+id/image_button1"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:layout_marginTop="30dp"
+    	android:layout_marginBottom="100dp"
+       android:layout_alignParentLeft="true"
+       android:layout_alignTop="@+id/textView1"
+       android:adjustViewBounds="true"
+       android:onClick="moreInfo"
+       android:scaleType="fitXY"
+       android:src="@raw/clickimage" />
+   
+   <ImageButton
+       android:id="@+id/image_up_vote"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentBottom="true"
+       android:layout_marginTop="20dp"
+       android:adjustViewBounds="true"
+       android:scaleType="fitCenter"
+       android:src="@raw/camera" />
+   
+   <ImageButton
+       android:id="@+id/image_down_vote"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerHorizontal="true"
+       android:layout_alignParentBottom="true"
+       android:adjustViewBounds="true"
+       android:scaleType="fitCenter"
+       android:src="@raw/camera" />
+   
+   <ImageButton
+       android:id="@+id/image_comment"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentBottom="true"
+       android:adjustViewBounds="true"
+       android:onClick="moreInfo"
+       android:scaleType="fitCenter"
+       android:src="@raw/camera" />
 
 </RelativeLayout>
