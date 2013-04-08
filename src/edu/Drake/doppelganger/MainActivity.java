@@ -160,6 +160,14 @@ public class MainActivity extends Activity {
     		startActivity(intent);
     		
 	}
+	
+	public void upVote(View v) {
+		//on up pressed
+	}
+	
+	public void downVote(View v) {
+		//on down pressed
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

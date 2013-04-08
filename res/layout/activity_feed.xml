@@ -35,7 +35,7 @@
        android:layout_alignLeft="@+id/image_button1"
        android:adjustViewBounds="true"
        android:scaleType="fitCenter"
-       android:background="@null"
+       android:background="@android:color/transparent"
        android:src="@raw/voteup" />
    
    <TextView
@@ -58,7 +58,7 @@
        android:adjustViewBounds="true"
        android:onClick="moreInfo"
        android:scaleType="fitCenter"
-       android:background="@null"
+       android:background="@android:color/transparent"
        android:src="@raw/comment" />
    
    <TextView
@@ -80,7 +80,7 @@
        android:layout_toRightOf="@+id/text_up"
        android:adjustViewBounds="true"
        android:scaleType="fitCenter"
-       android:background="@null"
+       android:background="@android:color/transparent"
        android:src="@raw/votedown" />
    
    <TextView

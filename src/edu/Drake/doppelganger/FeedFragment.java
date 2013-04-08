@@ -61,19 +61,17 @@ public class FeedFragment extends ListFragment{
 	
 	private List<FeedsModel> getModel() {
 	    List<FeedsModel> list = new ArrayList<FeedsModel>();
-	    list.add(get("Jessica Harris tagged you: Tom Cruise doppleganger (2hrs)"));
-	    list.add(get("Mike Roger comment on your Repert Grint doppleganger (4 hrs)"));
-	    list.add(get("Sarah Smith like your Rupert Grint doppleganger (yesterday)"));
-	    list.add(get("Jen Adams liked your Rupert Grint doppleganger (yesterday)"));
-	    list.add(get("Michael Jaes likes the Sarah Smith: Zooey Deschanel doppleganger you posted (Monday)"));
-	    list.add(get("Mike Roger commented on your Rupert Grint doppleganger (Sunday)"));
-	    // Initially select one of the items
-	    list.get(1).setSelected(true);
+	    list.add(get("Jessica Harris",10,2,3));
+	    list.add(get("Mike Roger",300,100,123));
+	    list.add(get("Sarah Smith",3,75,1));
+	    list.add(get("Jen Adams",17,25,3));
+	    list.add(get("Michael Jaes",2000,146,240));
+	    list.add(get("Mike Roger",100,200,57));
 	    return list;
 	  }
 
-	  private FeedsModel get(String s) {
-	    return new FeedsModel(s);
+	  private FeedsModel get(String s,int ups, int downs, int comments) {
+	    return new FeedsModel(s,ups,downs,comments);
 	  }
 
 	

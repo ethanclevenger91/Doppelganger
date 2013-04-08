@@ -4,10 +4,51 @@ public class FeedsModel {
 
 	private String name;
 	  private boolean selected;
+	  private int ups;
+	  private int downs;
+	  private int comments;
 
-	  public FeedsModel(String name) {
+	  public FeedsModel(String name, int ups, int downs, int comments) {
 	    this.name = name;
+	    this.ups = ups;
+	    this.downs=downs;
+	    this.comments=comments;
 	    selected = false;
+	  }
+	  
+	  public void setUps(int n) {
+		  this.ups = n;
+	  }
+	  
+	  public String getUps() {
+		  String upString=Integer.toString(ups);
+		  return upString;
+	  }
+	  
+	  public void incrementUp() {
+		  this.ups++;
+	  }
+	  
+	  public void incrementDown() {
+		  this.downs++;
+	  }
+	  
+	  public void setDowns(int n) {
+		  this.downs = n;
+	  }
+	  
+	  public String getDowns() {
+		  String downString = Integer.toString(downs);
+		  return downString;
+	  }
+	  
+	  public void setComments(int n) {
+		  this.comments = n;
+	  }
+	  
+	  public String getComments() {
+		  String commentsString = Integer.toString(comments);
+		  return commentsString;
 	  }
 
 	  public String getName() {
