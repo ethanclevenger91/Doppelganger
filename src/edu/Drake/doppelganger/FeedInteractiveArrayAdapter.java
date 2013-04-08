@@ -99,6 +99,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    	            b.putString("downs", (String) viewHolder.downCount.getText());
 	    	            b.putString("desc", element.getDesc());
 	    	            b.putString("image", element.getImageId());
+	    	            b.putStringArray("commentList", element.getCommentList());
 	    	            
 	    	            intent.putExtras(b);
 	    	    		v.getContext().startActivity(intent);

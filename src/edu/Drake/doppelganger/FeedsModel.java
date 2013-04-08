@@ -9,15 +9,25 @@ public class FeedsModel {
 	  private int comments;
 	  private String imageId;
 	  private String desc;
+	  private String[] commentList;
 
-	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc) {
+	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc, String[] commentList) {
 	    this.name = name;
 	    this.ups = ups;
 	    this.downs=downs;
 	    this.comments=comments;
 	    this.imageId = image;
 	    this.desc = desc;
+	    this.commentList = commentList;
 	    selected = false;
+	  }
+	  
+	  public String[] getCommentList() {
+		  return commentList;
+	  }
+	  
+	  public void setCommentList(String[] commentList) {
+		  this.commentList = commentList;
 	  }
 	  
 	  public String getImageId() {

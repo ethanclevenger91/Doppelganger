@@ -1,11 +1,14 @@
 package edu.Drake.doppelganger;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MoreInfo extends Activity {
@@ -14,6 +17,7 @@ public class MoreInfo extends Activity {
 	private String downCount;
 	private String desc;
 	private String image;
+	private String[] commentList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +35,29 @@ public class MoreInfo extends Activity {
 		downCount = getIntent().getStringExtra("downs");
 		desc = getIntent().getStringExtra("desc");
 		image = getIntent().getStringExtra("image");
+		commentList = getIntent().getStringArrayExtra("commentList");
 		
 		String uri = "raw/" + image;
         int imageResource = getResources().getIdentifier(uri, null, getPackageName());
         photoButton.setImageResource(imageResource);
+        
+       // ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view1);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);
+        
+        //loop through array of comments and add to top of scroll view here
+        for(int i=0; i<commentList.length;i++){
+        	TextView tv1 = new TextView(this);
+        	tv1.setText(commentList[i]);
+        	tv1.setTextSize(20);
+        	tv1.setBackgroundResource(R.drawable.back);
+        	tv1.setPadding(20,20,20,20);
+        	
+        	LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
+        	tv1.setLayoutParams(llp);
+        	
+        	layout.addView(tv1,i);
+        }
 		
 		descView.setText(desc);
 		upView.setText(upCount);
@@ -51,6 +74,14 @@ public class MoreInfo extends Activity {
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(false);
 		 finish();
+	}
+	
+	public void upVote(View v) {
+		//on up pressed
+	}
+	
+	public void downVote(View v) {
+		//on down pressed
 	}
 	
 	@Override
