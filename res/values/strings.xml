@@ -14,5 +14,7 @@
     <string name="title_activity_camerademo">Camera Demo</string>
     <string name="title_activity_signin">Sign in</string>
     <string name="title_activity_facebook">Facebook</string>
+    <string name="title_activity_celebrity_entry">CelebrityEntry</string>
+    <string name="title_activity_celebrity_entry_adapter">CelebrityEntryAdapter</string>
 
 </resources>

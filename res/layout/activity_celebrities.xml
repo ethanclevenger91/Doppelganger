@@ -4,15 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".Celebrities" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:maxHeight="1200dp"
-        android:maxWidth="800dp"
-        android:src="@raw/celebrities" />
 
      <Button
         android:id="@+id/select_pic"
@@ -28,6 +19,13 @@
         android:scaleType="fitCenter"
         android:text="Adam Savage" >
 	</Button>
-    
+
+     <ListView
+         android:id="@+id/list"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentTop="true" >
+     </ListView>
     
 </RelativeLayout>
