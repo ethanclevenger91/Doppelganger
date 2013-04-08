@@ -58,20 +58,22 @@ public class FeedFragment extends ListFragment{
 	    
 	}
 	  
+	public static final Integer[] images = { R.raw.urness,
+        R.raw.inman, R.raw.morrow};
 	
 	private List<FeedsModel> getModel() {
 	    List<FeedsModel> list = new ArrayList<FeedsModel>();
-	    list.add(get("Jessica Harris",10,2,3));
-	    list.add(get("Mike Roger",300,100,123));
-	    list.add(get("Sarah Smith",3,75,1));
-	    list.add(get("Jen Adams",17,25,3));
-	    list.add(get("Michael Jaes",2000,146,240));
-	    list.add(get("Mike Roger",100,200,57));
+	    list.add(get("Jessica Harris",10,2,3,"urness"));
+	    list.add(get("Mike Roger",300,100,123,"morrow"));
+	    list.add(get("Sarah Smith",3,75,1,"inman"));
+	    list.add(get("Jen Adams",17,25,3,"morrow"));
+	    list.add(get("Michael Jaes",2000,146,240,"inman"));
+	    list.add(get("Mike Roger",100,200,57,"urness"));
 	    return list;
 	  }
 
-	  private FeedsModel get(String s,int ups, int downs, int comments) {
-	    return new FeedsModel(s,ups,downs,comments);
+	  private FeedsModel get(String s,int ups, int downs, int comments, String desc) {
+	    return new FeedsModel(s,ups,downs,comments, desc);
 	  }
 
 	

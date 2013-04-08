@@ -7,14 +7,23 @@ public class FeedsModel {
 	  private int ups;
 	  private int downs;
 	  private int comments;
+	  private String imageId;
 
-	  public FeedsModel(String name, int ups, int downs, int comments) {
+	  public FeedsModel(String name, int ups, int downs, int comments, String desc) {
 	    this.name = name;
 	    this.ups = ups;
 	    this.downs=downs;
 	    this.comments=comments;
+	    this.imageId = desc;
 	    selected = false;
 	  }
+	  
+	  public String getImageId() {
+	        return imageId;
+	    }
+	    public void setImageId(String imageId) {
+	        this.imageId = imageId;
+	    }
 	  
 	  public void setUps(int n) {
 		  this.ups = n;

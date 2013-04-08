@@ -4,12 +4,13 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		  protected TextView commentCount;
 		  protected ImageButton upButton;
 		  protected ImageButton downButton;
+		  protected ImageButton photoButton;
 		  protected boolean selected;
 	  }
 	  
@@ -40,6 +42,8 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	  @Override
 	  public View getView(int position, View convertView, ViewGroup parent) {
 	    View view = convertView;
+	    FeedsModel model = getItem(position);
+	    
 	    if (convertView == null) {
 	      LayoutInflater inflator = context.getLayoutInflater();
 	      view = inflator.inflate(R.layout.activity_feed, parent,false);
@@ -50,6 +54,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	      viewHolder.commentCount = (TextView) view.findViewById(R.id.text_comment);
 	      viewHolder.upButton = (ImageButton) view.findViewById(R.id.image_up_vote);
 	      viewHolder.downButton = (ImageButton) view.findViewById(R.id.image_down_vote);
+	      viewHolder.photoButton = (ImageButton) view.findViewById(R.id.image_button1);
 	      
 	      viewHolder.upButton.setOnClickListener(new OnClickListener() {
 	    	  @Override
@@ -82,6 +87,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	      viewHolder.upButton.setTag(list.get(position));
 	      viewHolder.downCount.setTag(list.get(position));
 	      viewHolder.downButton.setTag(list.get(position));
+	      viewHolder.photoButton.setTag(list.get(position));
 	      
 	      //view.setTag(viewHolder);
 	    } else {
@@ -90,6 +96,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	      ((ViewHolder) view.getTag()).upButton.setTag(list.get(position));
 	      ((ViewHolder) view.getTag()).downCount.setTag(list.get(position));
 	      ((ViewHolder) view.getTag()).downButton.setTag(list.get(position));
+	      ((ViewHolder) view.getTag()).photoButton.setTag(list.get(position));
 	      
 	    }
 	   // ViewHolder holder = (ViewHolder) view.getTag();
@@ -100,6 +107,11 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    holder.downCount.setText(list.get(position).getDowns());
 	    holder.commentCount.setText(list.get(position).getComments());
 	    holder.name.setText(list.get(position).getName());
+	    
+	    String uri = "raw/" + model.getImageId();
+	    Log.v("here", uri);
+        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+        holder.photoButton.setImageResource(imageResource);
 	    
 	    return view;
 	  }
