@@ -2,16 +2,44 @@ package edu.Drake.doppelganger;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MoreInfo extends Activity {
+	
+	private String upCount;
+	private String downCount;
+	private String desc;
+	private String image;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_more_info);
 		
+		
+		TextView descView = (TextView) findViewById(R.id.description);
+		TextView upView = (TextView) findViewById(R.id.text_up);
+		TextView downView = (TextView) findViewById(R.id.text_down);
+		ImageButton photoButton = (ImageButton) findViewById(R.id.image_button1);
+		Log.v("Here", "got views");
+		
+		upCount = getIntent().getStringExtra("ups");
+		downCount = getIntent().getStringExtra("downs");
+		desc = getIntent().getStringExtra("desc");
+		image = getIntent().getStringExtra("image");
+		
+		String uri = "raw/" + image;
+        int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+        photoButton.setImageResource(imageResource);
+		
+		descView.setText(desc);
+		upView.setText(upCount);
+		downView.setText(downCount);
+		Log.v("Here", "textSet");
 
         //shows the back button
         getActionBar().setDisplayHomeAsUpEnabled(true);

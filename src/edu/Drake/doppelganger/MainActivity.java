@@ -128,9 +128,11 @@ public class MainActivity extends Activity {
         actionBar.setSelectedNavigationItem(1);
 	}
 	
+	/*
 	public void findTags(View v) {
 		moreInfo(v);
 	}
+	*/
 	public void useAsDoppelganger(View v) {
 		
 	}
@@ -153,13 +155,14 @@ public class MainActivity extends Activity {
 			}
 		}
 	}
-	
+	/*
 	public void moreInfo(View v) {
 
             Intent intent = new Intent(getBaseContext(), MoreInfo.class);
     		startActivity(intent);
     		
 	}
+	*/
 	
 	public void upVote(View v) {
 		//on up pressed

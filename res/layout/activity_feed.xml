@@ -22,9 +22,7 @@
        android:layout_marginLeft="15dp"
        android:layout_marginRight="15dp"
        android:adjustViewBounds="true"
-       android:onClick="moreInfo"
        android:scaleType="fitXY"
-       android:background="@null"
        android:src="@raw/clickimage" />
    
    <ImageButton
@@ -56,7 +54,6 @@
        android:layout_alignParentBottom="true"
        android:layout_toRightOf="@+id/text_down"
        android:adjustViewBounds="true"
-       android:onClick="moreInfo"
        android:scaleType="fitCenter"
        android:background="@android:color/transparent"
        android:src="@raw/comment" />

@@ -3,25 +3,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MoreInfo" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:maxHeight="600dp"
-        android:maxWidth="420dp"
-        android:src="@raw/moreinfo" />
     
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/fragment_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+    <TextView
+       android:id="@+id/textView1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentTop="true"
+       android:layout_marginLeft="29dp"
+       android:text="Clayton Brady"
+       android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+   <ImageButton
+       android:id="@+id/image_button1"
+       android:layout_width="fill_parent"
+       android:layout_height="250dp"
+       android:layout_below="@+id/textView1"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp"
+       android:adjustViewBounds="true"
+       android:scaleType="fitXY"
+       android:src="@raw/clickimage" />
+   
+   <TextView
+       android:id="@+id/description"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/image_button1"
+       android:layout_alignLeft="@+id/image_button1"
+       android:text="Did not work"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:textSize="20sp"  />
+   
+   <ImageButton
+       android:id="@+id/image_up_vote"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/description"
+       android:layout_alignLeft="@+id/image_button1"
+       android:adjustViewBounds="true"
+       android:scaleType="fitCenter"
+       android:background="@android:color/transparent"
+       android:src="@raw/voteup" />
+   
+   <TextView
+       android:id="@+id/text_up"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_toRightOf="@+id/image_up_vote"
+       android:layout_alignBottom="@+id/image_up_vote"
+       android:layout_marginBottom="5dp"
+       android:text="1000"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:textSize="20sp"  />
+   
+   <ImageButton
+       android:id="@+id/image_comment"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/image_up_vote"
+       android:layout_alignLeft="@+id/image_button1"
+       android:adjustViewBounds="true"
+       android:scaleType="fitCenter"
+       android:background="@android:color/transparent"
+       android:src="@raw/comment" />
+
+   <ImageButton
+       android:id="@+id/image_down_vote"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/description"
+       android:layout_toRightOf="@+id/text_up"
+       android:adjustViewBounds="true"
+       android:scaleType="fitCenter"
+       android:background="@android:color/transparent"
+       android:src="@raw/votedown" />
+   
+   <TextView
+       android:id="@+id/text_down"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_toRightOf="@+id/image_down_vote"
+       android:layout_alignBottom="@+id/image_up_vote"
+       android:layout_marginBottom="5dp"
+       android:text="5000"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:textSize="20sp" />
     
 </RelativeLayout>

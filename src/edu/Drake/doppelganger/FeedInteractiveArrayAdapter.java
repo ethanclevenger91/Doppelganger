@@ -4,7 +4,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		  protected TextView commentCount;
 		  protected ImageButton upButton;
 		  protected ImageButton downButton;
+		  protected ImageButton commentsButton;
 		  protected ImageButton photoButton;
 		  protected boolean selected;
 	  }
@@ -55,6 +57,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	      viewHolder.upButton = (ImageButton) view.findViewById(R.id.image_up_vote);
 	      viewHolder.downButton = (ImageButton) view.findViewById(R.id.image_down_vote);
 	      viewHolder.photoButton = (ImageButton) view.findViewById(R.id.image_button1);
+	      viewHolder.commentsButton = (ImageButton) view.findViewById(R.id.image_comment);
 	      
 	      viewHolder.upButton.setOnClickListener(new OnClickListener() {
 	    	  @Override
@@ -81,6 +84,37 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    		  }
 	    	  }
 	      });
+	      
+	      viewHolder.photoButton.setOnClickListener(new OnClickListener() {
+	    	 @Override
+	    	 public void onClick(View v) {
+
+	    		 FeedsModel element = (FeedsModel) viewHolder.downCount
+	                      .getTag();
+	    		 
+	    	            Intent intent = new Intent(v.getContext(), MoreInfo.class);
+	    	            
+	    	            Bundle b = new Bundle();
+	    	            b.putString("ups", (String) viewHolder.upCount.getText());
+	    	            b.putString("downs", (String) viewHolder.downCount.getText());
+	    	            b.putString("desc", element.getDesc());
+	    	            b.putString("image", element.getImageId());
+	    	            
+	    	            intent.putExtras(b);
+	    	    		v.getContext().startActivity(intent);
+	    		
+	    	 }
+	      });
+	      
+	      viewHolder.commentsButton.setOnClickListener(new OnClickListener() {
+		    	 @Override
+		    	 public void onClick(View v) {
+
+		    	            Intent intent = new Intent(v.getContext(), MoreInfo.class);
+		    	    		v.getContext().startActivity(intent);
+		    		
+		    	 }
+		      });
 	      
 	      view.setTag(viewHolder);
 	      viewHolder.upCount.setTag(list.get(position));
