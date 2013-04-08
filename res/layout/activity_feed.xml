@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context=".Feed" >
 
    <TextView
@@ -12,51 +12,86 @@
        android:layout_alignParentTop="true"
        android:layout_marginLeft="29dp"
        android:text="Clayton Brady"
-       android:textAppearance="?android:attr/textAppearanceLarge" />
+       android:textAppearance="?android:attr/textAppearanceLarge"/>
 
    <ImageButton
        android:id="@+id/image_button1"
        android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:layout_marginTop="30dp"
-    	android:layout_marginBottom="100dp"
-       android:layout_alignParentLeft="true"
-       android:layout_alignTop="@+id/textView1"
+       android:layout_height="250dp"
+       android:layout_below="@+id/textView1"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp"
        android:adjustViewBounds="true"
        android:onClick="moreInfo"
        android:scaleType="fitXY"
+       android:background="@null"
        android:src="@raw/clickimage" />
    
    <ImageButton
        android:id="@+id/image_up_vote"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentBottom="true"
-       android:layout_marginTop="20dp"
+       android:layout_below="@+id/image_button1"
+       android:layout_alignLeft="@+id/image_button1"
        android:adjustViewBounds="true"
        android:scaleType="fitCenter"
-       android:src="@raw/camera" />
+       android:background="@null"
+       android:src="@raw/voteup" />
    
-   <ImageButton
-       android:id="@+id/image_down_vote"
+   <TextView
+       android:id="@+id/text_up"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_centerHorizontal="true"
-       android:layout_alignParentBottom="true"
-       android:adjustViewBounds="true"
-       android:scaleType="fitCenter"
-       android:src="@raw/camera" />
+       android:layout_toRightOf="@+id/image_up_vote"
+       android:layout_alignBottom="@+id/image_up_vote"
+       android:layout_marginBottom="5dp"
+       android:text="1000"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:textSize="20sp"  />
    
    <ImageButton
        android:id="@+id/image_comment"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignParentRight="true"
        android:layout_alignParentBottom="true"
+       android:layout_toRightOf="@+id/text_down"
        android:adjustViewBounds="true"
        android:onClick="moreInfo"
        android:scaleType="fitCenter"
-       android:src="@raw/camera" />
+       android:background="@null"
+       android:src="@raw/comment" />
+   
+   <TextView
+       android:id="@+id/text_comment"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_toRightOf="@+id/image_comment"
+       android:layout_alignBottom="@+id/image_up_vote"
+       android:layout_marginBottom="5dp"
+       android:text="3000"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:textSize="20sp"  />
+
+   <ImageButton
+       android:id="@+id/image_down_vote"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+       android:layout_toRightOf="@+id/text_up"
+       android:adjustViewBounds="true"
+       android:scaleType="fitCenter"
+       android:background="@null"
+       android:src="@raw/votedown" />
+   
+   <TextView
+       android:id="@+id/text_down"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_toRightOf="@+id/image_down_vote"
+       android:layout_alignBottom="@+id/image_up_vote"
+       android:layout_marginBottom="5dp"
+       android:text="5000"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:textSize="20sp" />
 
 </RelativeLayout>

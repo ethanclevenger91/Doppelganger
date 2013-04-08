@@ -18,7 +18,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	  private final Activity context;
 
 	  public FeedInteractiveArrayAdapter(Fragment context, List<FeedsModel> list) {
-	    super(context.getActivity(), R.layout.activity_notifications, list);
+	    super(context.getActivity(), R.layout.feed_list, list);
 	    this.context = context.getActivity();
 	    this.list = list;
 	  }
@@ -34,7 +34,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    View view = convertView;
 	    if (convertView == null) {
 	      LayoutInflater inflator = context.getLayoutInflater();
-	      view = inflator.inflate(R.layout.activity_feed, null);
+	      view = inflator.inflate(R.layout.activity_feed, parent,false);
 	      //final ViewHolder viewHolder = new ViewHolder();
 	     // viewHolder.text = (TextView) view.findViewById(R.id.label);
 	      //view.setTag(viewHolder);
