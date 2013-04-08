@@ -4,28 +4,23 @@
     android:layout_height="match_parent"
     tools:context=".Celebrities" >
 
-
-     <Button
-        android:id="@+id/select_pic"
-        android:layout_width="match_parent"
-        android:layout_height="99dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="95dp"
+    <ImageView
+        android:id="@+id/celebrity_entry_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        android:maxHeight="300dp"
-        android:maxWidth="200dp"
-        android:onClick="useAsDoppelganger"
-        android:scaleType="fitCenter"
-        android:text="Adam Savage" >
-	</Button>
-
-     <ListView
-         android:id="@+id/list"
-         android:layout_width="fill_parent"
-         android:layout_height="fill_parent"
-         android:layout_alignParentLeft="true"
-         android:layout_alignParentTop="true" >
-     </ListView>
+        android:layout_alignParentLeft="true"
+        android:padding="3dp" />
+        
+    
+    <TextView
+        android:id="@+id/celebrity_entry_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/celebrity_entry_pic"
+        android:layout_alignTop="@id/celebrity_entry_pic"
+	android:layout_margin="5dp"
+        android:textSize="14sp"
+        android:textStyle="bold" />
     
 </RelativeLayout>

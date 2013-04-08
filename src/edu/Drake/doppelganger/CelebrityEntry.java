@@ -1,8 +1,5 @@
 package edu.Drake.doppelganger;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 
 
 public final class CelebrityEntry {

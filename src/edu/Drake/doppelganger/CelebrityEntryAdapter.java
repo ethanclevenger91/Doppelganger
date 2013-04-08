@@ -24,7 +24,7 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	private final Activity context;
  
 	public CelebrityEntryAdapter(Fragment context, List<CelebrityEntry> list) {
-		super(context.getActivity(), R.layout.celebrity_entry_layout, list);
+		super(context.getActivity(), R.layout.feed_list, list);
 		this.context = context.getActivity();
 	    this.list = list;
 	}
@@ -39,7 +39,7 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	    
 	    if (convertView == null) {
 	      LayoutInflater inflator = context.getLayoutInflater();
-	      view = inflator.inflate(R.layout.activity_feed, parent,false);
+	      view = inflator.inflate(R.layout.activity_celebrities, parent,false);
 	      final ViewHolder viewHolder = new ViewHolder();
 		
 	      viewHolder.titleView = (TextView) view.findViewById(R.id.celebrity_entry_name);
