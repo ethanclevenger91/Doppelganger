@@ -14,7 +14,7 @@
        android:text="Clayton Brady"
        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-   <ImageButton
+   <ImageView
        android:id="@+id/image_button1"
        android:layout_width="fill_parent"
        android:layout_height="250dp"
@@ -109,6 +109,7 @@
                android:layout_width="fill_parent"
                android:layout_height="fill_parent"
                android:text="Click to add comment..."
+               android:onClick="addComment"
        		   android:textAppearance="?android:attr/textAppearanceLarge"
        		   android:textSize="20sp"></Button>
            

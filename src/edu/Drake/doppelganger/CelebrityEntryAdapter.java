@@ -2,12 +2,8 @@ package edu.Drake.doppelganger;
 
 import java.util.List;
 
-import edu.Drake.doppelganger.FeedInteractiveArrayAdapter.ViewHolder;
-
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +28,6 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
-		// We need to get the best view (re-used if possible) and then
-		// retrieve its corresponding ViewHolder, which optimizes lookup efficiency
 		View view = convertView;
 	    CelebrityEntry model = getItem(position);
 	    
@@ -60,8 +54,6 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	    
 	    ViewHolder holder = (ViewHolder) view.getTag();
 	    holder.titleView.setText(list.get(position).getName());
-	    //String uri = "raw/" + model.getPic();
-        //int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         holder.imageView.setImageResource(model.getPic());
 		
 	return view;

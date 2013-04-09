@@ -1,12 +1,12 @@
 package edu.Drake.doppelganger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -99,7 +99,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    	            b.putString("downs", (String) viewHolder.downCount.getText());
 	    	            b.putString("desc", element.getDesc());
 	    	            b.putString("image", element.getImageId());
-	    	            b.putStringArray("commentList", element.getCommentList());
+	    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 	    	            
 	    	            intent.putExtras(b);
 	    	    		v.getContext().startActivity(intent);
@@ -144,7 +144,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    holder.name.setText(list.get(position).getName());
 	    
 	    String uri = "raw/" + model.getImageId();
-	    Log.v("here", uri);
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         holder.photoButton.setImageResource(imageResource);
 	    

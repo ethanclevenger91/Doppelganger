@@ -1,13 +1,16 @@
 package edu.Drake.doppelganger;
 
+import java.util.List;
+
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,7 +20,15 @@ public class MoreInfo extends Activity {
 	private String downCount;
 	private String desc;
 	private String image;
-	private String[] commentList;
+	private List<String> commentList;
+	
+	public void addComment(View v) {
+		
+		 Intent intent = new Intent(getBaseContext(), AddComment.class);
+ 		startActivityForResult(intent,1);
+ 		overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up);
+		
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +39,14 @@ public class MoreInfo extends Activity {
 		TextView descView = (TextView) findViewById(R.id.description);
 		TextView upView = (TextView) findViewById(R.id.text_up);
 		TextView downView = (TextView) findViewById(R.id.text_down);
-		ImageButton photoButton = (ImageButton) findViewById(R.id.image_button1);
+		ImageView photoButton = (ImageView) findViewById(R.id.image_button1);
 		Log.v("Here", "got views");
 		
 		upCount = getIntent().getStringExtra("ups");
 		downCount = getIntent().getStringExtra("downs");
 		desc = getIntent().getStringExtra("desc");
 		image = getIntent().getStringExtra("image");
-		commentList = getIntent().getStringArrayExtra("commentList");
+		commentList = getIntent().getStringArrayListExtra("commentList");
 		
 		String uri = "raw/" + image;
         int imageResource = getResources().getIdentifier(uri, null, getPackageName());
@@ -45,9 +56,9 @@ public class MoreInfo extends Activity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);
         
         //loop through array of comments and add to top of scroll view here
-        for(int i=0; i<commentList.length;i++){
+        for(int i=0; i<commentList.size();i++){
         	TextView tv1 = new TextView(this);
-        	tv1.setText(commentList[i]);
+        	tv1.setText(commentList.get(i));
         	tv1.setTextSize(20);
         	tv1.setBackgroundResource(R.drawable.back);
         	tv1.setPadding(20,20,20,20);
@@ -73,6 +84,7 @@ public class MoreInfo extends Activity {
 	public void onBackPressed(){
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(false);
+		 
 		 finish();
 	}
 	
@@ -117,6 +129,34 @@ public class MoreInfo extends Activity {
     	getActionBar().setDisplayHomeAsUpEnabled(false);
 		onBackPressed();
 	}
+	
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+		
+        super.onActivityResult(requestCode, resultCode, data);
+        
+     // ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view1);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);
+        
+        if(data.getExtras()!=null){
+        	
+        	TextView tv1 = new TextView(this);
+        	tv1.setText(data.getStringExtra("post"));
+        	tv1.setTextSize(20);
+        	tv1.setBackgroundResource(R.drawable.back);
+        	tv1.setPadding(20,20,20,20);
+        	
+        	LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
+        	tv1.setLayoutParams(llp);
+        	
+        	commentList.add(tv1.getText().toString());
+        	
+        	layout.addView(tv1,commentList.size()-1);
+ 
+        }
+    }
 	
 	
 }

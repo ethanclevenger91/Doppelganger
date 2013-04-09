@@ -1,5 +1,7 @@
 package edu.Drake.doppelganger;
 
+import java.util.List;
+
 public class FeedsModel {
 
 	private String name;
@@ -9,9 +11,9 @@ public class FeedsModel {
 	  private int comments;
 	  private String imageId;
 	  private String desc;
-	  private String[] commentList;
+	  private List<String> commentList;
 
-	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc, String[] commentList) {
+	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc, List<String> commentList) {
 	    this.name = name;
 	    this.ups = ups;
 	    this.downs=downs;
@@ -22,11 +24,11 @@ public class FeedsModel {
 	    selected = false;
 	  }
 	  
-	  public String[] getCommentList() {
+	  public List<String> getCommentList() {
 		  return commentList;
 	  }
 	  
-	  public void setCommentList(String[] commentList) {
+	  public void setCommentList(List<String> commentList) {
 		  this.commentList = commentList;
 	  }
 	  

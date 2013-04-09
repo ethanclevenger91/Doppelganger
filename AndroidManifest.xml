@@ -59,6 +59,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="edu.Drake.doppelganger.AddComment"
+            android:label="@string/title_comment" >
+        </activity>
     </application>
 
     <uses-feature android:name="android.hardware.camera" />

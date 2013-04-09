@@ -25,8 +25,6 @@ public class MainActivity extends Activity {
 	private static final String TAG = "MainActivity";
 	public static Context appContext;
 	
-	private String myTag;
-	
 	protected class MyTabsListener implements ActionBar.TabListener {
 
 		//used for the constructor
