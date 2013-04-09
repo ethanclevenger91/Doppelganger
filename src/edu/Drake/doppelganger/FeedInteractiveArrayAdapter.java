@@ -3,16 +3,19 @@ package edu.Drake.doppelganger;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
@@ -102,9 +105,11 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 	    	            
 	    	            intent.putExtras(b);
-	    	    		v.getContext().startActivity(intent);
+	    	            Log.v("activity context", v.getContext().toString());
+	    	    		((Activity) v.getContext()).startActivityForResult(intent,1);
 	    		
 	    	 }
+	    	 
 	      });
 	      
 	      viewHolder.commentsButton.setOnClickListener(new OnClickListener() {
@@ -149,4 +154,39 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    
 	    return view;
 	  }
+	  
+	  /*
+	  
+	  @Override
+	    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	        // TODO Auto-generated method stub
+			
+	        super.onActivityResult(requestCode, resultCode, data);
+	        
+	     // ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view1);
+	        LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);
+	        
+	        if(data.getExtras()!=null){
+	        	
+	        	TextView tv1 = new TextView(this);
+	        	tv1.setText(data.getStringExtra("post"));
+	        	tv1.setTextSize(20);
+	        	tv1.setBackgroundResource(R.drawable.back);
+	        	tv1.setPadding(20,20,20,20);
+	        	
+	        	LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+	            llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
+	        	tv1.setLayoutParams(llp);
+	        	
+	        	commentList.add(tv1.getText().toString());
+	        	
+	        	layout.addView(tv1,commentList.size()-1);
+	 
+	        }
+	  
+	  */
+	  
+	  
+	  
+	  
 }

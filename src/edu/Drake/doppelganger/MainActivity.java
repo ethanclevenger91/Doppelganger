@@ -136,20 +136,14 @@ public class MainActivity extends Activity {
 	}
 	
 	public void onActivityResult(int requestcode, int resultcode, Intent data) {
-		Log.v(TAG, "in method");
+		super.onActivityResult(requestcode, resultcode, data);
 		if(requestcode==1)
 		{
-			Log.v(TAG, "changing image soon");
 			if(resultcode==RESULT_OK)
 			{
-				ImageButton myImageView = (ImageButton)findViewById(R.id.select_pic);
-				Log.v(TAG, "changing image");
-				
-				String path = data.getStringExtra("imagePath");
-				Log.v("MainActivity", path);
-				
-				Bitmap bmp = BitmapFactory.decodeFile(path);
-				myImageView.setImageBitmap(bmp);
+		        if(data.getExtras()!=null){
+		        	Log.v("hi", "got it");
+		        }
 			}
 		}
 	}
@@ -213,4 +207,7 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(getBaseContext(), Post.class);
     		startActivity(intent);
    }
+	  
+	  
+	
 }

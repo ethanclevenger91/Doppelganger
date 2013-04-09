@@ -39,8 +39,8 @@ public final class R {
         public static final int create_comment=0x7f090018;
         public static final int description=0x7f090015;
         public static final int edit_text1=0x7f090002;
-        public static final int edit_text_caption=0x7f09001e;
-        public static final int edit_text_tag=0x7f09001f;
+        public static final int edit_text_caption=0x7f09001f;
+        public static final int edit_text_tag=0x7f09001e;
         public static final int email=0x7f090010;
         public static final int fragment_container=0x7f090014;
         public static final int gallery=0x7f090021;
