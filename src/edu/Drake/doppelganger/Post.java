@@ -1,6 +1,7 @@
 package edu.Drake.doppelganger;
 
 import android.app.Activity;
+import android.app.ActionBar.LayoutParams;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class Post extends Activity {
 	
@@ -48,7 +51,7 @@ public class Post extends Activity {
 	
 	public void selectCeleb(View v) {
 		Intent intent = new Intent(v.getContext(), Celebrities.class);
-		startActivity(intent);
+		startActivityForResult(intent,1);
 	}
 	
 	public void selectPic(View v) {
@@ -81,6 +84,25 @@ public class Post extends Activity {
     	getActionBar().setDisplayHomeAsUpEnabled(false);
 		onBackPressed();
 	}
+	
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+		
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        if(requestCode==1)
+		{
+			if(resultCode==RESULT_OK)
+			{
+		        if(data.getExtras()!=null){
+		        	theImage = (ImageView) findViewById(R.id.select_celeb);
+		        	int i = data.getIntExtra("image", 1);
+		            theImage.setImageResource(i);
+		        }
+			}
+		}
+    }
 	
 }
 

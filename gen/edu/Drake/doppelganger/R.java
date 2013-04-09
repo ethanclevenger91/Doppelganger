@@ -29,11 +29,11 @@ public final class R {
         public static final int zooey=0x7f020009;
     }
     public static final class id {
-        public static final int button_capture=0x7f090027;
-        public static final int button_retake=0x7f090026;
-        public static final int button_use=0x7f090028;
+        public static final int button_capture=0x7f090028;
+        public static final int button_retake=0x7f090027;
+        public static final int button_use=0x7f090029;
         public static final int camera=0x7f090023;
-        public static final int camera_preview=0x7f090025;
+        public static final int camera_preview=0x7f090026;
         public static final int celebrity_entry_name=0x7f090001;
         public static final int celebrity_entry_pic=0x7f090000;
         public static final int checkBox1=0x7f090004;
@@ -50,18 +50,19 @@ public final class R {
         public static final int image_comment=0x7f09000a;
         public static final int image_down_vote=0x7f09000d;
         public static final int image_up_vote=0x7f090008;
-        public static final int label=0x7f090029;
+        public static final int label=0x7f09002a;
         public static final int linear_view1=0x7f090018;
+        public static final int list=0x7f090025;
         public static final int localpic=0x7f090024;
         public static final int login=0x7f090013;
         public static final int login_form=0x7f090010;
         public static final int login_status=0x7f09000e;
         public static final int login_status_message=0x7f09000f;
-        public static final int menu_cancel=0x7f09002b;
-        public static final int menu_compose=0x7f09002e;
-        public static final int menu_forgot_password=0x7f09002d;
-        public static final int menu_post=0x7f09002c;
-        public static final int menu_settings=0x7f09002a;
+        public static final int menu_cancel=0x7f09002c;
+        public static final int menu_compose=0x7f09002f;
+        public static final int menu_forgot_password=0x7f09002e;
+        public static final int menu_post=0x7f09002d;
+        public static final int menu_settings=0x7f09002b;
         public static final int mylist=0x7f09001a;
         public static final int password=0x7f090012;
         public static final int scroll_view1=0x7f090017;

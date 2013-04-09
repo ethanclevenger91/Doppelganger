@@ -19,9 +19,9 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	private final List<CelebrityEntry> list;
 	private final Activity context;
  
-	public CelebrityEntryAdapter(Fragment context, List<CelebrityEntry> list) {
-		super(context.getActivity(), R.layout.feed_list, list);
-		this.context = context.getActivity();
+	public CelebrityEntryAdapter(Activity context, List<CelebrityEntry> list) {
+		super(context, R.layout.feed_list, list);
+		this.context = context;
 	    this.list = list;
 	}
  

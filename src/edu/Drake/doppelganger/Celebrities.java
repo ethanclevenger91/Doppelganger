@@ -1,20 +1,29 @@
 package edu.Drake.doppelganger;
 
-import android.app.Activity;
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class Celebrities extends Activity {
+public class Celebrities extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_celebrities);
 		
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
+		 
+		 ArrayAdapter<CelebrityEntry> adapter = new CelebrityEntryAdapter(this, getModel());
+		 setListAdapter(adapter);
+		 
 	}
 
 	@Override
@@ -51,5 +60,31 @@ public class Celebrities extends Activity {
 	private void cancelMenuItem() {
 		onBackPressed();
 	}
+	
+	public void onListItemClick(ListView l, View v, int position, long id)
+	{
+		
+		CelebrityEntry celebrity = (CelebrityEntry) getListView().getItemAtPosition(position);
+		Intent makeAPost = new Intent(v.getContext(), Post.class);
+		makeAPost.putExtra("image", celebrity.getPic());
+		
+		setResult(RESULT_OK,makeAPost);
+    	finish();
+		
+		
+	}
+	
+	private List<CelebrityEntry> getModel() {
+	    List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
+	    list.add(get("Kirsten Dunst",R.drawable.dunst));
+	    list.add(get("Adam Savage",R.drawable.savage));
+	    list.add(get("Pierce Brosnan",R.drawable.brosnan));
+	    list.add(get("Zooey Deschanel",R.drawable.zooey));
+	    return list;
+	  }
+	
+	private CelebrityEntry get(String name, int pic) {
+    return new CelebrityEntry(name, pic);
+  }
 	
 }

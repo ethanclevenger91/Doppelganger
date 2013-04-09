@@ -6,9 +6,10 @@ import java.util.List;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.view.*;
 
 public class CelebritiesFragment extends ListFragment {
 
@@ -22,8 +23,11 @@ public class CelebritiesFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		 ArrayAdapter<CelebrityEntry> adapter = new CelebrityEntryAdapter(this, getModel());
+		Log.v("hello","onActivity");
+		
+		 ArrayAdapter<CelebrityEntry> adapter = new CelebrityEntryAdapter(this.getActivity(), getModel());
 		 setListAdapter(adapter);
+		 Log.v("hello","set adapter");
     }
 	
 	@Override
