@@ -12,28 +12,29 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
         android:src="@raw/signin" />
 
     <ImageButton
         android:id="@+id/signup"
         android:layout_width="250dp"
-        android:layout_height="130dp"
+        android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="124dp"
-        android:scaleType="fitCenter"
+        android:layout_marginTop="136dp"
         android:onClick="signUp"
+        android:scaleType="fitCenter"
         android:src="@raw/signup" />
 
     <ImageButton
         android:id="@+id/login"
         android:layout_width="250dp"
-        android:layout_height="130dp"
+        android:layout_height="60dp"
         android:layout_alignLeft="@+id/signup"
-        android:layout_alignTop="@+id/signup"
-        android:layout_marginTop="87dp"
-        android:scaleType="fitCenter"
+        android:layout_below="@+id/signup"
+        android:layout_marginTop="40dp"
         android:onClick="logIn"
+        android:scaleType="fitCenter"
         android:src="@raw/login" />
     
 </RelativeLayout>

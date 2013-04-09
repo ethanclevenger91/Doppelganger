@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.view.*;
 
 public class CelebritiesFragment extends ListFragment {
 
@@ -21,9 +24,18 @@ public class CelebritiesFragment extends ListFragment {
 		
 		 ArrayAdapter<CelebrityEntry> adapter = new CelebrityEntryAdapter(this, getModel());
 		 setListAdapter(adapter);
-		
-       
     }
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id)
+	{
+		
+		CelebrityEntry celebrity = (CelebrityEntry) getListView().getItemAtPosition(position);
+		Intent makeAPost = new Intent(v.getContext(), Post.class);
+		makeAPost.putExtra("image", celebrity.getPic());
+		startActivity(makeAPost);
+		
+	}
 	
 	private List<CelebrityEntry> getModel() {
 	    List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();

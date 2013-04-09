@@ -3,17 +3,29 @@ package edu.Drake.doppelganger;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 public class Post extends Activity {
+	
+	ImageView theImage;
+	String TAG = "post.java";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post);
 		
+	    Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+          return;
+        }
+        Log.v(TAG, "got this far");
+        theImage = (ImageView) findViewById(R.id.select_celeb);
+        theImage.setImageResource(extras.getInt("image"));
 
         //shows the back button
         getActionBar().setDisplayHomeAsUpEnabled(true);
