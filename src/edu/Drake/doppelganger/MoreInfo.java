@@ -1,5 +1,6 @@
 package edu.Drake.doppelganger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActionBar.LayoutParams;
@@ -84,6 +85,16 @@ public class MoreInfo extends Activity {
 	public void onBackPressed(){
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(false);
+		 
+
+	    	Intent intent = getIntent();
+	    	intent.putExtra("ups", upCount);
+	    	intent.putExtra("downs", downCount);
+	    	intent.putExtra("comments", commentList.size());
+	    	intent.putStringArrayListExtra("commentList", (ArrayList<String>) commentList);
+	    	
+	    	setResult(RESULT_OK,intent);
+	    	finish();
 		 
 		 finish();
 	}
