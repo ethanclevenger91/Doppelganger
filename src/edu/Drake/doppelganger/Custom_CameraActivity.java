@@ -123,6 +123,7 @@ public class Custom_CameraActivity extends Activity {
             if (pictureFile == null) {
                 return;
             }
+            myPath = pictureFile.getPath();
             try {
                 FileOutputStream fos = new FileOutputStream(pictureFile);
                 fos.write(data);
@@ -200,14 +201,9 @@ public class Custom_CameraActivity extends Activity {
 	}
 	
 	public void usePic(View v){
-		File pictureFile = getOutputMediaFile();
-        if (pictureFile == null) {
-            onBackPressed();
-        }
         Intent intent = new Intent();
-        intent.putExtra("imagePath", pictureFile.getPath());
-        myPath = pictureFile.getPath();
-        Log.v("CameraPreview", pictureFile.getPath());
+        intent.putExtra("imagePath", myPath);
+        //Log.v("CameraPreview", pictureFile.getPath());
         setResult(RESULT_OK, intent); 
         
         super.finish();

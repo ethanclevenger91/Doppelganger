@@ -1,6 +1,7 @@
 package edu.Drake.doppelganger;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -82,7 +83,7 @@ public class TakePicture extends Activity {
 		return true;
 	}
 	
-	public void cameraClick(View v){
+	public void cameraClick(View v){    
 		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
 		startActivityForResult(intent, TAKE_CUSTOM_PIC);
 	}
