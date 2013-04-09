@@ -14,14 +14,24 @@
         android:layout_alignParentTop="true"
         android:src="@raw/facebook" />
 
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_alignBottom="@+id/start"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="38dp" />
+
     <ImageButton
         android:id="@+id/start"
-        android:layout_width="140dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="42dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="139dp"
-        android:scaleType="fitCenter"
+        android:layout_marginBottom="186dp"
+        android:layout_marginRight="3dp"
+        android:scaleType="fitXY"
         android:src="@raw/start" />
 
 </RelativeLayout>
