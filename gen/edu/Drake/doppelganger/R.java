@@ -74,6 +74,7 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_celebrities=0x7f030000;
+<<<<<<< HEAD
         public static final int activity_comment=0x7f030001;
         public static final int activity_facebook=0x7f030002;
         public static final int activity_feed=0x7f030003;
@@ -88,6 +89,24 @@ public final class R {
         public static final int feed_list=0x7f03000c;
         public static final int main=0x7f03000d;
         public static final int notificationsrowbuttonlayout=0x7f03000e;
+=======
+        public static final int activity_celebrity_entry=0x7f030001;
+        public static final int activity_celebrity_entry_adapter=0x7f030002;
+        public static final int activity_facebook=0x7f030003;
+        public static final int activity_feed=0x7f030004;
+        public static final int activity_login=0x7f030005;
+        public static final int activity_main=0x7f030006;
+        public static final int activity_more_info=0x7f030007;
+        public static final int activity_notifications=0x7f030008;
+        public static final int activity_post=0x7f030009;
+        public static final int activity_register=0x7f03000a;
+        public static final int activity_signin=0x7f03000b;
+        public static final int activity_take_picture=0x7f03000c;
+        public static final int celebrity_entry_layout=0x7f03000d;
+        public static final int feed_list=0x7f03000e;
+        public static final int main=0x7f03000f;
+        public static final int notificationsrowbuttonlayout=0x7f030010;
+>>>>>>> 61b5f71632901bcbc6945cab451d03d8675b8233
     }
     public static final class menu {
         public static final int activity_celebrities=0x7f080000;

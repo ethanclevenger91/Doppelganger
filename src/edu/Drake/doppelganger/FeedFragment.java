@@ -21,6 +21,7 @@ public class FeedFragment extends ListFragment{
 	public static final Integer[] images = { R.raw.urness,
         R.raw.inman, R.raw.morrow};
 	
+<<<<<<< HEAD
 	private List<String> comment() {
 		List<String> list = new ArrayList<String>();
 		list.add("You are so right");
@@ -29,6 +30,10 @@ public class FeedFragment extends ListFragment{
 		list.add("they are so similar that it is scary");
 		return list;
 	}
+=======
+	public static final String[] comments = { "You are so right", "Like looking into a mirror", 
+		"They must be related", "They are so similar that is scary", "They don't look anything alike, how can you people not see it"};
+>>>>>>> 61b5f71632901bcbc6945cab451d03d8675b8233
 	
 	
 	private List<FeedsModel> getModel() {
