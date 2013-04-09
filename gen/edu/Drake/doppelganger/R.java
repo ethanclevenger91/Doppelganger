@@ -40,19 +40,11 @@ public final class R {
         public static final int create_comment=0x7f090019;
         public static final int description=0x7f090016;
         public static final int edit_text1=0x7f090002;
-<<<<<<< HEAD
-        public static final int edit_text_caption=0x7f09001f;
-        public static final int edit_text_tag=0x7f09001e;
-        public static final int email=0x7f090010;
-        public static final int fragment_container=0x7f090014;
-        public static final int gallery=0x7f090021;
-=======
         public static final int edit_text_caption=0x7f090020;
         public static final int edit_text_tag=0x7f09001f;
         public static final int email=0x7f090011;
         public static final int fragment_container=0x7f090015;
         public static final int gallery=0x7f090022;
->>>>>>> e4c12ce5b3c9a3426ba12fe7d5d7f5defe6e9b28
         public static final int imageView1=0x7f090003;
         public static final int image_button1=0x7f090007;
         public static final int image_comment=0x7f09000a;
@@ -145,7 +137,6 @@ public final class R {
         public static final int urness=0x7f050014;
         public static final int votedown=0x7f050015;
         public static final int voteup=0x7f050016;
-        public static final int zooey=0x7f050017;
     }
     public static final class string {
         public static final int action_sign_in_register=0x7f060013;
