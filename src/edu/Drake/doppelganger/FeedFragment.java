@@ -22,7 +22,7 @@ public class FeedFragment extends ListFragment{
         R.raw.inman, R.raw.morrow};
 	
 	public static final String[] comments = { "You are so right", "Like looking into a mirror", 
-		"They must be related", "They are so similar that is is scary", "They don't look anything alike, how can you people not see it"};
+		"They must be related", "They are so similar that is scary", "They don't look anything alike, how can you people not see it"};
 	
 	
 	private List<FeedsModel> getModel() {
