@@ -160,6 +160,9 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 			    newWidth, newHeight);
+
+		params.setMargins(15, 0, 15, 0);
+		params.addRule(RelativeLayout.BELOW, R.id.textView1);
 		
 		holder.photoButton.setLayoutParams(params);
 	    

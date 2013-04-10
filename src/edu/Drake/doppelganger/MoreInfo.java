@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MoreInfo extends Activity {
@@ -52,6 +53,20 @@ public class MoreInfo extends Activity {
 		String uri = "raw/" + image;
         int imageResource = getResources().getIdentifier(uri, null, getPackageName());
         photoButton.setImageResource(imageResource);
+        
+        int newHeight = (int) (getWindowManager().getDefaultDisplay().getHeight() /2.25);
+		int newWidth = getWindowManager().getDefaultDisplay().getWidth();
+        
+		Log.v("height of screen", String.valueOf(newHeight));
+		Log.v("width of screen", String.valueOf(newWidth));
+		
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+			    newWidth, newHeight);
+		params.setMargins(15, 0, 15, 0);
+		params.addRule(RelativeLayout.BELOW, R.id.textView1);
+		
+		photoButton.setLayoutParams(params);
+        
         
        // ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view1);
         LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);

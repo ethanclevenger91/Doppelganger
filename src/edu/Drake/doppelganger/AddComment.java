@@ -1,13 +1,22 @@
 package edu.Drake.doppelganger;
 
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.model.GraphUser;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class AddComment extends Activity {
 	
@@ -92,18 +101,57 @@ public class AddComment extends Activity {
     	getActionBar().setDisplayHomeAsUpEnabled(false);
     	
     	EditText edit = (EditText) findViewById(R.id.edit_text1);
-    	String myReturnString = edit.getText().toString();
-    	Intent intent = getIntent();
+    	final String myReturnString = edit.getText().toString();
+    	final Intent intent = getIntent();
     	
-    	intent.putExtra("post", myReturnString);
     	
-    	InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-    	imm.hideSoftInputFromWindow(textEdit.getWindowToken(),0);
-    	
-    	setResult(RESULT_OK,intent);
-    	finish();
+    	Session.openActiveSession(this, true, new Session.StatusCallback() {
+    		////
+    		          // callback when session changes state
+    		          @Override
+    		          public void call(Session session, SessionState state, Exception exception) {
+    		            if (session.isOpened()) {
+    		              // make request to the /me API
+    		              Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+    		            	  
+    		                // callback after Graph API response with user object
+    		                @Override
+    		                public void onCompleted(GraphUser user, Response response) {
+    		                  if (user != null) {
+    		                    
+    		                	  String finalString = user.getName() + ": " + myReturnString;
+    		                	  intent.putExtra("post", finalString);
+    		                   
+    		                	  InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    		                	  imm.hideSoftInputFromWindow(textEdit.getWindowToken(),0);
+    		               	
+    		                	  setResult(RESULT_OK,intent);
+    		                	  finish();
 
- 		overridePendingTransition( R.anim.slide_in_down, R.anim.slide_out_down);
+    		                	  overridePendingTransition( R.anim.slide_in_down, R.anim.slide_out_down);
+    		                   
+    		                  } 
+    		                }
+    		              });
+    		              
+    		              
+    		            }
+    		            //
+    		          }
+    		        });
+    	
+    	
+    	
+    	
+    	//intent.putExtra("post", myReturnString);
+    	
+    	//InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    	//imm.hideSoftInputFromWindow(textEdit.getWindowToken(),0);
+    	
+    	//setResult(RESULT_OK,intent);
+    	//finish();
+
+ 		//overridePendingTransition( R.anim.slide_in_down, R.anim.slide_out_down);
 	}
 	
 	
