@@ -26,7 +26,6 @@ public class Post extends Activity {
         if (extras == null) {
           return;
         }
-        Log.v(TAG, "got this far");
         theImage = (ImageView) findViewById(R.id.select_celeb);
         theImage.setImageResource(extras.getInt("image"));
 
