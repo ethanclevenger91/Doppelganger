@@ -3,7 +3,6 @@ package edu.Drake.doppelganger;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -15,7 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
@@ -44,7 +43,8 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	  
 	  
 
-	  @Override
+	  @SuppressWarnings({ "deprecation" })
+	@Override
 	  public View getView(int position, View convertView, ViewGroup parent) {
 	    View view = convertView;
 	    FeedsModel model = getItem(position);
@@ -151,6 +151,17 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    String uri = "raw/" + model.getImageId();
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         holder.photoButton.setImageResource(imageResource);
+        
+		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.25);
+		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();
+        
+		Log.v("height of screen", String.valueOf(newHeight));
+		Log.v("width of screen", String.valueOf(newWidth));
+		
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+			    newWidth, newHeight);
+		
+		holder.photoButton.setLayoutParams(params);
 	    
 	    return view;
 	  }
