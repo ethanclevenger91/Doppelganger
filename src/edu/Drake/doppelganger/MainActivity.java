@@ -14,14 +14,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
-
-import edu.Drake.doppelganger.FeedInteractiveArrayAdapter.ViewHolder;
 
 
 
@@ -94,7 +93,7 @@ public class MainActivity extends Activity {
 	        // some people needed this line as well to make it work: 
 	        ft.remove(fragment);
 	    }
-	}
+	}//
 	
 	static class ViewHolder {
 		 String myName = null;
@@ -147,23 +146,27 @@ public class MainActivity extends Activity {
             	Log.v("main", "is opened");
               // make request to the /me API
               Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
-
+            	  
                 // callback after Graph API response with user object
                 @Override
                 public void onCompleted(GraphUser user, Response response) {
                   if (user != null) {
-                	//  ((Activity) getBaseContext()).getActionBar().setTitle(user.getName());
-                    myName = user.getName();
+                    TextView welcome = (TextView) findViewById(R.id.welcome);
+                    welcome.setText(user.getName());
+                    ActionBar actionBar = getActionBar();
                     
+                    //sets the actionbar title to user name, this verifies if Facebook is working
+                    //if you see your name from facebook at the top of the screen, it is working
+                    actionBar.setTitle(user.getName());
                   } 
                 }
               });
+              
+              
             }
             //
           }
         });
-       
-        
 	}
 	
 	/*
