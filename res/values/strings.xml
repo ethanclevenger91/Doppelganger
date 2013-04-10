@@ -17,5 +17,6 @@
     <string name="title_activity_celebrity_entry">CelebrityEntry</string>
     <string name="title_activity_celebrity_entry_adapter">CelebrityEntryAdapter</string>
     <string name="title_comment">Add Comment</string>
+    <string name="app_id">548403725204948</string>
 
 </resources>

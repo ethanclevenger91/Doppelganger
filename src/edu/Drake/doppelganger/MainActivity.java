@@ -9,14 +9,19 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
+
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.model.GraphUser;
+
+import edu.Drake.doppelganger.FeedInteractiveArrayAdapter.ViewHolder;
 
 
 
@@ -24,6 +29,7 @@ public class MainActivity extends Activity {
 	
 	private static final String TAG = "MainActivity";
 	public static Context appContext;
+	public static String myName;
 	
 	protected class MyTabsListener implements ActionBar.TabListener {
 
@@ -90,6 +96,10 @@ public class MainActivity extends Activity {
 	    }
 	}
 	
+	static class ViewHolder {
+		 String myName = null;
+	  }
+	
 	@Override
 	//on create method
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +110,7 @@ public class MainActivity extends Activity {
 		 getActionBar().setDisplayHomeAsUpEnabled(false);
 		
 		// setup action bar for tabs
-	    ActionBar actionBar = getActionBar();
+	    final ActionBar actionBar = getActionBar();
 	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	    
 	  //initiating both tabs and set text to it.
@@ -124,6 +134,36 @@ public class MainActivity extends Activity {
         actionBar.addTab(NoteTab);
         
         actionBar.setSelectedNavigationItem(1);
+        
+        
+             // start Facebook Login
+       Session.openActiveSession(this, true, new Session.StatusCallback() {
+////
+          // callback when session changes state
+          @Override
+          public void call(Session session, SessionState state, Exception exception) {
+        	  Log.v("main", "is not opened");
+            if (session.isOpened()) {
+            	Log.v("main", "is opened");
+              // make request to the /me API
+              Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+
+                // callback after Graph API response with user object
+                @Override
+                public void onCompleted(GraphUser user, Response response) {
+                  if (user != null) {
+                	//  ((Activity) getBaseContext()).getActionBar().setTitle(user.getName());
+                    myName = user.getName();
+                    
+                  } 
+                }
+              });
+            }
+            //
+          }
+        });
+       
+        
 	}
 	
 	/*
@@ -137,6 +177,9 @@ public class MainActivity extends Activity {
 	
 	public void onActivityResult(int requestcode, int resultcode, Intent data) {
 		super.onActivityResult(requestcode, resultcode, data);
+		
+		Session.getActiveSession().onActivityResult(this, requestcode, resultcode, data);
+		
 		if(requestcode==1)
 		{
 			if(resultcode==RESULT_OK)
