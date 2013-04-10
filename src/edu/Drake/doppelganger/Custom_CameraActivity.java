@@ -32,6 +32,7 @@ public class Custom_CameraActivity extends Activity {
     private CameraPreview mCameraPreview;
     boolean isPicTaken = false;
     String myPath;
+    Uri myUri;
 
     /** Called when the activity is first created. */
     @Override
@@ -124,6 +125,7 @@ public class Custom_CameraActivity extends Activity {
                 return;
             }
             myPath = pictureFile.getPath();
+            myUri = Uri.fromFile(new File(myPath));
             try {
                 FileOutputStream fos = new FileOutputStream(pictureFile);
                 fos.write(data);
@@ -202,7 +204,7 @@ public class Custom_CameraActivity extends Activity {
 	
 	public void usePic(View v){
         Intent intent = new Intent();
-        intent.putExtra("imagePath", myPath);
+        intent.putExtra("imageUri", myUri);
         //Log.v("CameraPreview", pictureFile.getPath());
         setResult(RESULT_OK, intent); 
         

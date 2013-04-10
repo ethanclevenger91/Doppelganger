@@ -70,7 +70,18 @@ public class TakePicture extends Activity {
             theImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         }
         if (requestCode == TAKE_CUSTOM_PIC && resultCode == RESULT_OK && null != data) {
-        	theImage.setImageBitmap(BitmapFactory.decodeFile(data.getStringExtra("imagePath")));
+        	Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+ 
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+ 
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            
+            theImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
         }
         
 	}
