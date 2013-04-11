@@ -111,7 +111,6 @@ public class MoreInfo extends Activity {
 	    	setResult(RESULT_OK,intent);
 	    	finish();
 		 
-		 finish();
 	}
 	
 	public void upVote(View v) {

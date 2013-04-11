@@ -1,21 +1,27 @@
 package edu.Drake.doppelganger;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import android.app.Activity;
-import android.app.ActionBar.LayoutParams;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class Post extends Activity {
 	
 	ImageView theImage;
 	String TAG = "post.java";
+	
+	private static int SELECT_FOR_PIC = 5713;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +61,7 @@ public class Post extends Activity {
 	
 	public void selectPic(View v) {
 		Intent intent = new Intent(v.getContext(), TakePicture.class);
-		startActivity(intent);
+		startActivityForResult(intent,SELECT_FOR_PIC);
 	}
 	
 	@Override
@@ -84,21 +90,70 @@ public class Post extends Activity {
 		onBackPressed();
 	}
 	
+	/*
+	private Bitmap decodeFile(File f){
+	    try {
+	        //Decode image size
+	        BitmapFactory.Options o = new BitmapFactory.Options();
+	        o.inJustDecodeBounds = true;
+	        BitmapFactory.decodeStream(new FileInputStream(f),null,o);
+
+	        //The new size we want to scale to
+	        final int REQUIRED_SIZE=70;
+
+	        //Find the correct scale value. It should be the power of 2.
+	        int scale=1;
+	        while(o.outWidth/scale/2>=REQUIRED_SIZE && o.outHeight/scale/2>=REQUIRED_SIZE)
+	            scale*=2;
+
+	        //Decode with inSampleSize
+	        BitmapFactory.Options o2 = new BitmapFactory.Options();
+	        o2.inSampleSize=scale;
+	        return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+	    } catch (FileNotFoundException e) {}
+	    return null;
+	}
+	*/
+	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
 		
         super.onActivityResult(requestCode, resultCode, data);
         
+        Log.v("post", "returned with code: " + requestCode);
+        
         if(requestCode==1)
 		{
 			if(resultCode==RESULT_OK)
 			{
 		        if(data.getExtras()!=null){
+		        	
 		        	theImage = (ImageView) findViewById(R.id.select_celeb);
 		        	int i = data.getIntExtra("image", 1);
 		            theImage.setImageResource(i);
 		        }
+			}
+		}
+		if(requestCode==SELECT_FOR_PIC)
+		{
+			if(resultCode==RESULT_OK)
+			{
+				
+				if(data.getExtras()!=null) {
+					ImageView myImage = (ImageView) findViewById(R.id.select_pic);
+					String returnString = data.getStringExtra("return");
+					
+					//Bitmap bitmap = decodeFile(new File(returnString));
+					//myImage.setImageBitmap(bitmap);
+					
+					
+					Log.v("post", returnString);
+					//theImage.setImageBitmap(BitmapFactory.decodeFile(returnString));
+					Drawable image = Drawable.createFromPath(returnString);
+		            theImage.setImageDrawable(image);
+		            
+				}
 			}
 		}
     }

@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +32,7 @@ public class Custom_CameraActivity extends Activity {
     private Camera mCamera;
     private CameraPreview mCameraPreview;
     boolean isPicTaken = false;
+    Bitmap bitmap;
     String myPath;
     Uri myUri;
 
@@ -134,7 +136,7 @@ public class Custom_CameraActivity extends Activity {
                 sendBroadcast(new Intent(
             		    Intent.ACTION_MEDIA_MOUNTED,
             		    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
-                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+               bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                
                 
             } catch (FileNotFoundException e) {
@@ -174,7 +176,7 @@ public class Custom_CameraActivity extends Activity {
         File mediaFile;
         mediaFile = new File(mediaStorageDir.getPath() + File.separator
                 + "IMG_" + timeStamp + ".jpg");
-
+        
         return mediaFile;
     }
     
@@ -204,8 +206,9 @@ public class Custom_CameraActivity extends Activity {
 	
 	public void usePic(View v){
         Intent intent = new Intent();
-        intent.putExtra("imageUri", myUri);
-        //Log.v("CameraPreview", pictureFile.getPath());
+        String path = myUri.getEncodedPath();
+        intent.putExtra("imageUri", path);
+        Log.v("CameraPreview", "returning result");
         setResult(RESULT_OK, intent); 
         
         super.finish();
@@ -214,6 +217,18 @@ public class Custom_CameraActivity extends Activity {
 	public void retakePic(View v) {
 		mCamera.startPreview();
 		isPicTaken=false;
+	}
+	
+	@Override
+	public void onDestroy()
+	{   
+	    Cleanup();
+	    super.onDestroy();
+	}
+
+	private void Cleanup()
+	{    
+	    bitmap.recycle(); 
 	}
     
 }

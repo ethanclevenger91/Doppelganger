@@ -1,14 +1,16 @@
 package edu.Drake.doppelganger;
 
+import java.io.File;
+
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,8 @@ public class TakePicture extends Activity {
 	Camera mCamera;
 	ImageButton galleryButton;
 	ImageView theImage;
+	String picturePath = null;
+	Bitmap bitmap;
 	
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static int TAKE_CUSTOM_PIC = 38124;
@@ -44,7 +48,7 @@ public class TakePicture extends Activity {
 			 public void onClick(View v) {
 				 Intent i = new Intent(
 						 Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-						  startActivityForResult(i, RESULT_LOAD_IMAGE);
+				 			startActivityForResult(i, RESULT_LOAD_IMAGE);
 			 }
 		 });
 		 
@@ -55,6 +59,8 @@ public class TakePicture extends Activity {
 	{
 		super.onActivityResult(requestCode, resultCode, data);
         
+		Log.v("take pic","returned with code: " + requestCode);
+		
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
@@ -64,28 +70,57 @@ public class TakePicture extends Activity {
             cursor.moveToFirst();
  
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
+            picturePath = cursor.getString(columnIndex);
             cursor.close();
             
-            theImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            //Drawable image = Drawable.createFromPath(picturePath);
+            //theImage.setImageDrawable(image);
+            bitmap = BitmapHelper.decodeFile(new File(picturePath), theImage.getWidth(), theImage.getHeight(), false);
+            
+            theImage.setImageBitmap(bitmap);
+            
+            
+            
         }
         if (requestCode == TAKE_CUSTOM_PIC && resultCode == RESULT_OK && null != data) {
-        	Uri selectedImage = data.getData();
+        	
+        	Log.v("take pic","in take pic");
+        	
+        	String selectedImage = data.getStringExtra("imageUri");
+        	
+        	/*
+        	Uri imageUri = Uri.parse(selectedImage);
+        	
+        	Log.v("take pic", imageUri.getEncodedPath());
+        	
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Log.v("take pic","filePathColumn");
  
-            Cursor cursor = getContentResolver().query(selectedImage,
+            Cursor cursor = getContentResolver().query(imageUri,
                     filePathColumn, null, null, null);
+            Log.v("take pic","content resolver");
             cursor.moveToFirst();
+            Log.v("take pic","move to first");
  
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
+            Log.v("take pic","get column index");
+            picturePath = cursor.getString(columnIndex);
+            Log.v("take pic","about to close");
             cursor.close();
             
-            theImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            */
+            Log.v("take pic","bitmap time");
+            
+            bitmap = BitmapHelper.decodeFile(new File(selectedImage), theImage.getWidth(), theImage.getHeight(), false);
+            
+            
+      
+            
+            theImage.setImageBitmap(bitmap);
         }
         
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -98,6 +133,19 @@ public class TakePicture extends Activity {
 		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
 		startActivityForResult(intent, TAKE_CUSTOM_PIC);
 	}
+	
+	public void returnSelection(View v) {
+		Intent intent = getIntent();
+    	
+		if(picturePath!=null)
+		{
+			intent.putExtra("return",picturePath);
+		}
+    	setResult(RESULT_OK,intent);
+    	finish();
+	}
+	
+	
 	
 	@Override
 	//this is used on the up button press
@@ -124,28 +172,16 @@ public class TakePicture extends Activity {
     	getActionBar().setDisplayHomeAsUpEnabled(false);
 		onBackPressed();
 	}
-	/*
-	private boolean safeCameraOpen(int id) {
-	    boolean qOpened = false;
-	  
-	    try {
-	        releaseCameraAndPreview();
-	        mCamera = Camera.open(id);
-	        qOpened = (mCamera != null);
-	    } catch (Exception e) {
-	        Log.e(getString(R.string.app_name), "failed to open Camera");
-	        e.printStackTrace();
-	    }
-
-	    return qOpened;    
+	
+	@Override
+	public void onDestroy()
+	{   
+	    Cleanup();
+	    super.onDestroy();
 	}
 
-	private void releaseCameraAndPreview() {
-	    mPreview.setCamera(mCamera);
-	    if (mCamera != null) {
-	        mCamera.release();
-	        mCamera = null;
-	    }
+	private void Cleanup()
+	{    
+	    bitmap.recycle(); 
 	}
-	*/
 }

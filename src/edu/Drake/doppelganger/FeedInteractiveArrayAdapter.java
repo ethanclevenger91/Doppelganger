@@ -116,8 +116,21 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		    	 @Override
 		    	 public void onClick(View v) {
 
+		    		 FeedsModel element = (FeedsModel) viewHolder.downCount
+		                      .getTag();
+		    		 
 		    	            Intent intent = new Intent(v.getContext(), MoreInfo.class);
-		    	    		v.getContext().startActivity(intent);
+		    	            
+		    	            Bundle b = new Bundle();
+		    	            b.putString("ups", (String) viewHolder.upCount.getText());
+		    	            b.putString("downs", (String) viewHolder.downCount.getText());
+		    	            b.putString("desc", element.getDesc());
+		    	            b.putString("image", element.getImageId());
+		    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
+		    	            
+		    	            intent.putExtras(b);
+		    	            Log.v("activity context", v.getContext().toString());
+		    	    		((Activity) v.getContext()).startActivityForResult(intent,1);
 		    		
 		    	 }
 		      });
