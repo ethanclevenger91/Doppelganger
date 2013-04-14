@@ -216,15 +216,16 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_background_gradient=0x7f020020;
         public static final int contentedit=0x7f020021;
         public static final int dunst=0x7f020022;
-        public static final int ic_launcher=0x7f020023;
-        public static final int inman=0x7f020024;
-        public static final int morrow=0x7f020025;
-        public static final int post_button=0x7f020026;
-        public static final int savage=0x7f020027;
-        public static final int upload=0x7f020028;
-        public static final int upload_border=0x7f020029;
-        public static final int urness=0x7f02002a;
-        public static final int zooey=0x7f02002b;
+        public static final int hathaway=0x7f020023;
+        public static final int ic_launcher=0x7f020024;
+        public static final int inman=0x7f020025;
+        public static final int morrow=0x7f020026;
+        public static final int post_button=0x7f020027;
+        public static final int savage=0x7f020028;
+        public static final int upload=0x7f020029;
+        public static final int upload_border=0x7f02002a;
+        public static final int urness=0x7f02002b;
+        public static final int zooey=0x7f02002c;
     }
     public static final class id {
         public static final int button_capture=0x7f060046;

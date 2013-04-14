@@ -56,6 +56,10 @@ public class TakePicture extends Activity {
 		 
 	}
 	
+	/*public void onBackPressed() {
+
+	    }*/
+	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		super.onActivityResult(requestCode, resultCode, data);
@@ -153,6 +157,9 @@ public class TakePicture extends Activity {
 
 	private void Cleanup()
 	{    
-	    bitmap.recycle(); 
+		if(bitmap != null)
+		{
+			bitmap.recycle(); 
+		}
 	}
 }

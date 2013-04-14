@@ -45,6 +45,7 @@ public class CelebritiesFragment extends ListFragment {
 	    list.add(get("Adam Savage",R.drawable.savage));
 	    list.add(get("Pierce Brosnan",R.drawable.brosnan));
 	    list.add(get("Zooey Deschanel",R.drawable.zooey));
+	    list.add(get("Anne Hathaway", R.drawable.hathaway));
 	    return list;
 	  }
 	

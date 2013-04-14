@@ -145,7 +145,6 @@ public class Post extends Activity {
 					ImageView myImage = (ImageView) findViewById(R.id.select_pic);
 					String returnString = data.getStringExtra("return");
 					Bitmap bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
-					Log.v(TAG, returnString);
 		            myImage.setImageBitmap(bitmap);
 					
 					//theImage.setImageBitmap(BitmapFactory.decodeFile(returnString));
