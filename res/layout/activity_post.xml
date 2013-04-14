@@ -4,13 +4,53 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Post" >
-    
+   
+    <FrameLayout
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal"
+    	android:layout_weight="0.4" >
+    	
+        <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal" >
+    	
+    <ImageView
+       android:id="@+id/celebBorder"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_weight=".5"
+       android:layout_marginLeft="10dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginBottom="10dp"
+       android:layout_marginRight="0dp"
+       android:scaleType="fitXY"
+       android:adjustViewBounds="true"
+       android:src="@drawable/upload_border" />
+        
+    <ImageView
+        android:id="@+id/muggleBorder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+       android:layout_marginLeft="0dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginBottom="10dp"
+       android:layout_marginRight="10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/upload_border" />
+    </LinearLayout>
+    	
+        
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
     	android:layout_width="match_parent"
     	android:layout_height="match_parent"
-    	android:orientation="horizontal"
-    	android:layout_weight="0.4" >
+    	android:orientation="horizontal" >
+    	
     <ImageButton
        android:id="@+id/select_pic"
        android:layout_width="match_parent"
@@ -23,7 +63,7 @@
        android:scaleType="fitXY"
        android:adjustViewBounds="true"
        android:onClick="selectPic"
-       android:src="@raw/selectpic" />
+       android:src="@drawable/upload" />
         
     <ImageButton
         android:id="@+id/select_celeb"
@@ -37,60 +77,86 @@
         android:adjustViewBounds="true"
         android:onClick="selectCeleb"
         android:scaleType="fitXY"
-        android:src="@raw/selectceleb" />
+        android:src="@drawable/upload" />
     </LinearLayout>
+        
+    </FrameLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".3">
+        android:layout_weight=".3" >
     
         <TextView
-       android:id="@+id/text_caption"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginLeft="15dp"
-       android:layout_marginTop="10dp"
-       android:text="Caption:"
-       android:textAppearance="?android:attr/textAppearanceLarge"
-       android:textSize="20sp" />
+            android:id="@+id/you_friends"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:text="Click here to upload a photo of yourself/a friend" >
+
+        </TextView>
         
         <TextView
-       android:id="@+id/text_tag"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginLeft="15dp"
-       android:layout_marginTop="15dp"
-       android:layout_alignBottom="@+id/edit_text_tag"
-       android:text="Tag:"
-       android:textAppearance="?android:attr/textAppearanceLarge"
-       android:textSize="20sp" />
+            android:layout_toRightOf="@+id/you_friends"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11dp"
+            android:text="Click here to upload a photo of a celebrity" >
 
+        </TextView>
+        
         <EditText
             android:id="@+id/edit_text_caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/text_caption"
-            android:ems="10" >
+            android:layout_alignBottom="@+id/text_caption"
+            android:ems="10" />
 
-            <requestFocus />
-        </EditText>
-        
         <EditText
             android:id="@+id/edit_text_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/edit_text_caption"
-            android:layout_alignRight="@+id/edit_text_caption"
-            android:layout_marginTop="30dp"
-            android:layout_toRightOf="@+id/text_tag"
+            android:layout_alignBottom="@+id/text_tag"
+            android:layout_alignLeft="@+id/edit_text_caption"
             android:ems="10" >
 
             <requestFocus />
         </EditText>
-        
-        
-    
-        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_tag"
+            android:layout_below="@+id/you_friends"
+            android:layout_marginTop="31dp"
+            android:text="Caption:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/text_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/you_friends"
+            android:layout_below="@+id/text_caption"
+            android:layout_marginTop="32dp"
+            android:layout_toBottomOf="@+id/text_caption"
+            android:text="Tag:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/post_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_tag"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:onClick="postToFeed"
+            android:src="@drawable/post_button" />
+
+    </RelativeLayout>
 
 </LinearLayout>

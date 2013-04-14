@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class CelebritiesFragment extends ListFragment {
@@ -18,16 +19,13 @@ public class CelebritiesFragment extends ListFragment {
 	 // Inflate the layout for this fragment
     //return inflater.inflate(R.layout.activity_celebrities, container, false);
 //s}
+	
 		
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
-		Log.v("hello","onActivity");
-		
 		 ArrayAdapter<CelebrityEntry> adapter = new CelebrityEntryAdapter(this.getActivity(), getModel());
 		 setListAdapter(adapter);
-		 Log.v("hello","set adapter");
     }
 	
 	@Override

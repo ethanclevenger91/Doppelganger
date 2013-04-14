@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
  
@@ -22,7 +23,7 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	private final Activity context;
  
 	public CelebrityEntryAdapter(Activity context, List<CelebrityEntry> list) {
-		super(context, R.layout.feed_list, list);
+		super(context, R.layout.searchable_celebrity_list, list);
 		this.context = context;
 	    this.list = list;
 	}

@@ -156,6 +156,9 @@ containing a value of this type.
          */
         public static final int title_text=0x7f010003;
     }
+    public static final class building_list {
+        public static final int search_box=0x7f0c0000;
+    }
     public static final class color {
         public static final int com_facebook_blue=0x7f080000;
         public static final int com_facebook_loginview_text_color=0x7f080004;
@@ -326,6 +329,7 @@ containing a value of this type.
         public static final int feed_list=0x7f03001a;
         public static final int main=0x7f03001b;
         public static final int notificationsrowbuttonlayout=0x7f03001c;
+        public static final int searchable_celebrity_list=0x7f03001d;
     }
     public static final class menu {
         public static final int activity_celebrities=0x7f0b0000;
