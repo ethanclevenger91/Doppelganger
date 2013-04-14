@@ -142,7 +142,6 @@
             android:layout_alignLeft="@+id/you_friends"
             android:layout_below="@+id/text_caption"
             android:layout_marginTop="32dp"
-            android:layout_toBottomOf="@+id/text_caption"
             android:text="Tag:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="20sp" />

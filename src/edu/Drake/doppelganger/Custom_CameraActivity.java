@@ -208,7 +208,6 @@ public class Custom_CameraActivity extends Activity {
         Intent intent = new Intent();
         String path = myUri.getEncodedPath();
         intent.putExtra("imageUri", path);
-        Log.v("CameraPreview", "returning result");
         setResult(RESULT_OK, intent); 
         
         super.finish();

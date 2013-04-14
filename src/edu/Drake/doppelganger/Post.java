@@ -19,7 +19,7 @@ import android.widget.ImageView;
 public class Post extends Activity {
 	
 	ImageView theImage;
-	String TAG = "post.java";
+	String TAG = "path is: ";
 	
 	private static int SELECT_FOR_PIC = 5713;
 	
@@ -141,17 +141,16 @@ public class Post extends Activity {
 			{
 				
 				if(data.getExtras()!=null) {
+					
 					ImageView myImage = (ImageView) findViewById(R.id.select_pic);
 					String returnString = data.getStringExtra("return");
+					Bitmap bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
+					Log.v(TAG, returnString);
+		            myImage.setImageBitmap(bitmap);
 					
-					//Bitmap bitmap = decodeFile(new File(returnString));
-					//myImage.setImageBitmap(bitmap);
-					
-					
-					Log.v("post", returnString);
 					//theImage.setImageBitmap(BitmapFactory.decodeFile(returnString));
-					Drawable image = Drawable.createFromPath(returnString);
-		            theImage.setImageDrawable(image);
+					//Drawable image = Drawable.createFromPath(returnString);
+		            //theImage.setImageDrawable(image);
 		            
 				}
 			}

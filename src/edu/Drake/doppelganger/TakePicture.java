@@ -25,6 +25,7 @@ public class TakePicture extends Activity {
 	ImageView theImage;
 	String picturePath = null;
 	Bitmap bitmap;
+	String TAG = "path is: ";
 	
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static int TAKE_CUSTOM_PIC = 38124;
@@ -59,7 +60,6 @@ public class TakePicture extends Activity {
 	{
 		super.onActivityResult(requestCode, resultCode, data);
         
-		Log.v("take pic","returned with code: " + requestCode);
 		
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
@@ -84,38 +84,9 @@ public class TakePicture extends Activity {
         }
         if (requestCode == TAKE_CUSTOM_PIC && resultCode == RESULT_OK && null != data) {
         	
-        	Log.v("take pic","in take pic");
-        	
-        	String selectedImage = data.getStringExtra("imageUri");
-        	
-        	/*
-        	Uri imageUri = Uri.parse(selectedImage);
-        	
-        	Log.v("take pic", imageUri.getEncodedPath());
-        	
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-            Log.v("take pic","filePathColumn");
- 
-            Cursor cursor = getContentResolver().query(imageUri,
-                    filePathColumn, null, null, null);
-            Log.v("take pic","content resolver");
-            cursor.moveToFirst();
-            Log.v("take pic","move to first");
- 
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            Log.v("take pic","get column index");
-            picturePath = cursor.getString(columnIndex);
-            Log.v("take pic","about to close");
-            cursor.close();
-            
-            */
-            Log.v("take pic","bitmap time");
-            
-            bitmap = BitmapHelper.decodeFile(new File(selectedImage), theImage.getWidth(), theImage.getHeight(), false);
-            
-            
-      
-            
+        	picturePath = data.getStringExtra("imageUri");
+        	Log.v(TAG, picturePath);
+        	bitmap = BitmapHelper.decodeFile(new File(picturePath), theImage.getWidth(), theImage.getHeight(), false);
             theImage.setImageBitmap(bitmap);
         }
         
