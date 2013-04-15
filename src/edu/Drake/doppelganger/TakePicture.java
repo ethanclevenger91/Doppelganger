@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -26,6 +27,7 @@ public class TakePicture extends Activity {
 	String picturePath = null;
 	Bitmap bitmap;
 	String TAG = "path is: ";
+	Button useButton;
 	
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static int TAKE_CUSTOM_PIC = 38124;
@@ -42,6 +44,7 @@ public class TakePicture extends Activity {
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
 		 
 		 theImage = (ImageView) findViewById(R.id.localpic);
+		 useButton = (Button) findViewById(R.id.button_return);
 		 
 		 galleryButton = (ImageButton) findViewById(R.id.gallery);
 		 galleryButton.setOnClickListener(new OnClickListener() {
@@ -76,13 +79,10 @@ public class TakePicture extends Activity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             picturePath = cursor.getString(columnIndex);
             cursor.close();
-            
-            //Drawable image = Drawable.createFromPath(picturePath);
-            //theImage.setImageDrawable(image);
             bitmap = BitmapHelper.decodeFile(new File(picturePath), theImage.getWidth(), theImage.getHeight(), false);
             
             theImage.setImageBitmap(bitmap);
-            
+            useButton.setVisibility(View.VISIBLE);
             
             
         }
@@ -92,6 +92,7 @@ public class TakePicture extends Activity {
         	Log.v(TAG, picturePath);
         	bitmap = BitmapHelper.decodeFile(new File(picturePath), theImage.getWidth(), theImage.getHeight(), false);
             theImage.setImageBitmap(bitmap);
+            useButton.setVisibility(View.VISIBLE);
         }
         
 	}
