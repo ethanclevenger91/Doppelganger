@@ -11,7 +11,7 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:padding="3dp" />
 
     <TextView
@@ -20,10 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_toRightOf="@+id/celebrity_entry_pic"
+        android:layout_toLeftOf="@+id/celebrity_entry_pic"
         android:layout_margin="5dp"
-        android:layout_marginTop="46dp"
-        android:textSize="28sp"
-        android:textStyle="bold" />
+        android:textSize="20sp" />
   
 </RelativeLayout>
