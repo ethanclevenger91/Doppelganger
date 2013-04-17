@@ -22,9 +22,10 @@ public class FeedSQLiteHelper extends SQLiteOpenHelper {
   public static final String COLUMN_LIKE="like";
   public static final String COLUMN_DISLIKE="dislike";
   public static final String COLUMN_COMMENTS = "columns";
+  public static final String COLUMN_ALL_COMMENTS = "allComments";
 
   private static final String DATABASE_NAME = "commments.db";
-  private static final int DATABASE_VERSION = 2;
+  private static final int DATABASE_VERSION = 3;
   
   // Database creation sql statement
   private static final String DATABASE_CREATE = "create table "
@@ -32,7 +33,7 @@ public class FeedSQLiteHelper extends SQLiteOpenHelper {
       + " integer primary key autoincrement, " + COLUMN_CAPTION
       + " text not null, " + COLUMN_NAME + " text not null, " 
       + COLUMN_LIKE + " integer not null, " + COLUMN_DISLIKE + " integer not null, "
-      + COLUMN_COMMENTS + " integer not null);";
+      + COLUMN_COMMENTS + " integer not null, " + COLUMN_ALL_COMMENTS + " text);";
 
   public FeedSQLiteHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,8 +49,8 @@ public class FeedSQLiteHelper extends SQLiteOpenHelper {
     Log.w(FeedSQLiteHelper.class.getName(),
         "Upgrading database from version " + oldVersion + " to "
             + newVersion + ", which will destroy all old data");
-    if(oldVersion <2) {
-    	final String ALTER_TBL = "ALTER TABLE " + TABLE_POSTS + " ADD COLUMN " + COLUMN_COMMENTS + " integer not null;";
+    if(oldVersion <3) {
+    	final String ALTER_TBL = "ALTER TABLE " + TABLE_POSTS + " ADD COLUMN " + COLUMN_ALL_COMMENTS + " text;";
     	db.execSQL(ALTER_TBL);
     }
   }
@@ -64,6 +65,7 @@ public void addContact(FeedsModel contact) {
     values.put(COLUMN_LIKE, contact.getUps());
     values.put(COLUMN_DISLIKE, contact.getDowns());
     values.put(COLUMN_COMMENTS, contact.getComments());
+    values.put(COLUMN_ALL_COMMENTS, contact.getAllComments());
  
     // Inserting Row
     db.insert(TABLE_POSTS, null, values);
@@ -75,7 +77,7 @@ public FeedsModel getContact(int id) {
 	SQLiteDatabase db = this.getReadableDatabase();
 	 
     Cursor cursor = db.query(TABLE_POSTS, new String[] { COLUMN_ID,
-            COLUMN_CAPTION, COLUMN_NAME, COLUMN_LIKE, COLUMN_DISLIKE, COLUMN_COMMENTS }, COLUMN_ID + "=?",
+            COLUMN_CAPTION, COLUMN_NAME, COLUMN_LIKE, COLUMN_DISLIKE, COLUMN_COMMENTS, COLUMN_ALL_COMMENTS }, COLUMN_ID + "=?",
             new String[] { String.valueOf(id) }, null, null, null, null);
     if (cursor != null)
         cursor.moveToFirst();
@@ -86,7 +88,8 @@ public FeedsModel getContact(int id) {
     		cursor.getString(2), 
     		Integer.parseInt(cursor.getString(3)), 
     		Integer.parseInt(cursor.getString(4)),
-    		Integer.parseInt(cursor.getString(5)));
+    		Integer.parseInt(cursor.getString(5)),
+    		cursor.getString(6));
     
     // return contact
     return contact;
@@ -112,6 +115,7 @@ public List<FeedsModel> getAllContacts() {
             contact.setUps(Integer.parseInt(cursor.getString(3)));
             contact.setDowns(Integer.parseInt(cursor.getString(4)));
             contact.setComments(Integer.parseInt(cursor.getString(5)));
+            contact.setAllComments(cursor.getString(6));
             // Adding contact to list
             contactList.add(contact);
         } while (cursor.moveToNext());
@@ -145,6 +149,7 @@ public int updateContact(FeedsModel contact) {
     values.put(COLUMN_LIKE, contact.getUps());
     values.put(COLUMN_DISLIKE, contact.getDowns());
     values.put(COLUMN_COMMENTS, contact.getComments());
+    values.put(COLUMN_ALL_COMMENTS, contact.getAllComments());
  
     // updating row
     return db.update(TABLE_POSTS, values, COLUMN_ID + " = ?",

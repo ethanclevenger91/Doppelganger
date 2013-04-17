@@ -18,20 +18,23 @@ public class FeedFragment extends ListFragment{
 	    
 	    FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
 	    
-	    //db.onUpgrade(db, 1, 2);
-	    
-	    //comment = new ArrayList<String>();
 	    comment = comment();
 	    feeds = new ArrayList<FeedsModel>();
-	    //feeds = getModel();
 	    
-	    db.addContact(new FeedsModel("That is him", "Clayton Brady", 3, 0, 2));
-	    //
+	    /*
+	     * uncomment below to add a post with name: Clayton Brady, 
+	     * caption: That is him, 3 likes, 0 dislikes, 2 comments
+	    */
+	    db.addContact(new FeedsModel("That is him", "Clayton Brady", 3, 0, 2, comment));
+	    
 	    List<FeedsModel> contacts = db.getAllContacts();
-	    //
+	    
 	    for (FeedsModel cn : contacts) {
 	    	
-            String log = "Id: "+cn.getId()+" ,Name: " + cn.getName() + " ,Caption: " + cn.getDesc() +
+	    	/*	uncomment below to delete all posts	*/
+	    	//db.deleteContact(cn);
+            
+	    	String log = "Id: "+cn.getId()+" ,Name: " + cn.getName() + " ,Caption: " + cn.getDesc() +
             		" ,Likes: " + cn.getUps() + ", Dislikes: " + cn.getDowns() + ", Comments: " + cn.getComments();
                 // Writing Contacts to log 
           Log.d("Name: ", log);

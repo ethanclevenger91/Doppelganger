@@ -1,6 +1,9 @@
 package edu.Drake.doppelganger;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 public class FeedsModel {
 
@@ -29,21 +32,28 @@ public class FeedsModel {
 	    selected = false;
 	  }
 	  
-	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments) {
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, String allComments) {
 		  	this.id = id;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
 		    this.comments = comments;
+		    
+		    Gson gson = new Gson();
+		    @SuppressWarnings("unchecked")
+			List<String> obj = gson.fromJson(allComments, ArrayList.class);
+		    
+		    this.commentList = obj;
 		    selected = false;
 		  }
-	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments) {
+	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments, List<String> commentList) {
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
 		    this.comments = comments;
+		    this.commentList = commentList;
 		    selected = false;
 		  }
 	  //
@@ -62,6 +72,19 @@ public class FeedsModel {
 	  
 	  public void setCommentList(List<String> commentList) {
 		  this.commentList = commentList;
+	  }
+	  
+	  public String getAllComments() {
+		  Gson gson = new Gson();
+		  String json = gson.toJson(commentList);
+		  return json;
+	  }
+	  
+	  public void setAllComments(String commentList) {
+		  Gson gson = new Gson();
+		    @SuppressWarnings("unchecked")
+			List<String> obj = gson.fromJson(commentList, ArrayList.class);
+		  this.commentList = obj;
 	  }
 	  
 	  public String getImageId() {
