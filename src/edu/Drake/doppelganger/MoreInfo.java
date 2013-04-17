@@ -56,9 +56,6 @@ public class MoreInfo extends Activity {
         
         int newHeight = (int) (getWindowManager().getDefaultDisplay().getHeight() /2.25);
 		int newWidth = getWindowManager().getDefaultDisplay().getWidth();
-        
-		Log.v("height of screen", String.valueOf(newHeight));
-		Log.v("width of screen", String.valueOf(newWidth));
 		
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 			    newWidth, newHeight);
@@ -72,24 +69,25 @@ public class MoreInfo extends Activity {
         LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);
         
         //loop through array of comments and add to top of scroll view here
-        for(int i=0; i<commentList.size();i++){
-        	TextView tv1 = new TextView(this);
-        	tv1.setText(commentList.get(i));
-        	tv1.setTextSize(20);
-        	tv1.setBackgroundResource(R.drawable.back);
-        	tv1.setPadding(20,20,20,20);
+        if(commentList!=null){
         	
-        	LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-            llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
-        	tv1.setLayoutParams(llp);
+        	for(int i=0; i<commentList.size();i++){
+        		TextView tv1 = new TextView(this);
+        		tv1.setText(commentList.get(i));
+        		tv1.setTextSize(20);
+        		tv1.setBackgroundResource(R.drawable.back);
+        		tv1.setPadding(20,20,20,20);
         	
-        	layout.addView(tv1,i);
+        		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            	llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
+            	tv1.setLayoutParams(llp);
+        	
+        		layout.addView(tv1,i);
+        	}
         }
-		
 		descView.setText(desc);
 		upView.setText(upCount);
 		downView.setText(downCount);
-		Log.v("Here", "textSet");
 
         //shows the back button
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -105,8 +103,11 @@ public class MoreInfo extends Activity {
 	    	Intent intent = getIntent();
 	    	intent.putExtra("ups", upCount);
 	    	intent.putExtra("downs", downCount);
-	    	intent.putExtra("comments", commentList.size());
-	    	intent.putStringArrayListExtra("commentList", (ArrayList<String>) commentList);
+	    	
+	    	if(commentList!=null) {
+	    		intent.putExtra("comment", commentList.size());
+	    		intent.putStringArrayListExtra("commentList", (ArrayList<String>) commentList);
+	    	}
 	    	
 	    	setResult(RESULT_OK,intent);
 	    	finish();
@@ -152,13 +153,13 @@ public class MoreInfo extends Activity {
 		
         super.onActivityResult(requestCode, resultCode, data);
         
-     // ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view1);
         LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);
         
         if(data.getExtras()!=null){
         	
         	TextView tv1 = new TextView(this);
         	tv1.setText(data.getStringExtra("post"));
+        	
         	tv1.setTextSize(20);
         	tv1.setBackgroundResource(R.drawable.back);
         	tv1.setPadding(20,20,20,20);
@@ -166,11 +167,16 @@ public class MoreInfo extends Activity {
         	LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
         	tv1.setLayoutParams(llp);
-        	
-        	commentList.add(tv1.getText().toString());
-        	
-        	layout.addView(tv1,commentList.size()-1);
- 
+        	if(commentList!=null){
+        		commentList.add(tv1.getText().toString());
+        		layout.addView(tv1,commentList.size()-1);
+        	}
+        	else{
+        		List<String> newList = new ArrayList<String>();
+        		newList.add(tv1.getText().toString());
+        		layout.addView(tv1,newList.size()-1);
+        		commentList = newList;
+        	}
         }
     }
 	

@@ -59,8 +59,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	      viewHolder.photoButton = (ImageButton) view.findViewById(R.id.image_button1);
 	      viewHolder.commentsButton = (ImageButton) view.findViewById(R.id.image_comment);
 	      
-	      Log.d("ArrayAdapter: ", "found all the buttons");
-	      
 	      viewHolder.upButton.setOnClickListener(new OnClickListener() {
 	    	  @Override
 				public void onClick(View v) {
@@ -104,7 +102,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 	    	            
 	    	            intent.putExtras(b);
-	    	            Log.v("activity context", v.getContext().toString());
 	    	    		((Activity) v.getContext()).startActivityForResult(intent,1);
 	    	 }
 	    	 
@@ -127,14 +124,12 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 		    	            
 		    	            intent.putExtras(b);
-		    	            Log.v("activity context", v.getContext().toString());
 		    	    		((Activity) v.getContext()).startActivityForResult(intent,1);
 		    		
 		    	 }
 		      });
 	      
 	      
-	      Log.d("ArrayAdapter: ", "setting tags");
 	      view.setTag(viewHolder);
 	      viewHolder.upCount.setTag(list.get(position));
 	      viewHolder.upButton.setTag(list.get(position));
@@ -145,7 +140,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	      
 	      //view.setTag(viewHolder);
 	    } else {
-	    	Log.d("Name: ", "where am i");
 	      view = convertView;
 	      ((ViewHolder) view.getTag()).upCount.setTag(list.get(position));
 	      ((ViewHolder) view.getTag()).upButton.setTag(list.get(position));
@@ -158,21 +152,15 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	   // ViewHolder holder = (ViewHolder) view.getTag();
 	   // holder.text.setText(list.get(position).getName());
 	    
-	    Log.d("Name: ", "setting holder");
 	    ViewHolder holder = (ViewHolder) view.getTag();
 	    holder.upCount.setText(list.get(position).getUps());
 	    holder.downCount.setText(list.get(position).getDowns());
 	    holder.commentCount.setText(list.get(position).getComments());
 	    holder.name.setText(list.get(position).getName());
 	    
-	    Log.d("Name: ", "holder set");
-	    
 	    String uri = "raw/" + model.getImageId();
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         holder.photoButton.setImageResource(imageResource);
-        
-        Log.d("Name: ", "getting image");
-        //
         
 		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.25);
 		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();

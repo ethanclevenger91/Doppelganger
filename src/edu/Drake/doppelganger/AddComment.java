@@ -104,57 +104,36 @@ public class AddComment extends Activity {
     	final String myReturnString = edit.getText().toString();
     	final Intent intent = getIntent();
     	
-    	
     	Session.openActiveSession(this, true, new Session.StatusCallback() {
     		////
-    		          // callback when session changes state
-    		          @Override
-    		          public void call(Session session, SessionState state, Exception exception) {
-    		            if (session.isOpened()) {
-    		              // make request to the /me API
-    		              Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+    		// callback when session changes state
+    		@Override
+    		public void call(Session session, SessionState state, Exception exception) {
+    			if (session.isOpened()) {
+    				// make request to the /me API
+    				Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
     		            	  
-    		                // callback after Graph API response with user object
-    		                @Override
-    		                public void onCompleted(GraphUser user, Response response) {
-    		                  if (user != null) {
-    		                    
-    		                	  String finalString = user.getName() + ": " + myReturnString;
-    		                	  intent.putExtra("post", finalString);
+    					// callback after Graph API response with user object
+    					@Override
+    					public void onCompleted(GraphUser user, Response response) {
+    						if (user != null) {
+    		                	  
+    							String finalString = user.getName() + ": " + myReturnString;
+    							intent.putExtra("post", finalString);
+    		                	  
+    							InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    							imm.hideSoftInputFromWindow(textEdit.getWindowToken(),0);
+    							
+    							setResult(RESULT_OK,intent);
+    							finish();
+    		                	  
+    							overridePendingTransition( R.anim.slide_in_down, R.anim.slide_out_down);
     		                   
-    		                	  InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-    		                	  imm.hideSoftInputFromWindow(textEdit.getWindowToken(),0);
-    		               	
-    		                	  setResult(RESULT_OK,intent);
-    		                	  finish();
-
-    		                	  overridePendingTransition( R.anim.slide_in_down, R.anim.slide_out_down);
-    		                   
-    		                  } 
-    		                }
-    		              });
-    		              
-    		              
-    		            }
-    		            //
-    		          }
-    		        });
-    	
-    	
-    	
-    	
-    	//intent.putExtra("post", myReturnString);
-    	
-    	//InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-    	//imm.hideSoftInputFromWindow(textEdit.getWindowToken(),0);
-    	
-    	//setResult(RESULT_OK,intent);
-    	//finish();
-
- 		//overridePendingTransition( R.anim.slide_in_down, R.anim.slide_out_down);
+    						} 
+    					}
+    				});    
+    			}
+    		}
+    	});
 	}
-	
-	
-
-	
 }

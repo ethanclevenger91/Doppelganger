@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.facebook.Request;
@@ -30,7 +31,9 @@ public class MainActivity extends Activity {
 	private static final String TAG = "MainActivity";
 	public static Context appContext;
 	public static String myName;
-
+	public String myCaption;
+	public FeedFragment feedFragment;
+	public FeedSQLiteHelper db;
 	private static int GET_POST = 124654;
 	
 	protected class MyTabsListener implements ActionBar.TabListener {
@@ -71,14 +74,9 @@ public class MainActivity extends Activity {
 	    	
 	    	//if there is a stack of fragments
 	    	if(fm.getBackStackEntryCount()>0) {
-	    		
-	    			
-	    			Log.v(TAG, "before popback");
 	    			
 	    			//pop back to previous fragment
 	    			fm.popBackStack();
-	    			
-	    			Log.v(TAG, "after popback");
 	    			
 	    			//disable up button
 	    			getActionBar().setDisplayHomeAsUpEnabled(false);
@@ -162,9 +160,7 @@ public class MainActivity extends Activity {
           // callback when session changes state
           @Override
           public void call(Session session, SessionState state, Exception exception) {
-        	  Log.v("main", "is not opened");
             if (session.isOpened()) {
-            	Log.v("main", "is opened");
               // make request to the /me API
               Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
             	  
@@ -212,13 +208,32 @@ public class MainActivity extends Activity {
 		{
 			if(resultcode==RESULT_OK && null!=data)
 			{
-				String myCaption = data.getStringExtra("caption");
-				FeedFragment feedFragment = (FeedFragment) getFragmentManager().findFragmentByTag("FEED");
-				
-				FeedSQLiteHelper db = new FeedSQLiteHelper(this);
-				db.addContact(new FeedsModel(myCaption, "Clayton Brady", 0, 0, 5, feedFragment.comment));
-				
-				feedFragment.refresh();
+				myCaption = data.getStringExtra("caption");
+				feedFragment = (FeedFragment) getFragmentManager().findFragmentByTag("FEED");
+				db = new FeedSQLiteHelper(this);
+			
+				Session.openActiveSession(this, true, new Session.StatusCallback() {
+					// callback when session changes state
+					@Override
+		            public void call(Session session, SessionState state, Exception exception) {
+						if (session.isOpened()) {
+							// make request to the /me API
+							Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+								
+								// callback after Graph API response with user object
+								@Override
+								public void onCompleted(GraphUser user, Response response) {
+									if (user != null) {
+		    		                    
+										String finalString = user.getName() + " posted: ";
+										db.addContact(new FeedsModel(myCaption, finalString,0,0,0,null));
+										feedFragment.refresh();
+									} 
+								}
+							});
+						}	            
+					}
+				});
 			}
 		}
 	}
