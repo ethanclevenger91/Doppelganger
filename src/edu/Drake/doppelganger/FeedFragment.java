@@ -25,7 +25,7 @@ public class FeedFragment extends ListFragment{
 	     * uncomment below to add a post with name: Clayton Brady, 
 	     * caption: That is him, 3 likes, 0 dislikes, 2 comments
 	    */
-	    db.addContact(new FeedsModel("That is him", "Clayton Brady", 3, 0, 2, comment));
+	    //db.addContact(new FeedsModel("That is him", "Clayton Brady", 3, 0, 2, comment));//
 	    
 	    List<FeedsModel> contacts = db.getAllContacts();
 	    
@@ -63,22 +63,12 @@ public class FeedFragment extends ListFragment{
 	}
 	
 	public void refresh(){
-		ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, feeds);
+		FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
+		List<FeedsModel> contacts = db.getAllContacts();
+		
+		ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, contacts);
 	    setListAdapter(adapter);
 	  }
-	
-	/*
-	public List<FeedsModel> getModel() {
-	    List<FeedsModel> list = new ArrayList<FeedsModel>();
-	    list.add(get("Jessica Harris",10,2,3,"urness","It must be his twin seriously",comment));
-	    list.add(get("Mike Roger",300,100,123,"morrow","They look so alike",comment));
-	    list.add(get("Sarah Smith",3,75,1,"inman","Check out these long lost twins",comment));
-	    list.add(get("Jen Adams",17,25,3,"morrow","I can't believe how similar these two look.",comment));
-	    list.add(get("Michael Jaes",2000,146,240,"inman","What do you think?",comment));
-	    list.add(get("Mike Roger",100,200,57,"urness","Yes or No?",comment));
-	    return list;
-	  }
-	  */
 
 	  public FeedsModel get(String s,int ups, int downs, int comments, String image, String desc, List<String> commentList) {
 	    return new FeedsModel(s,ups,downs,comments, image,desc,commentList);

@@ -213,11 +213,11 @@ public class MainActivity extends Activity {
 			if(resultcode==RESULT_OK && null!=data)
 			{
 				String myCaption = data.getStringExtra("caption");
-				Log.v("hi", "ready for post");
 				FeedFragment feedFragment = (FeedFragment) getFragmentManager().findFragmentByTag("FEED");
-				feedFragment.feeds.add(feedFragment.get("Hi",0,0,0,"urness",myCaption,feedFragment.comment));
-				int count = feedFragment.feeds.size();
-				Log.v("hi", String.valueOf(count));
+				
+				FeedSQLiteHelper db = new FeedSQLiteHelper(this);
+				db.addContact(new FeedsModel(myCaption, "Clayton Brady", 0, 0, 5, feedFragment.comment));
+				
 				feedFragment.refresh();
 			}
 		}
