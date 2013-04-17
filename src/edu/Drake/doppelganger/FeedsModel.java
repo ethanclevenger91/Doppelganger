@@ -6,6 +6,7 @@ public class FeedsModel {
 
 	private String name;
 	  private boolean selected;
+	  private int id;
 	  private int ups;
 	  private int downs;
 	  private int comments;
@@ -13,6 +14,10 @@ public class FeedsModel {
 	  private String desc;
 	  private List<String> commentList;
 
+	  public FeedsModel() {
+		  
+	  }
+	  
 	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc, List<String> commentList) {
 	    this.name = name;
 	    this.ups = ups;
@@ -22,6 +27,33 @@ public class FeedsModel {
 	    this.desc = desc;
 	    this.commentList = commentList;
 	    selected = false;
+	  }
+	  
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments) {
+		  	this.id = id;
+		    this.name = name;
+		    this.ups = likes;
+		    this.downs=dislikes;
+		    this.desc = desc;
+		    this.comments = comments;
+		    selected = false;
+		  }
+	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments) {
+		    this.name = name;
+		    this.ups = likes;
+		    this.downs=dislikes;
+		    this.desc = desc;
+		    this.comments = comments;
+		    selected = false;
+		  }
+	  //
+	  
+	  public int getId() {
+		  return id;
+	  }
+	  
+	  public void setId(int id) {
+		  this.id=id;
 	  }
 	  
 	  public List<String> getCommentList() {
@@ -95,6 +127,12 @@ public class FeedsModel {
 
 	  public void setSelected(boolean selected) {
 	    this.selected = selected;
+	  }
+	  
+	// Will be used by the ArrayAdapter in the ListView
+	  @Override
+	  public String toString() {
+	    return desc;
 	  }
 	
 }

@@ -18,6 +18,7 @@ public class Celebrities extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
 		 

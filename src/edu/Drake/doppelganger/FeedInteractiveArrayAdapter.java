@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
-
+	
 	  private final List<FeedsModel> list;
 	  private final Activity context;
 
@@ -28,7 +28,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    this.list = list;
 	  }
 
-	  
 	  static class ViewHolder {
 		  protected TextView name;
 		  protected TextView upCount;
@@ -40,8 +39,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		  protected ImageButton photoButton;
 		  protected boolean selected;
 	  }
-	  
-	  
 
 	  @SuppressWarnings({ "deprecation" })
 	@Override
@@ -61,6 +58,8 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	      viewHolder.downButton = (ImageButton) view.findViewById(R.id.image_down_vote);
 	      viewHolder.photoButton = (ImageButton) view.findViewById(R.id.image_button1);
 	      viewHolder.commentsButton = (ImageButton) view.findViewById(R.id.image_comment);
+	      
+	      Log.d("ArrayAdapter: ", "found all the buttons");
 	      
 	      viewHolder.upButton.setOnClickListener(new OnClickListener() {
 	    	  @Override
@@ -107,7 +106,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    	            intent.putExtras(b);
 	    	            Log.v("activity context", v.getContext().toString());
 	    	    		((Activity) v.getContext()).startActivityForResult(intent,1);
-	    		
 	    	 }
 	    	 
 	      });
@@ -135,42 +133,50 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		    	 }
 		      });
 	      
+	      
+	      Log.d("ArrayAdapter: ", "setting tags");
 	      view.setTag(viewHolder);
 	      viewHolder.upCount.setTag(list.get(position));
 	      viewHolder.upButton.setTag(list.get(position));
+	      viewHolder.commentCount.setTag(list.get(position));
 	      viewHolder.downCount.setTag(list.get(position));
 	      viewHolder.downButton.setTag(list.get(position));
 	      viewHolder.photoButton.setTag(list.get(position));
 	      
 	      //view.setTag(viewHolder);
 	    } else {
+	    	Log.d("Name: ", "where am i");
 	      view = convertView;
 	      ((ViewHolder) view.getTag()).upCount.setTag(list.get(position));
 	      ((ViewHolder) view.getTag()).upButton.setTag(list.get(position));
 	      ((ViewHolder) view.getTag()).downCount.setTag(list.get(position));
 	      ((ViewHolder) view.getTag()).downButton.setTag(list.get(position));
 	      ((ViewHolder) view.getTag()).photoButton.setTag(list.get(position));
+	      ((ViewHolder) view.getTag()).commentCount.setTag(list.get(position));
 	      
 	    }
 	   // ViewHolder holder = (ViewHolder) view.getTag();
 	   // holder.text.setText(list.get(position).getName());
 	    
+	    Log.d("Name: ", "setting holder");
 	    ViewHolder holder = (ViewHolder) view.getTag();
 	    holder.upCount.setText(list.get(position).getUps());
 	    holder.downCount.setText(list.get(position).getDowns());
 	    holder.commentCount.setText(list.get(position).getComments());
 	    holder.name.setText(list.get(position).getName());
 	    
+	    Log.d("Name: ", "holder set");
+	    
 	    String uri = "raw/" + model.getImageId();
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         holder.photoButton.setImageResource(imageResource);
         
+        Log.d("Name: ", "getting image");
+        //
+        
 		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.25);
 		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();
         
-		Log.v("height of screen", String.valueOf(newHeight));
-		Log.v("width of screen", String.valueOf(newWidth));
-		
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 			    newWidth, newHeight);
 
@@ -181,39 +187,4 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    
 	    return view;
 	  }
-	  
-	  /*
-	  
-	  @Override
-	    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	        // TODO Auto-generated method stub
-			
-	        super.onActivityResult(requestCode, resultCode, data);
-	        
-	     // ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view1);
-	        LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);
-	        
-	        if(data.getExtras()!=null){
-	        	
-	        	TextView tv1 = new TextView(this);
-	        	tv1.setText(data.getStringExtra("post"));
-	        	tv1.setTextSize(20);
-	        	tv1.setBackgroundResource(R.drawable.back);
-	        	tv1.setPadding(20,20,20,20);
-	        	
-	        	LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-	            llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
-	        	tv1.setLayoutParams(llp);
-	        	
-	        	commentList.add(tv1.getText().toString());
-	        	
-	        	layout.addView(tv1,commentList.size()-1);
-	 
-	        }
-	  
-	  */
-	  
-	  
-	  
-	  
 }

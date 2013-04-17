@@ -1,19 +1,16 @@
 package edu.Drake.doppelganger;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 public class Post extends Activity {
@@ -51,7 +48,11 @@ public class Post extends Activity {
 	public void onBackPressed() {
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(false);
-		finish();
+		 
+		 Intent intent = getIntent();
+	    	
+	    setResult(RESULT_CANCELED,intent);
+	    finish();
 	}
 	
 	public void selectCeleb(View v) {
@@ -63,6 +64,17 @@ public class Post extends Activity {
 		Intent intent = new Intent(v.getContext(), TakePicture.class);
 		startActivityForResult(intent,SELECT_FOR_PIC);
 	}
+	
+	public void postToFeed(View v) {
+		Intent intent = getIntent();
+		
+		EditText myCaption = (EditText) findViewById(R.id.edit_text_caption);
+		
+    	intent.putExtra("caption", myCaption.getText().toString());
+	    setResult(RESULT_OK,intent);
+	    finish();
+	}
+	
 	
 	@Override
 	//this is used on the up button press
@@ -89,31 +101,6 @@ public class Post extends Activity {
     	getActionBar().setDisplayHomeAsUpEnabled(false);
 		onBackPressed();
 	}
-	
-	/*
-	private Bitmap decodeFile(File f){
-	    try {
-	        //Decode image size
-	        BitmapFactory.Options o = new BitmapFactory.Options();
-	        o.inJustDecodeBounds = true;
-	        BitmapFactory.decodeStream(new FileInputStream(f),null,o);
-
-	        //The new size we want to scale to
-	        final int REQUIRED_SIZE=70;
-
-	        //Find the correct scale value. It should be the power of 2.
-	        int scale=1;
-	        while(o.outWidth/scale/2>=REQUIRED_SIZE && o.outHeight/scale/2>=REQUIRED_SIZE)
-	            scale*=2;
-
-	        //Decode with inSampleSize
-	        BitmapFactory.Options o2 = new BitmapFactory.Options();
-	        o2.inSampleSize=scale;
-	        return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
-	    } catch (FileNotFoundException e) {}
-	    return null;
-	}
-	*/
 	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -146,11 +133,6 @@ public class Post extends Activity {
 					String returnString = data.getStringExtra("return");
 					Bitmap bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
 		            myImage.setImageBitmap(bitmap);
-					
-					//theImage.setImageBitmap(BitmapFactory.decodeFile(returnString));
-					//Drawable image = Drawable.createFromPath(returnString);
-		            //theImage.setImageDrawable(image);
-		            
 				}
 			}
 		}

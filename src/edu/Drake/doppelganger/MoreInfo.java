@@ -124,7 +124,7 @@ public class MoreInfo extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_take_picture, menu);
+		getMenuInflater().inflate(R.menu.activity_more_info, menu);
 		
 		return true;
 	}
@@ -141,18 +141,9 @@ public class MoreInfo extends Activity {
 	        	onBackPressed();
 	        		 
 	        	return true;
-	        case R.id.menu_cancel:
-	        	cancelMenuItem();
-	        	break;
 	    }
 	    //returns the item selected, in this case the up button
 	    return super.onOptionsItemSelected(item);
-	}
-	
-	private void cancelMenuItem() {
-		//disables the up button
-    	getActionBar().setDisplayHomeAsUpEnabled(false);
-		onBackPressed();
 	}
 	
 	@Override

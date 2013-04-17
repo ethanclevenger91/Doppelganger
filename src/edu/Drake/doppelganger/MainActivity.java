@@ -26,9 +26,12 @@ import com.facebook.model.GraphUser;
 
 public class MainActivity extends Activity {
 	
+	
 	private static final String TAG = "MainActivity";
 	public static Context appContext;
 	public static String myName;
+
+	private static int GET_POST = 124654;
 	
 	protected class MyTabsListener implements ActionBar.TabListener {
 
@@ -83,8 +86,26 @@ public class MainActivity extends Activity {
 	    		
 	    	}
 	    	
+	    	String myTag = null;
+	    	
+	    	switch(tab.getPosition()) {
+	    	
+	    	case 0:
+	    		myTag = "CELEBS";
+	    		break;
+	    
+	    	case 1:
+	    		myTag = "FEED";
+	    		break;
+	    	
+	    	case 2:
+	    		myTag = "NOTIFICATIONS";
+	    		break;
+	    		
+	    	}
+	    		
 	    	//adds the selected fragment to the fragment container
-	        ft.add(R.id.fragment_container, fragment, null);
+	        ft.add(R.id.fragment_container, fragment, myTag);
 	    }
 
 	    //used when a tab is unselected
@@ -169,11 +190,6 @@ public class MainActivity extends Activity {
         });
 	}
 	
-	/*
-	public void findTags(View v) {
-		moreInfo(v);
-	}
-	*/
 	public void useAsDoppelganger(View v) {
 		
 	}
@@ -185,25 +201,32 @@ public class MainActivity extends Activity {
 		
 		if(requestcode==1)
 		{
-			if(resultcode==RESULT_OK)
+			if(resultcode==RESULT_OK && null!=data)
 			{
 		        if(data.getExtras()!=null){
-		        	Log.v("hi", "got it");
+		        	Log.v("hi", "got it from more info");
 		        }
 			}
 		}
+		if(requestcode==GET_POST)
+		{
+			if(resultcode==RESULT_OK && null!=data)
+			{
+				String myCaption = data.getStringExtra("caption");
+				Log.v("hi", "ready for post");
+				FeedFragment feedFragment = (FeedFragment) getFragmentManager().findFragmentByTag("FEED");
+				feedFragment.feeds.add(feedFragment.get("Hi",0,0,0,"urness",myCaption,feedFragment.comment));
+				int count = feedFragment.feeds.size();
+				Log.v("hi", String.valueOf(count));
+				feedFragment.refresh();
+			}
+		}
 	}
-	/*
-	public void moreInfo(View v) {
-
-            Intent intent = new Intent(getBaseContext(), MoreInfo.class);
-    		startActivity(intent);
-    		
-	}
-	*/
 	
 	public void upVote(View v) {
+		
 		//on up pressed
+		
 	}
 	
 	public void downVote(View v) {
@@ -221,7 +244,9 @@ public class MainActivity extends Activity {
 	@Override
 	//this is used on the up button press
 	public boolean onOptionsItemSelected(MenuItem item) {
+		
 	    switch (item.getItemId()) {
+	    
 	        case android.R.id.home:
 	            
 	        	//gets the current manager
@@ -239,21 +264,37 @@ public class MainActivity extends Activity {
 	        		 getActionBar().setDisplayHomeAsUpEnabled(false);
 	        		 
 	        		 return true;
+	        		 
 	        	 }
 	        	 break;
+	        	 
 	        case R.id.menu_compose:
+	        	
 	        	composeMenuItem();
+	        	
 	        	break;
+	        	
 	    }
 	    //returns the item selected, in this case the up button
 	    return super.onOptionsItemSelected(item);
+	    
 	}
 	    
 	private void composeMenuItem() {
+		
             Intent intent = new Intent(getBaseContext(), Post.class);
-    		startActivity(intent);
+    		startActivityForResult(intent,GET_POST);
+    		
    }
-	  
-	  
+	
+	@Override
+	  protected void onResume() {
+	    super.onResume();
+	  }
+
+	  @Override
+	  protected void onPause() {
+	    super.onPause();
+	  }
 	
 }
