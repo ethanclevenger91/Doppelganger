@@ -111,7 +111,9 @@ public class MoreInfo extends Activity {
 	    	intent.putExtra("name", name);
 	    	
 	    	if(commentList!=null) {
-	    		intent.putExtra("comment", commentList.size());
+	    		Log.v("Moreinfo", "putting comments in");
+	    		intent.putExtra("comment", String.valueOf(commentList.size()));
+	    		Log.v("Moreinfo", String.valueOf(commentList.size()));
 	    		intent.putStringArrayListExtra("commentList", (ArrayList<String>) commentList);
 	    	}
 	    	

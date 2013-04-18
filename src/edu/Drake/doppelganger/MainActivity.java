@@ -209,12 +209,15 @@ public class MainActivity extends Activity {
 		        	String id = data.getStringExtra("id");
 		        	String desc = data.getStringExtra("desc");
 		        	String name = data.getStringExtra("name");
+		        	
 		        	int commentCount=0;
 		        	List<String> commentList = new ArrayList<String>();
 		        	feedFragment = (FeedFragment) getFragmentManager().findFragmentByTag("FEED");
 		        	
 		        	if(data.getStringExtra("comment") != null){
+		        		Log.v("MainActivity", "I am not null");
 		        		String comments = data.getStringExtra("comment");
+		        		Log.v("MainActivity", comments);
 		        		commentList= data.getStringArrayListExtra("commentList");
 		        		commentCount = Integer.parseInt(comments);
 		        	}
