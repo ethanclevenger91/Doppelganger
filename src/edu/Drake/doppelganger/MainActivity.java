@@ -1,6 +1,9 @@
 
 
 package edu.Drake.doppelganger;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -201,6 +204,29 @@ public class MainActivity extends Activity {
 			{
 		        if(data.getExtras()!=null){
 		        	Log.v("hi", "got it from more info");
+		        	String upCount = data.getStringExtra("ups");
+		        	String downCount = data.getStringExtra("downs");
+		        	String id = data.getStringExtra("id");
+		        	String desc = data.getStringExtra("desc");
+		        	String name = data.getStringExtra("name");
+		        	int commentCount=0;
+		        	List<String> commentList = new ArrayList<String>();
+		        	feedFragment = (FeedFragment) getFragmentManager().findFragmentByTag("FEED");
+		        	
+		        	if(data.getStringExtra("comment") != null){
+		        		String comments = data.getStringExtra("comment");
+		        		commentList= data.getStringArrayListExtra("commentList");
+		        		commentCount = Integer.parseInt(comments);
+		        	}
+		        	
+		        	int idInt = Integer.parseInt(id);
+		        	int ups = Integer.parseInt(upCount);
+		        	int downs = Integer.parseInt(downCount);
+		        	db = new FeedSQLiteHelper(this);
+		        	
+		        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList);
+		        	db.updateContact(newModel);
+		        	feedFragment.refresh();
 		        }
 			}
 		}

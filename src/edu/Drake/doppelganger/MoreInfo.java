@@ -22,7 +22,9 @@ public class MoreInfo extends Activity {
 	private String downCount;
 	private String desc;
 	private String image;
+	private String name;
 	private List<String> commentList;
+	private String id;
 	
 	public void addComment(View v) {
 		
@@ -48,6 +50,8 @@ public class MoreInfo extends Activity {
 		downCount = getIntent().getStringExtra("downs");
 		desc = getIntent().getStringExtra("desc");
 		image = getIntent().getStringExtra("image");
+		id = getIntent().getStringExtra("id");
+		name = getIntent().getStringExtra("name");
 		commentList = getIntent().getStringArrayListExtra("commentList");
 		
 		String uri = "raw/" + image;
@@ -77,11 +81,19 @@ public class MoreInfo extends Activity {
         		tv1.setTextSize(20);
         		tv1.setBackgroundResource(R.drawable.back);
         		tv1.setPadding(20,20,20,20);
+<<<<<<< HEAD
         	
         		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             	llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
             	tv1.setLayoutParams(llp);
         	
+=======
+        	
+        		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            	llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
+            	tv1.setLayoutParams(llp);
+        	
+>>>>>>> clayton
         		layout.addView(tv1,i);
         	}
         }
@@ -103,6 +115,12 @@ public class MoreInfo extends Activity {
 	    	Intent intent = getIntent();
 	    	intent.putExtra("ups", upCount);
 	    	intent.putExtra("downs", downCount);
+<<<<<<< HEAD
+=======
+	    	intent.putExtra("id", id);
+	    	intent.putExtra("desc", desc);
+	    	intent.putExtra("name", name);
+>>>>>>> clayton
 	    	
 	    	if(commentList!=null) {
 	    		intent.putExtra("comment", commentList.size());
@@ -115,11 +133,21 @@ public class MoreInfo extends Activity {
 	}
 	
 	public void upVote(View v) {
-		//on up pressed
+		int ups = Integer.parseInt(upCount);
+		ups++;
+		upCount = String.valueOf(ups);
+
+		TextView upView = (TextView) findViewById(R.id.text_up);
+		upView.setText(upCount);
 	}
 	
 	public void downVote(View v) {
-		//on down pressed
+		int downs = Integer.parseInt(downCount);
+		downs++;
+		downCount = String.valueOf(downs);
+
+		TextView downView = (TextView) findViewById(R.id.text_down);
+		downView.setText(downCount);
 	}
 	
 	@Override
