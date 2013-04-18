@@ -81,19 +81,10 @@ public class MoreInfo extends Activity {
         		tv1.setTextSize(20);
         		tv1.setBackgroundResource(R.drawable.back);
         		tv1.setPadding(20,20,20,20);
-<<<<<<< HEAD
         	
         		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             	llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
             	tv1.setLayoutParams(llp);
-        	
-=======
-        	
-        		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-            	llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
-            	tv1.setLayoutParams(llp);
-        	
->>>>>>> clayton
         		layout.addView(tv1,i);
         	}
         }
@@ -115,12 +106,9 @@ public class MoreInfo extends Activity {
 	    	Intent intent = getIntent();
 	    	intent.putExtra("ups", upCount);
 	    	intent.putExtra("downs", downCount);
-<<<<<<< HEAD
-=======
 	    	intent.putExtra("id", id);
 	    	intent.putExtra("desc", desc);
 	    	intent.putExtra("name", name);
->>>>>>> clayton
 	    	
 	    	if(commentList!=null) {
 	    		intent.putExtra("comment", commentList.size());
