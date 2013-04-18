@@ -100,7 +100,9 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    	            b.putString("ups", (String) viewHolder.upCount.getText());
 	    	            b.putString("downs", (String) viewHolder.downCount.getText());
 	    	            b.putString("desc", element.getDesc());
+	    	            b.putString("name", element.getName());
 	    	            b.putString("image", element.getImageId());
+	    	            b.putString("id", String.valueOf(element.getId()));
 	    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 	    	            
 	    	            intent.putExtras(b);
@@ -124,6 +126,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		    	            b.putString("downs", (String) viewHolder.downCount.getText());
 		    	            b.putString("desc", element.getDesc());
 		    	            b.putString("image", element.getImageId());
+		    	            b.putString("id", String.valueOf(element.getId()));
 		    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 		    	            
 		    	            intent.putExtras(b);

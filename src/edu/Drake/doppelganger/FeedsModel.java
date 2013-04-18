@@ -47,6 +47,18 @@ public class FeedsModel {
 		    this.commentList = obj;
 		    selected = false;
 		  }
+	  
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, List<String> allComments) {
+		  	this.id = id;
+		    this.name = name;
+		    this.ups = likes;
+		    this.downs=dislikes;
+		    this.desc = desc;
+		    this.comments = comments;
+		    this.commentList = allComments;
+		    selected = false;
+		  }
+	  
 	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments, List<String> commentList) {
 		    this.name = name;
 		    this.ups = likes;
