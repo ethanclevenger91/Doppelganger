@@ -13,7 +13,8 @@ public class FeedsModel {
 	  private int ups;
 	  private int downs;
 	  private int comments;
-	  private String imageId;
+	  private String imageId; // photo from camera or gallery
+	  private String celeb; //celebrity photo
 	  private String desc;
 	  private List<String> commentList;
 
@@ -32,14 +33,14 @@ public class FeedsModel {
 	    selected = false;
 	  }
 	  
-	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, String allComments) {
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, String allComments, String image) {
 		  	this.id = id;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
 		    this.comments = comments;
-		    
+		    this.imageId = image;
 		    Gson gson = new Gson();
 		    @SuppressWarnings("unchecked")
 			List<String> obj = gson.fromJson(allComments, ArrayList.class);
@@ -48,7 +49,7 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, List<String> allComments) {
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, List<String> allComments, String image) {
 		  	this.id = id;
 		    this.name = name;
 		    this.ups = likes;
@@ -56,16 +57,18 @@ public class FeedsModel {
 		    this.desc = desc;
 		    this.comments = comments;
 		    this.commentList = allComments;
+		    this.imageId=image;
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments, List<String> commentList) {
+	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments, List<String> commentList, String image) {
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
 		    this.comments = comments;
 		    this.commentList = commentList;
+		    this.imageId = image;
 		    selected = false;
 		  }
 	  //

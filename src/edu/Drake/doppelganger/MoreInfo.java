@@ -1,11 +1,13 @@
 package edu.Drake.doppelganger;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -54,9 +56,9 @@ public class MoreInfo extends Activity {
 		name = getIntent().getStringExtra("name");
 		commentList = getIntent().getStringArrayListExtra("commentList");
 		
-		String uri = "raw/" + image;
-        int imageResource = getResources().getIdentifier(uri, null, getPackageName());
-        photoButton.setImageResource(imageResource);
+		//String uri = "raw/" + image;
+        //int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+        //photoButton.setImageResource(imageResource);
         
         int newHeight = (int) (getWindowManager().getDefaultDisplay().getHeight() /2.25);
 		int newWidth = getWindowManager().getDefaultDisplay().getWidth();
@@ -68,6 +70,8 @@ public class MoreInfo extends Activity {
 		
 		photoButton.setLayoutParams(params);
         
+		Bitmap bitmap = BitmapHelper.decodeFile(new File(image), newWidth, newWidth, false);
+        photoButton.setImageBitmap(bitmap);
         
        // ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view1);
         LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);
@@ -109,6 +113,7 @@ public class MoreInfo extends Activity {
 	    	intent.putExtra("id", id);
 	    	intent.putExtra("desc", desc);
 	    	intent.putExtra("name", name);
+	    	intent.putExtra("image",image);
 	    	
 	    	if(commentList!=null) {
 	    		Log.v("Moreinfo", "putting comments in");

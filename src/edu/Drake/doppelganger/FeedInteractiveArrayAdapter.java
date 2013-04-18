@@ -1,11 +1,13 @@
 package edu.Drake.doppelganger;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -161,9 +163,13 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    holder.commentCount.setText(list.get(position).getComments());
 	    holder.name.setText(list.get(position).getName());
 	    
-	    String uri = "raw/" + model.getImageId();
-        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-        holder.photoButton.setImageResource(imageResource);
+	    //String uri = "raw/" + model.getImageId();
+        //int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
+        //holder.photoButton.setImageResource(imageResource);
+	    
+	    ImageButton myButton = (ImageButton) view.findViewById(R.id.image_button1);
+	    
+	    
         
 		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.25);
 		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();
@@ -175,6 +181,10 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		params.addRule(RelativeLayout.BELOW, R.id.textView1);
 		
 		holder.photoButton.setLayoutParams(params);
+		
+		Bitmap bitmap = BitmapHelper.decodeFile(new File(model.getImageId()), newWidth, newHeight, false);
+        holder.photoButton.setImageBitmap(bitmap);
+		
 	    
 	    return view;
 	  }

@@ -17,6 +17,8 @@ public class Post extends Activity {
 	
 	ImageView theImage;
 	String TAG = "path is: ";
+	public String returnString;
+	public int celebPath;
 	
 	private static int SELECT_FOR_PIC = 5713;
 	
@@ -71,6 +73,9 @@ public class Post extends Activity {
 		EditText myCaption = (EditText) findViewById(R.id.edit_text_caption);
 		
     	intent.putExtra("caption", myCaption.getText().toString());
+    	intent.putExtra("photo", returnString);
+    	intent.putExtra("celeb", String.valueOf(celebPath));
+    	
 	    setResult(RESULT_OK,intent);
 	    finish();
 	}
@@ -130,7 +135,7 @@ public class Post extends Activity {
 				if(data.getExtras()!=null) {
 					
 					ImageView myImage = (ImageView) findViewById(R.id.select_pic);
-					String returnString = data.getStringExtra("return");
+					returnString = data.getStringExtra("return");
 					Bitmap bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
 		            myImage.setImageBitmap(bitmap);
 				}

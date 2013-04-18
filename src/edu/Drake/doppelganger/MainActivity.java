@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import com.facebook.*;
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
@@ -37,6 +38,8 @@ public class MainActivity extends Activity {
 	public String myCaption;
 	public FeedFragment feedFragment;
 	public FeedSQLiteHelper db;
+	public String celebPath;
+	public String imagePath;
 	private static int GET_POST = 124654;
 	
 	protected class MyTabsListener implements ActionBar.TabListener {
@@ -209,6 +212,7 @@ public class MainActivity extends Activity {
 		        	String id = data.getStringExtra("id");
 		        	String desc = data.getStringExtra("desc");
 		        	String name = data.getStringExtra("name");
+		        	String image = data.getStringExtra("image");
 		        	
 		        	int commentCount=0;
 		        	List<String> commentList = new ArrayList<String>();
@@ -227,7 +231,7 @@ public class MainActivity extends Activity {
 		        	int downs = Integer.parseInt(downCount);
 		        	db = new FeedSQLiteHelper(this);
 		        	
-		        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList);
+		        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image);
 		        	db.updateContact(newModel);
 		        	feedFragment.refresh();
 		        }
@@ -238,13 +242,26 @@ public class MainActivity extends Activity {
 			if(resultcode==RESULT_OK && null!=data)
 			{
 				myCaption = data.getStringExtra("caption");
+				//celebPath = data.getStringExtra("celebPath");
+				imagePath = data.getStringExtra("photo");
+				
+				Log.v("Main", imagePath);
+				//Log.v("Main", celebPath);
+				
+				
 				feedFragment = (FeedFragment) getFragmentManager().findFragmentByTag("FEED");
+				
+				Log.v("Main", "Here i am");
+				
 				db = new FeedSQLiteHelper(this);
 			
+				Log.v("Main", "New helper");
+				
 				Session.openActiveSession(this, true, new Session.StatusCallback() {
 					// callback when session changes state
 					@Override
 		            public void call(Session session, SessionState state, Exception exception) {
+						Log.v("Main", "Not opened");
 						if (session.isOpened()) {
 							// make request to the /me API
 							Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
@@ -252,11 +269,15 @@ public class MainActivity extends Activity {
 								// callback after Graph API response with user object
 								@Override
 								public void onCompleted(GraphUser user, Response response) {
+									Log.v("Main", "what?");
 									if (user != null) {
-		    		                    
+										Log.v("Main", "Nice");
 										String finalString = user.getName() + " posted: ";
-										db.addContact(new FeedsModel(myCaption, finalString,0,0,0,null));
+										Log.v("Main", "sweet");
+										db.addContact(new FeedsModel(myCaption,finalString,0,0,0,null,imagePath));
+										Log.v("Main", "yay");
 										feedFragment.refresh();
+										Log.v("Main", "refresh");
 									} 
 								}
 							});

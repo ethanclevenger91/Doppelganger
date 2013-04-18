@@ -20,7 +20,7 @@ public class FeedFragment extends ListFragment{
 	    
 	    comment = comment();
 	    feeds = new ArrayList<FeedsModel>();
-	    
+	    //
 	    /*
 	     * uncomment below to add a post with name: Clayton Brady, 
 	     * caption: That is him, 3 likes, 0 dislikes, 2 comments
@@ -41,8 +41,8 @@ public class FeedFragment extends ListFragment{
 	    }
 	    
 	    
-	    //
 	    
+	    //
 	    ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, contacts);
 	    
 	    setListAdapter(adapter);
@@ -65,6 +65,8 @@ public class FeedFragment extends ListFragment{
 	public void refresh(){
 		FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
 		List<FeedsModel> contacts = db.getAllContacts();
+		
+		Log.v("FeedFrag", String.valueOf(contacts.size()));
 		
 		ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, contacts);
 	    setListAdapter(adapter);
