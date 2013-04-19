@@ -72,6 +72,7 @@ public class BitmapHelper
 
             Bitmap croppedBitmap = scaledBitmap;
 
+            /*
             if (scaledBitmapWidth > requiredWidth)
             {
                 int xOffset = (scaledBitmapWidth - requiredWidth) / 2;
@@ -84,6 +85,7 @@ public class BitmapHelper
                 croppedBitmap = Bitmap.createBitmap(scaledBitmap, 0, yOffset, requiredWidth, requiredHeight);
                 scaledBitmap.recycle();
             }
+            */
 
             if (recycleDecodedBitmap)
             {
