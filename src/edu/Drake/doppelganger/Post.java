@@ -1,10 +1,19 @@
 package edu.Drake.doppelganger;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 public class Post extends Activity {
 	
@@ -19,6 +29,8 @@ public class Post extends Activity {
 	String TAG = "path is: ";
 	public String returnString;
 	public int celebPath;
+	public int width;
+	public int height;
 	
 	private static int SELECT_FOR_PIC = 5713;
 	
@@ -72,9 +84,41 @@ public class Post extends Activity {
 		
 		EditText myCaption = (EditText) findViewById(R.id.edit_text_caption);
 		
+		ImageView myImage = (ImageView) findViewById(R.id.select_pic);
+		Bitmap bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
+		
+		try {
+            ExifInterface exif = new ExifInterface(returnString);
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+            Log.d("EXIF", "Exif: " + orientation);
+            Matrix matrix = new Matrix();
+            if (orientation == 6) {
+                matrix.postRotate(90);
+            }
+            else if (orientation == 3) {
+                matrix.postRotate(180);
+            }
+            else if (orientation == 8) {
+                matrix.postRotate(270);
+            }
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+        }
+        catch (Exception e) {
+
+        }
+		//
+		Drawable myDrawable = getResources().getDrawable(celebPath);
+		Bitmap myCeleb = ((BitmapDrawable) myDrawable).getBitmap();
+		
+		myCeleb = Bitmap.createScaledBitmap(myCeleb, bitmap.getWidth(), bitmap.getHeight(), false);
+		
+		String combined = combineImages(bitmap,myCeleb,returnString);
+		
     	intent.putExtra("caption", myCaption.getText().toString());
-    	intent.putExtra("photo", returnString);
+    	intent.putExtra("photo", combined);
     	intent.putExtra("celeb", String.valueOf(celebPath));
+    	
+    	Log.v("Post", combined);
     	
 	    setResult(RESULT_OK,intent);
 	    finish();
@@ -107,6 +151,50 @@ public class Post extends Activity {
 		onBackPressed();
 	}
 	
+	public String combineImages(Bitmap c, Bitmap s, String loc) { // can add a 3rd parameter 'String loc' if you want to save the new image - left some code to do that at the bottom 
+	    Bitmap cs = null; 
+
+	    int width, height = 0; 
+
+	    Log.v("Post", String.valueOf(s.getWidth()));
+	    Log.v("Post", String.valueOf(c.getWidth()));
+	    
+	    if(c.getWidth() > s.getWidth()) { 
+	      width = c.getWidth() + c.getWidth(); 
+	      height = c.getHeight(); 
+	    } else { 
+	      width = c.getWidth() + c.getWidth(); 
+	      height = c.getHeight(); 
+	    } 
+
+	    cs = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888); 
+	    Log.v("Post", "here!");
+	    
+	    Canvas comboImage = new Canvas(cs); 
+	    Bitmap myMap = Bitmap.createScaledBitmap(c, c.getWidth()-50, c.getHeight(), false);
+
+	    comboImage.drawBitmap(myMap, 0f, 0f, null); 
+	    comboImage.drawBitmap(s, c.getWidth()+50, 0f, null);
+	    
+	    Log.v("Post", "here!!");
+
+	    // this is an extra bit I added, just incase you want to save the new image somewhere and then return the location 
+	    String tmpImg = String.valueOf(System.currentTimeMillis()) + ".png"; 
+
+	    OutputStream os = null; 
+	    try { 
+	      os = new FileOutputStream(loc + tmpImg); 
+	      cs.compress(CompressFormat.PNG, 100, os); 
+	      Log.v("Post", "here!!!");
+	    } catch(IOException e) { 
+	      Log.e("combineImages", "problem combining images", e); 
+	      Log.v("Post", "here!!!!");
+	    }
+
+	    Log.v("Post", "it works");
+	    return (loc+tmpImg); 
+	  } 
+	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
@@ -124,6 +212,8 @@ public class Post extends Activity {
 		        	theImage = (ImageView) findViewById(R.id.select_celeb);
 		        	int i = data.getIntExtra("image", 1);
 		            theImage.setImageResource(i);
+		            theImage.setScaleType(ScaleType.FIT_XY);
+		            celebPath = i;
 		        }
 			}
 		}
@@ -135,8 +225,30 @@ public class Post extends Activity {
 				if(data.getExtras()!=null) {
 					
 					ImageView myImage = (ImageView) findViewById(R.id.select_pic);
+					myImage.setScaleType(ScaleType.FIT_XY);
+					
 					returnString = data.getStringExtra("return");
 					Bitmap bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
+					
+		            try {
+		                ExifInterface exif = new ExifInterface(returnString);
+		                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+		                Log.d("EXIF", "Exif: " + orientation);
+		                Matrix matrix = new Matrix();
+		                if (orientation == 6) {
+		                    matrix.postRotate(90);
+		                }
+		                else if (orientation == 3) {
+		                    matrix.postRotate(180);
+		                }
+		                else if (orientation == 8) {
+		                    matrix.postRotate(270);
+		                }
+		                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
+		            }
+		            catch (Exception e) {
+
+		            }
 		            myImage.setImageBitmap(bitmap);
 				}
 			}

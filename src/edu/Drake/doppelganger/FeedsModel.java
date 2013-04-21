@@ -69,6 +69,7 @@ public class FeedsModel {
 		    this.comments = comments;
 		    this.commentList = commentList;
 		    this.imageId = image;
+		    this.celeb = celeb;
 		    selected = false;
 		  }
 	  //
@@ -80,6 +81,16 @@ public class FeedsModel {
 	  public void setId(int id) {
 		  this.id=id;
 	  }
+	  
+	  /*
+	  public String getCeleb() {
+		  return celeb;
+	  }
+	  
+	  public void setCeleb(String id) {
+		  this.celeb = id;
+	  }
+	  */
 	  
 	  public List<String> getCommentList() {
 		  return commentList;

@@ -171,7 +171,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    
 	    
         
-		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.25);
+		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.5);
 		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();
         
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
@@ -184,6 +184,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		
 		Bitmap bitmap = BitmapHelper.decodeFile(new File(model.getImageId()), newWidth, newHeight, false);
         holder.photoButton.setImageBitmap(bitmap);
+        holder.photoButton.setBackgroundResource(R.drawable.inman);
 		
 	    
 	    return view;

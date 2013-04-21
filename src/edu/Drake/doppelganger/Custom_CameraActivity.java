@@ -10,17 +10,16 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +32,8 @@ public class Custom_CameraActivity extends Activity {
     private CameraPreview mCameraPreview;
     boolean isPicTaken = false;
     Bitmap bitmap;
+    Bitmap bmap;
+    int orientation;
     String myPath;
     Uri myUri;
 
@@ -45,26 +46,21 @@ public class Custom_CameraActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
         mCamera = getCameraInstance();
+        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        
+        //mCamera.setDisplayOrientation(90);
         Camera.Parameters p = mCamera.getParameters();
         
-        if (Integer.parseInt(Build.VERSION.SDK) >= 8)
-            setDisplayOrientation(mCamera, 90);
-        else
-        {
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
-            {
-                p.set("orientation", "portrait");
-                p.set("rotation", 90);
-            }
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
-            {
-                p.set("orientation", "landscape");
-                p.set("rotation", 90);
-            }
-        }   
+        p.set("jpeg-quality", 100);
+        p.set("orientation", "portrait");
+        p.set("rotation", 90);
+        p.setPictureFormat(PixelFormat.JPEG);
+       // p.setPreviewSize(preview.getHeight(), preview.getWidth());// here w h are reversed
+        mCamera.setParameters(p);
+        setDisplayOrientation(mCamera,90);
         
         mCameraPreview = new CameraPreview(this, mCamera);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+        
         preview.addView(mCameraPreview);
 
         Button captureButton = (Button) findViewById(R.id.button_capture);
