@@ -178,7 +178,7 @@ public class Post extends Activity {
 	    
 	    Log.v("Post", "here!!");
 
-	    // this is an extra bit I added, just incase you want to save the new image somewhere and then return the location 
+	    // this is an extra bit I added, just in case you want to save the new image somewhere and then return the location 
 	    String tmpImg = String.valueOf(System.currentTimeMillis()) + ".png"; 
 
 	    OutputStream os = null; 

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 public class MoreInfo extends Activity {
@@ -27,6 +28,8 @@ public class MoreInfo extends Activity {
 	private String name;
 	private List<String> commentList;
 	private String id;
+	private ShareActionProvider mShareActionProvider;
+	ShareActionProvider provider;
 	
 	public void addComment(View v) {
 		
@@ -149,9 +152,11 @@ public class MoreInfo extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_more_info, menu);
-		
-		return true;
+		provider = (ShareActionProvider) menu.findItem(R.id.menu_share)
+		        .getActionProvider();
+		    return true;
 	}
+	
 	
 	@Override
 	//this is used on the up button press
@@ -164,11 +169,22 @@ public class MoreInfo extends Activity {
 	        	
 	        	onBackPressed();
 	        		 
-	        	return true;
+	        	break;
+	        case R.id.menu_share:
+	              doShare();
+	              break;
 	    }
 	    //returns the item selected, in this case the up button
 	    return super.onOptionsItemSelected(item);
 	}
+	
+	public void doShare() {
+	    // Populare the share intent with data
+	    Intent intent = new Intent(Intent.ACTION_SEND);
+	    intent.setType("image/*");
+	    intent.putExtra("image", image);
+	    provider.setShareIntent(intent);
+	  } 
 	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
