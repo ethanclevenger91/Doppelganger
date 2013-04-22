@@ -108,6 +108,8 @@
                android:id="@+id/create_comment"
                android:layout_width="fill_parent"
                android:layout_height="fill_parent"
+               android:layout_below="@+id/image_up_vote"
+               android:layout_toRightOf="@+id/image_comment"
                android:text="Click to add comment..."
                android:onClick="addComment"
        		   android:textAppearance="?android:attr/textAppearanceLarge"
