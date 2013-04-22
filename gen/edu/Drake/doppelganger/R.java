@@ -219,11 +219,12 @@ containing a value of this type.
         public static final int morrow=0x7f020026;
         public static final int post_button=0x7f020027;
         public static final int savage=0x7f020028;
-        public static final int social_share=0x7f020029;
-        public static final int upload=0x7f02002a;
-        public static final int upload_border=0x7f02002b;
-        public static final int urness=0x7f02002c;
-        public static final int zooey=0x7f02002d;
+        public static final int search=0x7f020029;
+        public static final int social_share=0x7f02002a;
+        public static final int upload=0x7f02002b;
+        public static final int upload_border=0x7f02002c;
+        public static final int urness=0x7f02002d;
+        public static final int zooey=0x7f02002e;
     }
     public static final class id {
         public static final int button_capture=0x7f060045;
@@ -256,13 +257,13 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_profile_name=0x7f060040;
         public static final int create_comment=0x7f06001e;
         public static final int description=0x7f06001b;
-        public static final int edit_text1=0x7f060006;
+        public static final int edit_text1=0x7f060007;
         public static final int edit_text_caption=0x7f060025;
         public static final int edit_text_tag=0x7f060026;
         public static final int email=0x7f060015;
         public static final int fragment_container=0x7f06001a;
         public static final int gallery=0x7f06002a;
-        public static final int imageView1=0x7f060007;
+        public static final int imageView1=0x7f060005;
         public static final int image_button1=0x7f06000b;
         public static final int image_comment=0x7f06000e;
         public static final int image_down_vote=0x7f060011;
@@ -289,7 +290,7 @@ containing a value of this type.
         public static final int picker_subtitle=0x7f06003e;
         public static final int post_button=0x7f060027;
         public static final int scroll_view1=0x7f06001c;
-        public static final int search_box=0x7f060005;
+        public static final int search_box=0x7f060006;
         public static final int select_celeb=0x7f060023;
         public static final int select_pic=0x7f060022;
         public static final int sign_in_button=0x7f060018;
