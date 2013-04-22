@@ -56,7 +56,7 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 		    }
 	    
 	    ViewHolder holder = (ViewHolder) view.getTag();
-	    holder.titleView.setText(list.get(position).getName());
+	    holder.titleView.setText(model.getName());
         holder.imageView.setImageResource(model.getPic());
 		
 	return view;
