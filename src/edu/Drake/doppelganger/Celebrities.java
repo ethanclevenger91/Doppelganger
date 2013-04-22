@@ -6,24 +6,53 @@ import java.util.List;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class Celebrities extends ListActivity {
+	
+	private EditText filterText = null;
+	ArrayAdapter<CelebrityEntry> adapter = null;
+	private String TAG = "celebrity list";
+	private TextWatcher filterTextWatcher = new TextWatcher() {
 
+	    public void afterTextChanged(Editable s) {
+	    }
+
+	    public void beforeTextChanged(CharSequence s, int start, int count,
+	            int after) {
+	    }
+
+	    public void onTextChanged(CharSequence s, int start, int before,
+	            int count) {
+	        adapter.getFilter().filter(s);
+	    }
+
+	};
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		
+		setContentView(R.layout.activity_celebrity);
+
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
 		 
-		 ArrayAdapter<CelebrityEntry> adapter = new CelebrityEntryAdapter(this, getModel());
+		 filterText = (EditText) findViewById(R.id.search_box);
+		 filterText.addTextChangedListener(filterTextWatcher);
+		 
+		 adapter = new CelebrityEntryAdapter(this, getModel());
 		 setListAdapter(adapter);
+		 
 		 
 	}
 
@@ -71,9 +100,9 @@ public class Celebrities extends ListActivity {
 		
 		setResult(RESULT_OK,makeAPost);
     	finish();
-		
-		
 	}
+	
+	
 	
 	private List<CelebrityEntry> getModel() {
 	    List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
@@ -88,5 +117,11 @@ public class Celebrities extends ListActivity {
 	private CelebrityEntry get(String name, int pic) {
     return new CelebrityEntry(name, pic);
   }
+	
+	@Override
+	protected void onDestroy() {
+	    super.onDestroy();
+	    filterText.removeTextChangedListener(filterTextWatcher);
+	}
 	
 }

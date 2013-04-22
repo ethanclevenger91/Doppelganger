@@ -13,14 +13,19 @@ public final class CelebrityEntry {
 	}
  
 	/**
-	 * @return Title of news entry
+	 * @return name of celebrity
 	 */
 	public String getName() {
 		return name;
 	}
- 
 	/**
-	 * @return Author of news entry
+	 * override the toString function so filter will work
+	 */
+	public String toString() {
+		return name;
+	}
+	/**
+	 * @return picture of celebrity
 	 */
 	public int getPic() {
 		return pic;
