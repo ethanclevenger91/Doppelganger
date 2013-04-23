@@ -9,25 +9,28 @@
 	    android:layout_width="match_parent"
     	android:layout_height="match_parent"
       	android:orientation="horizontal"
-      	android:layout_weight="0.4" >
+      	android:layout_weight="0.5" >
         
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
 
 
     <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight=".5" >
 
         
             <ImageButton
                 android:id="@+id/select_pic"
-                android:layout_width="160dp"
-                android:layout_height="212dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
@@ -39,12 +42,14 @@
 
             <ImageButton
                 android:id="@+id/select_celeb"
-                android:layout_width="160dp"
-                android:layout_height="212dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
                 android:layout_weight="0.5"
                 android:adjustViewBounds="true"
                 android:onClick="selectCeleb"
-                android:layout_marginRight="0dp"
                 android:scaleType="fitXY"
                 android:src="@raw/upload" />
             </LinearLayout>
@@ -52,8 +57,8 @@
     		<LinearLayout
     		    android:id="@+id/linearLayout2"
            	 android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout1"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
             android:orientation="horizontal" >
 
         	<TextView
@@ -76,14 +81,14 @@
         	
         	
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
         
     </FrameLayout>
 
     <RelativeLayout
         android:layout_width ="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".3" >
+        android:layout_weight=".5" >
 
         <TextView
             android:id="@+id/text_caption"
