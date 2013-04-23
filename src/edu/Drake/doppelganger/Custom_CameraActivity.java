@@ -132,7 +132,7 @@ public class Custom_CameraActivity extends Activity {
                 sendBroadcast(new Intent(
             		    Intent.ACTION_MEDIA_MOUNTED,
             		    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
-               bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+               bitmap = BitmapHelper.decodeFile(new File(myPath), 0, 10, false);
                
                 
             } catch (FileNotFoundException e) {

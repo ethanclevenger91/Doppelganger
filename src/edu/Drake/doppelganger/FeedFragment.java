@@ -8,15 +8,14 @@ import java.util.List;
 
 import android.app.ListFragment;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import com.google.gson.*;
-import com.google.*;
 
 public class FeedFragment extends ListFragment{
 	public List<String> comment;
@@ -44,7 +43,7 @@ public class FeedFragment extends ListFragment{
 			myCelebPic = Bitmap.createScaledBitmap(myCelebPic, myCeleb.getWidth(), myCeleb.getHeight(), false);
 			
 			String combined = combineImages(myCeleb,myCelebPic,"/sdcard/");
-	    	
+			
 	    	//adds Inman
 	    	db.addContact(new FeedsModel("That is him", "Clayton Brady posted:", 3, 0, 2, null,combined));
 	    	
