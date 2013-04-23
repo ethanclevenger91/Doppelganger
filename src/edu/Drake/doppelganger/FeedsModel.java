@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.*;
 
 public class FeedsModel {
 
@@ -15,7 +14,6 @@ public class FeedsModel {
 	  private int downs;
 	  private int comments;
 	  private String imageId; // photo from camera or gallery
-	  private String celeb; //celebrity photo
 	  private String desc;
 	  private List<String> commentList;
 
@@ -70,7 +68,6 @@ public class FeedsModel {
 		    this.comments = comments;
 		    this.commentList = commentList;
 		    this.imageId = image;
-		    this.celeb = celeb;
 		    selected = false;
 		  }
 	  //

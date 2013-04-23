@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,6 @@ public class Celebrities extends ListActivity {
 	
 	private EditText filterText = null;
 	ArrayAdapter<CelebrityEntry> adapter = null;
-	private String TAG = "celebrity list";
 	private TextWatcher filterTextWatcher = new TextWatcher() {
 
 	    public void afterTextChanged(Editable s) {

@@ -66,10 +66,6 @@ public class BitmapHelper
             }
 
             // crop image to match required image size
-
-            int scaledBitmapWidth = scaledBitmap.getWidth();
-            int scaledBitmapHeight = scaledBitmap.getHeight();
-
             Bitmap croppedBitmap = scaledBitmap;
 
             /*

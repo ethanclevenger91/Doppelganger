@@ -69,7 +69,9 @@ public class MoreInfo extends Activity {
         //int imageResource = getResources().getIdentifier(uri, null, getPackageName());
         //photoButton.setImageResource(imageResource);
         
-        int newHeight = (int) (getWindowManager().getDefaultDisplay().getHeight() /2.5);
+        @SuppressWarnings("deprecation")
+		int newHeight = (int) (getWindowManager().getDefaultDisplay().getHeight() /2.5);
+		@SuppressWarnings("deprecation")
 		int newWidth = getWindowManager().getDefaultDisplay().getWidth();
 		
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(

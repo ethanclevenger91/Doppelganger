@@ -9,7 +9,6 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -162,13 +161,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    holder.downCount.setText(list.get(position).getDowns());
 	    holder.commentCount.setText(list.get(position).getComments());
 	    holder.name.setText(list.get(position).getName());
-	    
-	    //String uri = "raw/" + model.getImageId();
-        //int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-        //holder.photoButton.setImageResource(imageResource);
-	    
-	    ImageButton myButton = (ImageButton) view.findViewById(R.id.image_button1);
-	    //
         
 		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.5);
 		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();

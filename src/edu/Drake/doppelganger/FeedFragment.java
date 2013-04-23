@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -13,10 +14,10 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
+@SuppressLint("SdCardPath")
 public class FeedFragment extends ListFragment{
 	public List<String> comment;
 	public List<FeedsModel> feeds;
