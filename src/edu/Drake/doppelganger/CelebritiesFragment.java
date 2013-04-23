@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 public class CelebritiesFragment extends ListFragment {
-
+//
 	private EditText filterText = null;
 	ArrayAdapter<CelebrityEntry> adapter = null;
 	private TextWatcher filterTextWatcher = new TextWatcher() {

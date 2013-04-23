@@ -5,90 +5,106 @@
     android:orientation="vertical"
     tools:context=".Post" >
 
-    <FrameLayout 
-	    android:layout_width="match_parent"
-    	android:layout_height="match_parent"
-      	android:orientation="horizontal"
-      	android:layout_weight="0.5" >
-        
-    <LinearLayout
-        android:id="@+id/relativeLayout1"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.45"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            
-
-
-    <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight=".5" >
-
-        
-            <ImageButton
-                android:id="@+id/select_pic"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_weight="0.5"
-                android:adjustViewBounds="true"
-                android:onClick="selectPic"
-                android:scaleType="fitXY"
-                android:src="@raw/upload" />
-
-            <ImageButton
-                android:id="@+id/select_celeb"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_weight="0.5"
-                android:adjustViewBounds="true"
-                android:onClick="selectCeleb"
-                android:scaleType="fitXY"
-                android:src="@raw/upload" />
-            </LinearLayout>
-            
-    		<LinearLayout
-    		    android:id="@+id/linearLayout2"
-           	 android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".5"
             android:orientation="horizontal" >
 
-        	<TextView
-            android:id="@+id/you_friends"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:layout_marginLeft="11dp"
-            android:text="Photo of You or a Friend"
-            android:textSize="15sp" />
-        	
-            <TextView
-            android:id="@+id/celeb_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:layout_marginLeft="11dp"
-            android:text="Pick a Celebrity"
-            android:textSize="15sp" />
-        	
-        	
-            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/title_doppel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                   	android:gravity="center_horizontal"
+                    android:text="Doppelganger"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    android:id="@+id/select_pic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:adjustViewBounds="true"
+                    
+                    android:layout_below="@+id/title_doppel"
+                    android:onClick="selectPic"
+                    android:scaleType="fitXY"
+                    android:src="@raw/upload" />
+
+                <TextView
+                    android:id="@+id/you_friends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                   	android:gravity="center_horizontal"
+                   	android:layout_below="@+id/select_pic"
+                    android:text="Photo of You or a Friend"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/title_celeb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="11dp"
+                   	android:gravity="center_horizontal"
+                    android:text="Celebrity"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    android:id="@+id/select_celeb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_below="@+id/title_celeb"
+                    android:adjustViewBounds="true"
+                    android:onClick="selectCeleb"
+                    android:scaleType="fitXY"
+                    android:src="@raw/upload" />
+
+                <TextView
+                    android:id="@+id/celeb_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/select_celeb"
+                    android:layout_marginLeft="11dp"
+                   	android:gravity="center_horizontal"
+                   	android:textAlignment="center"
+                    android:text="Pick a Celebrity"
+                    android:textSize="15sp" />
+            </RelativeLayout>
         </LinearLayout>
-        
     </FrameLayout>
 
     <RelativeLayout
-        android:layout_width ="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".5" >
+        android:layout_weight=".55" >
 
         <TextView
             android:id="@+id/text_caption"
@@ -96,9 +112,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/you_friends"
-            android:text="Caption:"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:text="Caption:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="20sp" />
 
@@ -124,8 +140,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/edit_text_tag"
             android:layout_alignParentLeft="true"
-            android:text="Tag:"
             android:layout_marginLeft="10dp"
+            android:text="Tag:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="20sp" />
 
@@ -138,7 +154,6 @@
             android:layout_marginTop="27dp"
             android:onClick="postToFeed"
             android:src="@drawable/post_button" />
-
     </RelativeLayout>
 
 </LinearLayout>
