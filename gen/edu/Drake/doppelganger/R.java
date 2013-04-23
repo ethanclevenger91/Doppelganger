@@ -275,7 +275,7 @@ containing a value of this type.
         public static final int image_up_vote=0x7f06000c;
         public static final int label=0x7f060048;
         public static final int large=0x7f060002;
-        public static final int linearLayout1=0x7f060022;
+        public static final int linearLayout1=0x7f060021;
         public static final int linear_view1=0x7f06001e;
         public static final int list=0x7f060043;
         public static final int localpic=0x7f06002e;
@@ -296,8 +296,8 @@ containing a value of this type.
         public static final int post_button=0x7f060028;
         public static final int scroll_view1=0x7f06001d;
         public static final int search_box=0x7f060006;
-        public static final int select_celeb=0x7f060024;
-        public static final int select_pic=0x7f060023;
+        public static final int select_celeb=0x7f060023;
+        public static final int select_pic=0x7f060022;
         public static final int sign_in_button=0x7f060018;
         public static final int signup=0x7f06002a;
         public static final int small=0x7f060000;
@@ -309,7 +309,7 @@ containing a value of this type.
         public static final int text_tag=0x7f060029;
         public static final int text_up=0x7f06000d;
         public static final int welcome=0x7f060019;
-        public static final int you_friends=0x7f060021;
+        public static final int you_friends=0x7f060024;
     }
     public static final class layout {
         public static final int activity_celebrities=0x7f030000;
