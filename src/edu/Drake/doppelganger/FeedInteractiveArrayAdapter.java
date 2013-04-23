@@ -168,8 +168,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
         //holder.photoButton.setImageResource(imageResource);
 	    
 	    ImageButton myButton = (ImageButton) view.findViewById(R.id.image_button1);
-	    
-	    
+	    //
         
 		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.5);
 		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();
@@ -184,7 +183,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		
 		Bitmap bitmap = BitmapHelper.decodeFile(new File(model.getImageId()), newWidth, newHeight, false);
         holder.photoButton.setImageBitmap(bitmap);
-        holder.photoButton.setBackgroundResource(R.drawable.inman);
+        holder.photoButton.setBackgroundResource(R.drawable.background);
 		
 	    
 	    return view;
