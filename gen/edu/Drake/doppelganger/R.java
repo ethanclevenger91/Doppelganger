@@ -233,9 +233,9 @@ containing a value of this type.
     public static final class id {
         public static final int button_capture=0x7f060046;
         public static final int button_retake=0x7f060045;
-        public static final int button_return=0x7f06002c;
+        public static final int button_return=0x7f06002b;
         public static final int button_use=0x7f060047;
-        public static final int camera=0x7f06002d;
+        public static final int camera=0x7f06002e;
         public static final int camera_preview=0x7f060044;
         public static final int celebrity_entry_name=0x7f060004;
         public static final int celebrity_entry_pic=0x7f060003;
@@ -266,7 +266,7 @@ containing a value of this type.
         public static final int edit_text_tag=0x7f060027;
         public static final int email=0x7f060015;
         public static final int fragment_container=0x7f06001a;
-        public static final int gallery=0x7f06002b;
+        public static final int gallery=0x7f06002d;
         public static final int imageView1=0x7f060005;
         public static final int image_button1=0x7f06000b;
         public static final int image_button2=0x7f06001b;
@@ -278,7 +278,7 @@ containing a value of this type.
         public static final int linearLayout1=0x7f060021;
         public static final int linear_view1=0x7f06001e;
         public static final int list=0x7f060043;
-        public static final int localpic=0x7f06002e;
+        public static final int localpic=0x7f06002c;
         public static final int login=0x7f060017;
         public static final int login_form=0x7f060014;
         public static final int login_status=0x7f060012;

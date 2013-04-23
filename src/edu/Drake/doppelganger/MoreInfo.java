@@ -8,6 +8,7 @@ import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,7 +30,7 @@ public class MoreInfo extends Activity {
 	private List<String> commentList;
 	private String id;
 	private ShareActionProvider mShareActionProvider;
-	ShareActionProvider provider;
+	private Uri myUri;
 	
 	public void addComment(View v) {
 		
@@ -60,6 +61,8 @@ public class MoreInfo extends Activity {
 		id = getIntent().getStringExtra("id");
 		name = getIntent().getStringExtra("name");
 		commentList = getIntent().getStringArrayListExtra("commentList");
+		
+		myUri = Uri.fromFile(new File(image));
 		
 		//String uri = "raw/" + image;
         //int imageResource = getResources().getIdentifier(uri, null, getPackageName());
@@ -162,7 +165,7 @@ public class MoreInfo extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_more_info, menu);
-		provider = (ShareActionProvider) menu.findItem(R.id.menu_share)
+		mShareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_share)
 		        .getActionProvider();
 		    return true;
 	}
@@ -192,8 +195,8 @@ public class MoreInfo extends Activity {
 	    // Populare the share intent with data
 	    Intent intent = new Intent(Intent.ACTION_SEND);
 	    intent.setType("image/*");
-	    intent.putExtra("image", image);
-	    provider.setShareIntent(intent);
+	    intent.putExtra("image", myUri);
+	    mShareActionProvider.setShareIntent(intent);
 	  } 
 	
 	@Override
