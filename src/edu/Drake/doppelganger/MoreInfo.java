@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Intent;
@@ -105,7 +106,7 @@ public class MoreInfo extends Activity {
         		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             	llp.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
             	tv1.setLayoutParams(llp);
-        		layout.addView(tv1,i);
+        		layout.addView(tv1);
         	}
         }
 		descView.setText(desc);
@@ -161,6 +162,7 @@ public class MoreInfo extends Activity {
 		downView.setText(downCount);
 	}
 	
+	@SuppressLint("NewApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -191,6 +193,7 @@ public class MoreInfo extends Activity {
 	    return super.onOptionsItemSelected(item);
 	}
 	
+	@SuppressLint("NewApi")
 	public void doShare() {
 	    // Populare the share intent with data
 	    Intent intent = new Intent(Intent.ACTION_SEND);
