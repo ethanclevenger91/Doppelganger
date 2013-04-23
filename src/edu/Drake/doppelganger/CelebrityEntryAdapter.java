@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
  
 /**
- * Adapts NewsEntry objects onto views for lists
+ * Adapts CelebrityEntry objects onto views for lists
  */
 public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
  
@@ -23,7 +23,7 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	private final Activity context;
  
 	public CelebrityEntryAdapter(Activity context, List<CelebrityEntry> list) {
-		super(context, R.layout.searchable_celebrity_list, list);
+		super(context, R.layout.activity_celebrity, list);
 		this.context = context;
 	    this.list = list;
 	}
@@ -56,7 +56,7 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 		    }
 	    
 	    ViewHolder holder = (ViewHolder) view.getTag();
-	    holder.titleView.setText(list.get(position).getName());
+	    holder.titleView.setText(model.getName());
         holder.imageView.setImageResource(model.getPic());
 		
 	return view;

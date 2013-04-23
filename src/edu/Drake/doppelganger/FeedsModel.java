@@ -113,6 +113,7 @@ public class FeedsModel {
 		  this.commentList = obj;
 	  }
 	  
+	  //this is a URI
 	  public String getImageId() {
 	        return imageId;
 	    }

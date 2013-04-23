@@ -42,7 +42,8 @@
         </activity>
         <activity
             android:name="edu.Drake.doppelganger.Celebrities"
-            android:label="@string/title_activity_celebrities" >
+            android:label="@string/title_activity_celebrities"
+             >
         </activity>
         <activity
             android:name="edu.Drake.doppelganger.Notifications"
