@@ -15,6 +15,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import com.google.gson.*;
+import com.google.*;
 
 public class FeedFragment extends ListFragment{
 	public List<String> comment;
@@ -41,10 +43,10 @@ public class FeedFragment extends ListFragment{
 			
 			myCelebPic = Bitmap.createScaledBitmap(myCelebPic, myCeleb.getWidth(), myCeleb.getHeight(), false);
 			
-			String combined = combineImages(myCeleb,myCelebPic,"/storage/sdcard0/tmp_recipes.jpg1366681084097.png");
+			String combined = combineImages(myCeleb,myCelebPic,"/sdcard/");
 	    	
 	    	//adds Inman
-	    	db.addContact(new FeedsModel("That is him", "Clayton Brady", 3, 0, 2, null,combined));
+	    	db.addContact(new FeedsModel("That is him", "Clayton Brady posted:", 3, 0, 2, null,combined));
 	    	
 	    	myDrawable = getResources().getDrawable(R.drawable.urness);
 	    	celebDrawable = getResources().getDrawable(R.drawable.brosnan);
@@ -54,10 +56,10 @@ public class FeedFragment extends ListFragment{
 			
 			myCelebPic = Bitmap.createScaledBitmap(myCelebPic, myCeleb.getWidth(), myCeleb.getHeight(), false);
 			
-			combined = combineImages(myCeleb,myCelebPic,"/storage/sdcard0/tmp_recipes.jpg1366681084097.png");
+			combined = combineImages(myCeleb,myCelebPic,"/sdcard/");
 	    	
 	    	//adds Urness
-	    	db.addContact(new FeedsModel("That is him", "Clayton Brady", 3, 0, 2, comment,combined));
+	    	db.addContact(new FeedsModel("That is him", "Sara Nelson posted:", 3, 0, 2, comment,combined));
 	    	
 	    	myDrawable = getResources().getDrawable(R.drawable.morrow);
 	    	celebDrawable = getResources().getDrawable(R.drawable.dunst);
@@ -67,10 +69,11 @@ public class FeedFragment extends ListFragment{
 			
 			myCelebPic = Bitmap.createScaledBitmap(myCelebPic, myCeleb.getWidth(), myCeleb.getHeight(), false);
 			
-			combined = combineImages(myCeleb,myCelebPic,"/storage/sdcard0/tmp_recipes.jpg1366681084097.png");
+			combined = combineImages(myCeleb,myCelebPic,"/sdcard/");
 	    	
 	    	//adds Amanda
-	    	db.addContact(new FeedsModel("That is her", "Clayton Brady", 3, 0, 2, null,combined));
+	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined));
+	    	
 	    }
 	    
 	    for (FeedsModel cn : contacts) {
