@@ -48,6 +48,8 @@ public class MoreInfo extends Activity {
 		ImageView photoButton = (ImageView) findViewById(R.id.image_button1);
 		Log.v("Here", "got views");
 		
+		ImageView backImage = (ImageView) findViewById(R.id.image_button2);
+		
 		upCount = getIntent().getStringExtra("ups");
 		downCount = getIntent().getStringExtra("downs");
 		desc = getIntent().getStringExtra("desc");
@@ -60,15 +62,23 @@ public class MoreInfo extends Activity {
         //int imageResource = getResources().getIdentifier(uri, null, getPackageName());
         //photoButton.setImageResource(imageResource);
         
-        int newHeight = (int) (getWindowManager().getDefaultDisplay().getHeight() /2.25);
+        int newHeight = (int) (getWindowManager().getDefaultDisplay().getHeight() /2.5);
 		int newWidth = getWindowManager().getDefaultDisplay().getWidth();
 		
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 			    newWidth, newHeight);
-		params.setMargins(15, 0, 15, 0);
+		params.setMargins(35, 10, 35, 10);
 		params.addRule(RelativeLayout.BELOW, R.id.textView1);
 		
 		photoButton.setLayoutParams(params);
+		//
+
+		RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(
+			    newWidth, newHeight);
+		params2.setMargins(15, 0, 15, 0);
+		params2.addRule(RelativeLayout.BELOW, R.id.textView1);
+		
+		backImage.setLayoutParams(params2);
         
 		Bitmap bitmap = BitmapHelper.decodeFile(new File(image), newWidth, newWidth, false);
         photoButton.setImageBitmap(bitmap);

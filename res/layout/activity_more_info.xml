@@ -14,8 +14,8 @@
        android:text="Clayton Brady"
        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-   <ImageView
-       android:id="@+id/image_button1"
+     <ImageView
+       android:id="@+id/image_button2"
        android:layout_width="fill_parent"
        android:layout_height="250dp"
        android:layout_below="@+id/textView1"
@@ -24,13 +24,24 @@
        android:adjustViewBounds="true"
        android:scaleType="fitXY"
        android:src="@raw/clickimage" />
+    
+   <ImageView
+       android:id="@+id/image_button1"
+       android:layout_width="fill_parent"
+       android:layout_height="250dp"
+       android:layout_below="@+id/textView1"
+       android:layout_marginLeft="35dp"
+       android:layout_marginRight="35dp"
+       android:adjustViewBounds="true"
+       android:scaleType="fitXY"
+       android:src="@raw/clickimage" />
    
    <TextView
        android:id="@+id/description"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_below="@+id/image_button1"
-       android:layout_alignLeft="@+id/image_button1"
+       android:layout_below="@+id/image_button2"
+       android:layout_alignLeft="@+id/image_button2"
        android:text="Did not work"
        android:textAppearance="?android:attr/textAppearanceLarge"
        android:textSize="20sp"  />
@@ -40,7 +51,7 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_below="@+id/description"
-       android:layout_alignLeft="@+id/image_button1"
+       android:layout_alignLeft="@+id/image_button2"
        android:adjustViewBounds="true"
        android:scaleType="fitCenter"
        android:onClick="upVote"
@@ -63,7 +74,7 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_below="@+id/image_up_vote"
-       android:layout_alignLeft="@+id/image_button1"
+       android:layout_alignLeft="@+id/image_button2"
        android:adjustViewBounds="true"
        android:scaleType="fitCenter"
        android:background="@android:color/transparent"
