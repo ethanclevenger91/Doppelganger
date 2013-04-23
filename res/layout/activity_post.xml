@@ -5,13 +5,25 @@
     android:orientation="vertical"
     tools:context=".Post" >
 
+    <FrameLayout 
+	    android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+      	android:orientation="horizontal"
+      	android:layout_weight="0.4" >
+        
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
     <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="222dp"
-            android:layout_alignParentTop="true"
+            android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
+        
             <ImageButton
                 android:id="@+id/select_pic"
                 android:layout_width="160dp"
@@ -19,7 +31,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
-                android:layout_weight="0.45"
+                android:layout_weight="0.5"
                 android:adjustViewBounds="true"
                 android:onClick="selectPic"
                 android:scaleType="fitXY"
@@ -29,52 +41,56 @@
                 android:id="@+id/select_celeb"
                 android:layout_width="160dp"
                 android:layout_height="212dp"
-                android:layout_weight="0.17"
+                android:layout_weight="0.5"
                 android:adjustViewBounds="true"
                 android:onClick="selectCeleb"
                 android:layout_marginRight="0dp"
                 android:scaleType="fitXY"
                 android:src="@raw/upload" />
-        </LinearLayout>
-    
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.01"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
+            </LinearLayout>
+            
+    		<LinearLayout
+    		    android:id="@+id/linearLayout2"
+           	 android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="200dp"
-            android:layout_marginRight="16dp"
-            android:text="Celebrity"
-            android:textSize="15dp" />
+            android:layout_below="@+id/linearLayout1"
+            android:orientation="horizontal" >
 
-        <TextView
+        	<TextView
             android:id="@+id/you_friends"
-            android:layout_width="145dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:layout_marginLeft="11dp"
             android:text="Photo of You or a Friend"
-            android:textAllCaps="false"
-            android:textSize="15dp" />
-
+            android:textSize="15sp" />
+        	
+            <TextView
+            android:id="@+id/celeb_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:layout_marginLeft="11dp"
+            android:text="Pick a Celebrity"
+            android:textSize="15sp" />
+        	
+        	
+            </LinearLayout>
+        </RelativeLayout>
+        
     </FrameLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.32" >
-
-        
+        android:layout_width ="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight=".3" >
 
         <TextView
             android:id="@+id/text_caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/linearLayout1"
+            android:layout_below="@+id/you_friends"
             android:text="Caption:"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"

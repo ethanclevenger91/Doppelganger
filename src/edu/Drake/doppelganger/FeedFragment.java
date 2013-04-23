@@ -79,7 +79,7 @@ public class FeedFragment extends ListFragment{
 	    for (FeedsModel cn : contacts) {
 	    	
 	    	/*	uncomment below to delete all posts	*/
-	    	//db.deleteContact(cn);
+	    	db.deleteContact(cn);
             
 	    	String log = "Id: "+cn.getId()+" ,Name: " + cn.getName() + " ,Caption: " + cn.getDesc() +
             		" ,Likes: " + cn.getUps() + ", Dislikes: " + cn.getDowns() + ", Comments: " + cn.getComments();
