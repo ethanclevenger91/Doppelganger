@@ -68,11 +68,14 @@ public class CelebritiesFragment extends ListFragment {
 	
 	private List<CelebrityEntry> getModel() {
 	    List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
-	    list.add(get("Kirsten Dunst",R.drawable.dunst));
 	    list.add(get("Adam Savage",R.drawable.savage));
+	    list.add(get("Anne Hathaway",R.drawable.hathaway));
+	    list.add(get("Ellen Page",R.drawable.page));
+	    list.add(get("Jon Heder/Napolean Dynamite",R.drawable.ndynamite));
+	    list.add(get("Kirsten Dunst",R.drawable.dunst));
+	    list.add(get("Emma Stone",R.drawable.stone));
 	    list.add(get("Pierce Brosnan",R.drawable.brosnan));
 	    list.add(get("Zooey Deschanel",R.drawable.zooey));
-	    list.add(get("Anne Hathaway", R.drawable.hathaway));
 	    return list;
 	  }
 	
