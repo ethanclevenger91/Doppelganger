@@ -102,7 +102,9 @@ public class Post extends Activity {
                 matrix.postRotate(270);
             }
             bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true); // rotating bitmap
-        }
+            Log.v("Post", String.valueOf(bitmap.getWidth()));
+            Log.v("Post", String.valueOf(bitmap.getHeight()));
+		}
         catch (Exception e) {
 
         }
@@ -113,6 +115,7 @@ public class Post extends Activity {
 		myCeleb = Bitmap.createScaledBitmap(myCeleb, bitmap.getWidth(), bitmap.getHeight(), false);
 		
 		String combined = combineImages(bitmap,myCeleb,returnString);
+		Log.v("Post", returnString);
 		
     	intent.putExtra("caption", myCaption.getText().toString());
     	intent.putExtra("photo", combined);
