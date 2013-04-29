@@ -8,80 +8,65 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.45"
+        android:layout_weight="0.4"
         android:orientation="horizontal" >
 
         <LinearLayout
             android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal" >
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout2"
+            <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight=".5"
                 android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/title_doppel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="11dp"
-                   	android:gravity="center_horizontal"
-                    android:text="Doppelganger"
-                    android:textSize="20sp" />
 
                 <ImageButton
                     android:id="@+id/select_pic"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginRight="0dp"
+                    android:layout_weight=".9"
                     android:adjustViewBounds="true"
-                    
-                    android:layout_below="@+id/title_doppel"
+                    android:layout_above="@+id/you_friends"
                     android:onClick="selectPic"
                     android:scaleType="fitXY"
                     android:src="@raw/upload" />
-
+                
                 <TextView
                     android:id="@+id/you_friends"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="11dp"
+                    android:layout_weight=".1"
                    	android:gravity="center_horizontal"
-                   	android:layout_below="@+id/select_pic"
                     android:text="Photo of You or a Friend"
                     android:textSize="15sp" />
-            </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/title_celeb"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="11dp"
-                   	android:gravity="center_horizontal"
-                    android:text="Celebrity"
-                    android:textSize="20sp" />
+            </LinearLayout>
+                
+                <LinearLayout 
+                    android:id="@+id/relativeLayout6"
+            		android:layout_width="match_parent"
+            		android:layout_weight=".5"
+            		android:layout_height="match_parent"
+            		android:orientation="vertical" >
 
                 <ImageButton
                     android:id="@+id/select_celeb"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginRight="0dp"
-                    android:layout_below="@+id/title_celeb"
+                    android:layout_weight=".9"
                     android:adjustViewBounds="true"
                     android:onClick="selectCeleb"
                     android:scaleType="fitXY"
@@ -91,20 +76,20 @@
                     android:id="@+id/celeb_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/select_celeb"
                     android:layout_marginLeft="11dp"
                    	android:gravity="center_horizontal"
+                    android:layout_weight=".1"
                    	android:textAlignment="center"
                     android:text="Pick a Celebrity"
                     android:textSize="15sp" />
-            </RelativeLayout>
+                </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".55" >
+        android:layout_weight=".6" >
 
         <TextView
             android:id="@+id/text_caption"
@@ -122,6 +107,7 @@
             android:id="@+id/edit_text_caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textCapSentences|textMultiLine"
             android:layout_alignBottom="@+id/text_caption"
             android:layout_alignLeft="@+id/edit_text_tag"
             android:ems="10" />
@@ -130,6 +116,8 @@
             android:id="@+id/edit_text_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textCapSentences|textMultiLine"
+            android:singleLine="false"
             android:layout_alignLeft="@+id/post_button"
             android:layout_below="@+id/edit_text_caption"
             android:ems="10" />
