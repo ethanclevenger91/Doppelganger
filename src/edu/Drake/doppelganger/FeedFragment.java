@@ -35,7 +35,7 @@ public class FeedFragment extends ListFragment{
 	    if(contacts.size()==0)
 	    {
 	    	
-	    	Drawable myDrawable = getResources().getDrawable(R.drawable.inman);
+	    	/*Drawable myDrawable = getResources().getDrawable(R.drawable.inman);
 	    	Drawable celebDrawable = getResources().getDrawable(R.drawable.savage);
 	    	
 			Bitmap myCeleb = ((BitmapDrawable) myDrawable).getBitmap();
@@ -72,7 +72,7 @@ public class FeedFragment extends ListFragment{
 			combined = combineImages(myCeleb,myCelebPic,"/sdcard/");
 	    	
 	    	//adds Amanda
-	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined));
+	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined));*/
 	    	
 	    }
 	    

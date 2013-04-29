@@ -200,7 +200,7 @@ public class MoreInfo extends Activity {
 	    // Populare the share intent with data
 	    Intent intent = new Intent(Intent.ACTION_SEND);
 	    intent.setType("image/*");
-	    intent.putExtra("image", myUri);
+	    intent.putExtra(Intent.EXTRA_STREAM, myUri);
 	    mShareActionProvider.setShareIntent(intent);
 	  } 
 	
