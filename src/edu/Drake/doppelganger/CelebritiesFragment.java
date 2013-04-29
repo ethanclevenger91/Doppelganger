@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 public class CelebritiesFragment extends ListFragment {
-
+//
 	private EditText filterText = null;
 	ArrayAdapter<CelebrityEntry> adapter = null;
 	private TextWatcher filterTextWatcher = new TextWatcher() {

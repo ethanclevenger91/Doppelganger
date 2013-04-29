@@ -8,11 +8,10 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
@@ -38,7 +37,8 @@ public class Custom_CameraActivity extends Activity {
     Uri myUri;
 
     /** Called when the activity is first created. */
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -132,7 +132,7 @@ public class Custom_CameraActivity extends Activity {
                 sendBroadcast(new Intent(
             		    Intent.ACTION_MEDIA_MOUNTED,
             		    Uri.parse("file://" + Environment.getExternalStorageDirectory())));
-               bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+               bitmap = BitmapHelper.decodeFile(new File(myPath), 0, 10, false);
                
                 
             } catch (FileNotFoundException e) {
@@ -155,7 +155,8 @@ public class Custom_CameraActivity extends Activity {
 	    }
 	}
     
-    private static File getOutputMediaFile() {
+    @SuppressLint("SimpleDateFormat")
+	private static File getOutputMediaFile() {
         File mediaStorageDir = new File(
                 Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
