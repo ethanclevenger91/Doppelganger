@@ -1,10 +1,22 @@
 package edu.Drake.doppelganger;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.ListFragment;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
@@ -21,6 +33,7 @@ public class CelebritiesFragment extends ListFragment {
 //
 	private EditText filterText = null;
 	ArrayAdapter<CelebrityEntry> adapter = null;
+	DefaultHttpClient httpclient = new DefaultHttpClient();
 	private TextWatcher filterTextWatcher = new TextWatcher() {
 
 	    public void afterTextChanged(Editable s) {
@@ -68,6 +81,10 @@ public class CelebritiesFragment extends ListFragment {
 		
 	}
 	
+	private CelebrityEntry get(String name, int pic) {
+		return new CelebrityEntry(name, pic);
+	}
+	
 	private List<CelebrityEntry> getModel() {
 	    List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
 	    list.add(get("Adam Savage",R.drawable.savage));
@@ -81,7 +98,39 @@ public class CelebritiesFragment extends ListFragment {
 	    return list;
 	  }
 	
-private CelebrityEntry get(String name, int pic) {
-    return new CelebrityEntry(name, pic);
-  }
+	/*public List<CelebrityEntry> populate() throws IOException {
+		List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
+		HttpGet httppost = new HttpGet("http://www.ethanclevenger.com/MirrorMe/celebrity-master.txt");
+		HttpResponse response = httpclient.execute(httppost);
+        HttpEntity ht = response.getEntity();
+
+        BufferedHttpEntity buf = new BufferedHttpEntity(ht);
+
+        InputStream is = buf.getContent();
+
+
+        BufferedReader r = new BufferedReader(new InputStreamReader(is));
+
+        StringBuilder total = new StringBuilder();
+        String name;
+        String url;
+        Drawable d;
+        while ((name = r.readLine()) != null) {
+        	url = r.readLine();
+        	d = LoadImageFromWebOperations(url);
+            list.add(get(name, d);
+        }
+	}*/
+	
+	public static Drawable LoadImageFromWebOperations(String url) {
+	    try {
+	        InputStream is = (InputStream) new URL(url).getContent();
+	        Drawable d = Drawable.createFromStream(is, "src name");
+	        return d;
+	    } catch (Exception e) {
+	        return null;
+	    }
+	}
+	
+	
 }
