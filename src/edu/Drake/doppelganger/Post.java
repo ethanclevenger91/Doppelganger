@@ -6,22 +6,28 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 public class Post extends Activity {
 	
@@ -30,6 +36,9 @@ public class Post extends Activity {
 	public String returnString;
 	public int celebPath;
 	public int width;
+	Bitmap bitmap;
+	Bitmap myCeleb;
+	Bitmap myMap;
 	public int height;
 	
 	private static int SELECT_FOR_PIC = 5713;
@@ -45,6 +54,33 @@ public class Post extends Activity {
         }
         theImage = (ImageView) findViewById(R.id.select_celeb);
         theImage.setImageResource(extras.getInt("image"));
+        
+        final EditText captionText = (EditText) findViewById(R.id.edit_text_caption);
+        
+        captionText.setOnEditorActionListener(new OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId,
+                    KeyEvent event) {
+                if (event != null&& (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                    InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                    // NOTE: In the author's example, he uses an identifier
+                    // called searchBar. If setting this code on your EditText
+                    // then use v.getWindowToken() as a reference to your 
+                    // EditText is passed into this callback as a TextView
+
+                    in.hideSoftInputFromWindow(captionText
+                            .getApplicationWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+                   //userValidateEntry();
+                   // Must return true here to consume event
+                   return true;
+
+                }
+                return false;
+            }
+        });
 
         //shows the back button
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -85,7 +121,7 @@ public class Post extends Activity {
 		EditText myCaption = (EditText) findViewById(R.id.edit_text_caption);
 		
 		ImageView myImage = (ImageView) findViewById(R.id.select_pic);
-		Bitmap bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
+		bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
 		
 		try {
             ExifInterface exif = new ExifInterface(returnString);
@@ -110,7 +146,7 @@ public class Post extends Activity {
         }
 		//
 		Drawable myDrawable = getResources().getDrawable(celebPath);
-		Bitmap myCeleb = ((BitmapDrawable) myDrawable).getBitmap();
+		myCeleb = ((BitmapDrawable) myDrawable).getBitmap();
 		
 		myCeleb = Bitmap.createScaledBitmap(myCeleb, bitmap.getWidth(), bitmap.getHeight(), false);
 		
@@ -174,7 +210,7 @@ public class Post extends Activity {
 	    Log.v("Post", "here!");
 	    
 	    Canvas comboImage = new Canvas(cs); 
-	    Bitmap myMap = Bitmap.createScaledBitmap(c, c.getWidth()-50, c.getHeight(), false);
+	    myMap = Bitmap.createScaledBitmap(c, c.getWidth()-50, c.getHeight(), false);
 
 	    comboImage.drawBitmap(myMap, 0f, 0f, null); 
 	    comboImage.drawBitmap(s, c.getWidth()+50, 0f, null);
@@ -197,6 +233,30 @@ public class Post extends Activity {
 	    Log.v("Post", "it works");
 	    return (loc+tmpImg); 
 	  } 
+	
+	
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent event) {
+
+	    View v = getCurrentFocus();
+	    boolean ret = super.dispatchTouchEvent(event);
+
+	    if (v instanceof EditText) {
+	        View w = getCurrentFocus();
+	        int scrcoords[] = new int[2];
+	        w.getLocationOnScreen(scrcoords);
+	        float x = event.getRawX() + w.getLeft() - scrcoords[0];
+	        float y = event.getRawY() + w.getTop() - scrcoords[1];
+
+	        Log.d("Activity", "Touch event "+event.getRawX()+","+event.getRawY()+" "+x+","+y+" rect "+w.getLeft()+","+w.getTop()+","+w.getRight()+","+w.getBottom()+" coords "+scrcoords[0]+","+scrcoords[1]);
+	        if (event.getAction() == MotionEvent.ACTION_UP && (x < w.getLeft() || x >= w.getRight() || y < w.getTop() || y > w.getBottom()) ) { 
+
+	            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+	            imm.hideSoftInputFromWindow(getWindow().getCurrentFocus().getWindowToken(), 0);
+	        }
+	    }
+	return ret;
+	}
 	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -231,7 +291,7 @@ public class Post extends Activity {
 					myImage.setScaleType(ScaleType.FIT_XY);
 					
 					returnString = data.getStringExtra("return");
-					Bitmap bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
+					bitmap = BitmapHelper.decodeFile(new File(returnString), myImage.getWidth(), myImage.getHeight(), false);
 					
 		            try {
 		                ExifInterface exif = new ExifInterface(returnString);
@@ -257,6 +317,30 @@ public class Post extends Activity {
 			}
 		}
     }
+	
+	@Override
+	public void onDestroy()
+	{   
+	    Cleanup();
+	    super.onDestroy();
+	}
+
+	private void Cleanup()
+	{    
+		if(bitmap != null)
+		{
+			bitmap.recycle(); 
+		}
+		if(myMap != null)
+		{
+			myMap.recycle();
+		}
+		if(myCeleb != null)
+		{
+			myCeleb.recycle();
+		}
+	}
+
 	
 }
 

@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-<<<<<<< HEAD
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="lib" path="/Users/Brady/Downloads/google-gson-2.2.3/gson-2.2.3-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/Brady/Downloads/google-gson-2.2.3/gson-2.2.3-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/Brady/Downloads/google-gson-2.2.3/gson-2.2.3.jar"/>
-=======
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/Users/Owner/Desktop/Eclipse/External JARs/google-gson-2.2.3-release/google-gson-2.2.3/gson-2.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Owner/Desktop/Eclipse/External JARs/google-gson-2.2.3-release/google-gson-2.2.3/gson-2.2.3-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Owner/Desktop/Eclipse/External JARs/google-gson-2.2.3-release/google-gson-2.2.3/gson-2.2.3-sources.jar"/>
-=======
-	<classpathentry exported="true" kind="lib" path="C:/Users/Rofl_House/Desktop/eclipse/google-gson-2.2.3-release/google-gson-2.2.3/gson-2.2.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Rofl_House/Desktop/eclipse/google-gson-2.2.3-release/google-gson-2.2.3/gson-2.2.3-javadoc.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Rofl_House/Desktop/eclipse/google-gson-2.2.3-release/google-gson-2.2.3/gson-2.2.3-sources.jar"/>
->>>>>>> 1162b648a36138bd15b230e809dc90867537b991
->>>>>>> 4e58cbe6d2bcead903b214ca48cdf57b5ebf06ef
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

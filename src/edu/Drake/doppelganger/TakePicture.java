@@ -46,7 +46,7 @@ public class TakePicture extends Activity {
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
 		 
 		 theImage = (ImageView) findViewById(R.id.localpic);
-		 useButton = (Button) findViewById(R.id.button_return);
+		 useButton = (Button) findViewById(R.id.button_return3);
 		 
 		 galleryButton = (ImageButton) findViewById(R.id.gallery);
 		 galleryButton.setOnClickListener(new OnClickListener() {

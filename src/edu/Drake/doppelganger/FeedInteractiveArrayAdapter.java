@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -69,6 +70,23 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	                  element.incrementUp();
 	                  viewHolder.upCount.setText(element.getUps());
 	                  element.setSelected(true);
+	                  
+	                  FeedFragment feedFragment = (FeedFragment) ((Activity) v.getContext()).getFragmentManager().findFragmentByTag("FEED");
+			        	
+			        	int ups = Integer.parseInt(element.getUps());
+			        	int downs = Integer.parseInt(element.getDowns());
+			        	int commentCount = Integer.parseInt(element.getComments());
+			        	String name = element.getName();
+			        	String desc = element.getDesc();
+			        	int idInt = element.getId();
+			        	String image = element.getImageId();
+			        	List<String> commentList = element.getCommentList();
+			        	
+			        	
+			        	FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
+			        	
+			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image);
+			        	db.updateContact(newModel);
 	    		  	}
 				}
 	      });
@@ -82,6 +100,24 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	                  element.incrementDown();
 	                  viewHolder.downCount.setText(element.getDowns());
 	                  element.setSelected(true);
+	                  
+			        	FeedFragment feedFragment = (FeedFragment) ((Activity) v.getContext()).getFragmentManager().findFragmentByTag("FEED");
+			        	
+			        	int ups = Integer.parseInt(element.getUps());
+			        	int downs = Integer.parseInt(element.getDowns());
+			        	int commentCount = Integer.parseInt(element.getComments());
+			        	String name = element.getName();
+			        	String desc = element.getDesc();
+			        	int idInt = element.getId();
+			        	String image = element.getImageId();
+			        	List<String> commentList = element.getCommentList();
+			        	
+			        	
+			        	FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
+			        	
+			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image);
+			        	db.updateContact(newModel);
+	                  
 	    		  }
 	    	  }
 	      });

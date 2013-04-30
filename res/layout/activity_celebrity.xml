@@ -33,10 +33,15 @@
     <!-- Set height to 0, and let the weight param expand it -->
     <!-- Note the use of the default ID! This lets us use a 
          ListActivity still! -->
+    
     <ListView android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" 
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:divider="#000000"
+    	android:dividerHeight="2dip"
+    	android:background="@drawable/border_ui" 
          /> 
 
 </LinearLayout>

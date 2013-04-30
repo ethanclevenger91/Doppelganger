@@ -15,7 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ShareActionProvider;
@@ -50,10 +50,8 @@ public class MoreInfo extends Activity {
 		TextView descView = (TextView) findViewById(R.id.description);
 		TextView upView = (TextView) findViewById(R.id.text_up);
 		TextView downView = (TextView) findViewById(R.id.text_down);
-		ImageView photoButton = (ImageView) findViewById(R.id.image_button1);
+		ImageButton photoButton = (ImageButton) findViewById(R.id.image_button1);
 		Log.v("Here", "got views");
-		
-		ImageView backImage = (ImageView) findViewById(R.id.image_button2);
 		
 		upCount = getIntent().getStringExtra("ups");
 		downCount = getIntent().getStringExtra("downs");
@@ -76,21 +74,15 @@ public class MoreInfo extends Activity {
 		
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 			    newWidth, newHeight);
-		params.setMargins(35, 10, 35, 10);
+		params.setMargins(15, 10, 35, 10);
 		params.addRule(RelativeLayout.BELOW, R.id.textView1);
-		
 		photoButton.setLayoutParams(params);
-		//
-
-		RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(
-			    newWidth, newHeight);
-		params2.setMargins(15, 0, 15, 0);
-		params2.addRule(RelativeLayout.BELOW, R.id.textView1);
 		
-		backImage.setLayoutParams(params2);
+
         
 		Bitmap bitmap = BitmapHelper.decodeFile(new File(image), newWidth, newWidth, false);
         photoButton.setImageBitmap(bitmap);
+        photoButton.setBackgroundResource(R.drawable.background);
         
        // ScrollView scroll = (ScrollView) findViewById(R.id.scroll_view1);
         LinearLayout layout = (LinearLayout) findViewById(R.id.linear_view1);

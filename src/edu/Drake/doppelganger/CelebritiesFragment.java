@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.app.ListFragment;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -49,6 +51,7 @@ public class CelebritiesFragment extends ListFragment {
 		
 		filterText = (EditText) getView().findViewById(R.id.search_box);
 		filterText.addTextChangedListener(filterTextWatcher);
+		
 		 
 		 adapter = new CelebrityEntryAdapter(this.getActivity(), getModel());
 		 setListAdapter(adapter);
