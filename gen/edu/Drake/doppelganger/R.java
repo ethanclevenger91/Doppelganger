@@ -14,6 +14,9 @@ public final class R {
         public static final int slide_out_down=0x7f040002;
         public static final int slide_out_up=0x7f040003;
     }
+    public static final class array {
+        public static final int filter_array=0x7f0b0000;
+    }
     public static final class attr {
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
@@ -343,26 +346,27 @@ containing a value of this type.
         public static final int com_facebook_placepickerfragment=0x7f030018;
         public static final int com_facebook_placepickerfragment_list_row=0x7f030019;
         public static final int com_facebook_usersettingsfragment=0x7f03001a;
-        public static final int feed_list=0x7f03001b;
-        public static final int main=0x7f03001c;
-        public static final int notificationsrowbuttonlayout=0x7f03001d;
+        public static final int custom_actionbar=0x7f03001b;
+        public static final int feed_list=0x7f03001c;
+        public static final int main=0x7f03001d;
+        public static final int notificationsrowbuttonlayout=0x7f03001e;
     }
     public static final class menu {
-        public static final int activity_celebrities=0x7f0b0000;
-        public static final int activity_celebrity=0x7f0b0001;
-        public static final int activity_celebrity_entry=0x7f0b0002;
-        public static final int activity_celebrity_entry_adapter=0x7f0b0003;
-        public static final int activity_comment=0x7f0b0004;
-        public static final int activity_facebook=0x7f0b0005;
-        public static final int activity_login=0x7f0b0006;
-        public static final int activity_main=0x7f0b0007;
-        public static final int activity_more_info=0x7f0b0008;
-        public static final int activity_notifications=0x7f0b0009;
-        public static final int activity_post=0x7f0b000a;
-        public static final int activity_register=0x7f0b000b;
-        public static final int activity_signin=0x7f0b000c;
-        public static final int activity_take_picture=0x7f0b000d;
-        public static final int main=0x7f0b000e;
+        public static final int activity_celebrities=0x7f0c0000;
+        public static final int activity_celebrity=0x7f0c0001;
+        public static final int activity_celebrity_entry=0x7f0c0002;
+        public static final int activity_celebrity_entry_adapter=0x7f0c0003;
+        public static final int activity_comment=0x7f0c0004;
+        public static final int activity_facebook=0x7f0c0005;
+        public static final int activity_login=0x7f0c0006;
+        public static final int activity_main=0x7f0c0007;
+        public static final int activity_more_info=0x7f0c0008;
+        public static final int activity_notifications=0x7f0c0009;
+        public static final int activity_post=0x7f0c000a;
+        public static final int activity_register=0x7f0c000b;
+        public static final int activity_signin=0x7f0c000c;
+        public static final int activity_take_picture=0x7f0c000d;
+        public static final int main=0x7f0c000e;
     }
     public static final class raw {
         public static final int background=0x7f050000;

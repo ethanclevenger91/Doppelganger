@@ -5,17 +5,17 @@
     android:layout_height="fill_parent"
     android:weightSum="3"
     >
+
   <FrameLayout
-    android:id="@+id/camera_preview"
-    android:layout_width="fill_parent"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="150dp"
-    android:layout_height="fill_parent"
-    android:layout_weight="3"
-    android:screenOrientation="portrait"
-    />
+      android:id="@+id/camera_preview"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentTop="true"
+      android:layout_weight="3"
+      android:screenOrientation="portrait" />
 
   <Button
       android:id="@+id/button_retake"

@@ -4,7 +4,9 @@ package edu.Drake.doppelganger;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.app.ActionBar.OnNavigationListener;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
@@ -19,6 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.facebook.Request;
@@ -29,7 +32,7 @@ import com.facebook.model.GraphUser;
 
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnNavigationListener {
 	
 	
 	private static final String TAG = "MainActivity";
@@ -124,6 +127,7 @@ public class MainActivity extends Activity {
 		 String myName = null;
 	  }
 	
+	@SuppressLint("NewApi")
 	@Override
 	//on create method
 	protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +140,9 @@ public class MainActivity extends Activity {
 		// setup action bar for tabs
 	    final ActionBar actionBar = getActionBar();
 	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	    //actionBar.setDisplayShowTitleEnabled(false);
+	    actionBar.setCustomView(R.layout.custom_actionbar);
+	    actionBar.setDisplayShowCustomEnabled(true);
 	    
 	  //initiating both tabs and set text to it.
 	    ActionBar.Tab FeedTab = actionBar.newTab().setText("News Feed");
@@ -180,7 +187,7 @@ public class MainActivity extends Activity {
                     
                     //sets the actionbar title to user name, this verifies if Facebook is working
                     //if you see your name from facebook at the top of the screen, it is working
-                    actionBar.setTitle(user.getName());
+                    //actionBar.setTitle(user.getName());
                   } 
                 }
               });
@@ -393,5 +400,11 @@ public class MainActivity extends Activity {
 	  protected void onPause() {
 	    super.onPause();
 	  }
+
+	@Override
+	public boolean onNavigationItemSelected(int arg0, long arg1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

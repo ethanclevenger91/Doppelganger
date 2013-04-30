@@ -19,4 +19,11 @@
     <string name="app_id">548403725204948</string>
     <string name="menu_share">Share</string>
     <string name="search_hint">Search celebrity</string>
+    <string-array name="filter_array">
+        <item >Trending</item>
+        <item >Most Recent</item>
+        <item >Friends</item>
+        <item >Me</item>
+        <item >Celebrity</item>
+    </string-array>
 </resources>
