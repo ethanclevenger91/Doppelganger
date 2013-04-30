@@ -21,8 +21,9 @@ public class NotificationsFragment extends ListFragment {
 	    String[] values = new String[] { "Jessica Harris tagged you: Tom Cruise doppleganger (2hrs)", "Mike Roger comment on your Repert Grint doppleganger (4 hrs)", "Sarah Smith like your Rupert Grint doppleganger (yesterday)",
 	            "Jen Adams liked your Rupert Grint doppleganger (yesterday)", "Michael Jaes likes the Sarah Smith: Zooey Deschanel doppleganger you posted (Monday)", "Mike Roger commented on your Rupert Grint doppleganger (Sunday)" };
 	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-	            android.R.layout.simple_list_item_1, values);
-	        setListAdapter(adapter);
+	            android.R.layout.simple_list_item_1, values); 
+	            
+	      setListAdapter(adapter);
 	      
 	    //
 	    /*
@@ -60,7 +61,7 @@ public class NotificationsFragment extends ListFragment {
 			*/
 		  
 		  Log.v("NotificationsFragment", "hi");
-		  v.setBackgroundColor(Color.BLUE); //selected color
+		  v.setBackgroundColor(Color.TRANSPARENT); //selected color
           ColoredView = v;
 	  }
 
