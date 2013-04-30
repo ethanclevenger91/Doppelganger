@@ -21,7 +21,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.facebook.Request;
@@ -40,6 +42,7 @@ public class MainActivity extends Activity implements OnNavigationListener {
 	public static String myName;
 	public String myCaption;
 	public FeedFragment feedFragment;
+	public Spinner spinner1;
 	public FeedSQLiteHelper db;
 	public String celebPath;
 	public String imagePath;
@@ -141,8 +144,8 @@ public class MainActivity extends Activity implements OnNavigationListener {
 	    final ActionBar actionBar = getActionBar();
 	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	    //actionBar.setDisplayShowTitleEnabled(false);
-	    actionBar.setCustomView(R.layout.custom_actionbar);
-	    actionBar.setDisplayShowCustomEnabled(true);
+	    //actionBar.setCustomView(R.layout.custom_actionbar);
+	    //actionBar.setDisplayShowCustomEnabled(true);
 	    
 	  //initiating both tabs and set text to it.
 	    ActionBar.Tab FeedTab = actionBar.newTab().setText("News Feed");
@@ -254,6 +257,7 @@ public class MainActivity extends Activity implements OnNavigationListener {
 		        	String desc = data.getStringExtra("desc");
 		        	String name = data.getStringExtra("name");
 		        	String image = data.getStringExtra("image");
+		        	String fid = data.getStringExtra("fid");
 		        	
 		        	int commentCount=0;
 		        	List<String> commentList = new ArrayList<String>();
@@ -272,7 +276,7 @@ public class MainActivity extends Activity implements OnNavigationListener {
 		        	int downs = Integer.parseInt(downCount);
 		        	db = new FeedSQLiteHelper(this);
 		        	
-		        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image);
+		        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid);
 		        	db.updateContact(newModel);
 		        	feedFragment.refresh();
 		        }
@@ -312,8 +316,9 @@ public class MainActivity extends Activity implements OnNavigationListener {
 									if (user != null) {
 										Log.v("Main", "Nice");
 										String finalString = user.getName() + " posted: ";
+										String facebookId = user.getId();
 										Log.v("Main", "sweet");
-										db.addContact(new FeedsModel(myCaption,finalString,0,0,0,null,imagePath));
+										db.addContact(new FeedsModel(myCaption,finalString,0,0,0,null,imagePath,facebookId));
 										Log.v("Main", "yay");
 										feedFragment.refresh();
 										Log.v("Main", "refresh");

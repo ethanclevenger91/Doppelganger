@@ -236,12 +236,12 @@ containing a value of this type.
         public static final int zooey=0x7f020033;
     }
     public static final class id {
-        public static final int button_capture=0x7f060048;
-        public static final int button_retake=0x7f060047;
+        public static final int button_capture=0x7f060049;
+        public static final int button_retake=0x7f060048;
         public static final int button_return3=0x7f060030;
-        public static final int button_use=0x7f060049;
+        public static final int button_use=0x7f06004a;
         public static final int camera=0x7f06002f;
-        public static final int camera_preview=0x7f060046;
+        public static final int camera_preview=0x7f060047;
         public static final int celeb_text=0x7f060026;
         public static final int celebrity_entry_name=0x7f060004;
         public static final int celebrity_entry_pic=0x7f060003;
@@ -278,22 +278,22 @@ containing a value of this type.
         public static final int image_comment=0x7f06000e;
         public static final int image_down_vote=0x7f060011;
         public static final int image_up_vote=0x7f06000c;
-        public static final int label=0x7f06004a;
+        public static final int label=0x7f06004b;
         public static final int large=0x7f060002;
         public static final int linearLayout2=0x7f060021;
         public static final int linear_view1=0x7f06001d;
-        public static final int list=0x7f060045;
+        public static final int list=0x7f060046;
         public static final int localpic=0x7f06002d;
         public static final int login=0x7f060017;
         public static final int login_form=0x7f060014;
         public static final int login_status=0x7f060012;
         public static final int login_status_message=0x7f060013;
-        public static final int menu_cancel=0x7f06004c;
-        public static final int menu_compose=0x7f06004f;
-        public static final int menu_forgot_password=0x7f06004e;
-        public static final int menu_post=0x7f06004d;
-        public static final int menu_settings=0x7f06004b;
-        public static final int menu_share=0x7f060050;
+        public static final int menu_cancel=0x7f06004d;
+        public static final int menu_compose=0x7f060050;
+        public static final int menu_forgot_password=0x7f06004f;
+        public static final int menu_post=0x7f06004e;
+        public static final int menu_settings=0x7f06004c;
+        public static final int menu_share=0x7f060051;
         public static final int mylist=0x7f06001f;
         public static final int normal=0x7f060001;
         public static final int password=0x7f060016;
@@ -308,6 +308,7 @@ containing a value of this type.
         public static final int sign_in_button=0x7f060018;
         public static final int signup=0x7f06002c;
         public static final int small=0x7f060000;
+        public static final int spinner1=0x7f060045;
         public static final int start=0x7f060009;
         public static final int textView1=0x7f06000a;
         public static final int text_caption=0x7f060027;

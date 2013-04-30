@@ -3,6 +3,7 @@ package edu.Drake.doppelganger;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.ActionBar;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
@@ -52,6 +53,9 @@ public class CelebritiesFragment extends ListFragment {
 		filterText = (EditText) getView().findViewById(R.id.search_box);
 		filterText.addTextChangedListener(filterTextWatcher);
 		
+		final ActionBar actionBar = getActivity().getActionBar();
+	    actionBar.setCustomView(R.layout.custom_actionbar);
+	    actionBar.setDisplayShowCustomEnabled(false);
 		 
 		 adapter = new CelebrityEntryAdapter(this.getActivity(), getModel());
 		 setListAdapter(adapter);

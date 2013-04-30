@@ -1,5 +1,6 @@
 package edu.Drake.doppelganger;
 
+import android.app.ActionBar;
 import android.app.ListFragment;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +24,11 @@ public class NotificationsFragment extends ListFragment {
 	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 	            android.R.layout.simple_list_item_1, values); 
 	            
+	        final ActionBar actionBar = getActivity().getActionBar();
+		    actionBar.setCustomView(R.layout.custom_actionbar);
+		    actionBar.setDisplayShowCustomEnabled(false);
+	        
+	        
 	      setListAdapter(adapter);
 	      
 	    //

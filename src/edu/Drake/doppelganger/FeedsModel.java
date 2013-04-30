@@ -10,6 +10,7 @@ public class FeedsModel {
 	private String name;
 	  private boolean selected;
 	  private int id;
+	  private String fid;
 	  private int ups;
 	  private int downs;
 	  private int comments;
@@ -21,8 +22,9 @@ public class FeedsModel {
 		  
 	  }
 	  
-	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc, List<String> commentList) {
+	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid) {
 	    this.name = name;
+	    this.fid = fid;
 	    this.ups = ups;
 	    this.downs=downs;
 	    this.comments=comments;
@@ -32,8 +34,9 @@ public class FeedsModel {
 	    selected = false;
 	  }
 	  
-	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, String allComments, String image) {
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, String allComments, String image, String fid) {
 		  	this.id = id;
+		  	this.fid = fid;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
@@ -48,19 +51,20 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, List<String> allComments, String image) {
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, List<String> allComments, String image, String fid) {
 		  	this.id = id;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
 		    this.comments = comments;
+		    this.fid = fid;
 		    this.commentList = allComments;
 		    this.imageId=image;
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments, List<String> commentList, String image) {
+	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments, List<String> commentList, String image, String fId) {
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
@@ -68,9 +72,20 @@ public class FeedsModel {
 		    this.comments = comments;
 		    this.commentList = commentList;
 		    this.imageId = image;
+		    this.fid = fId;
 		    selected = false;
 		  }
 	  //
+	  
+	  public void setFID(String fid)
+	  {
+		  this.fid = fid;
+	  }
+	  
+	  public String getFID()
+	  {
+		  return this.fid;
+	  }
 	  
 	  public int getId() {
 		  return id;

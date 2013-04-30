@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.ListFragment;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -15,18 +16,39 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.model.GraphUser;
 
 @SuppressLint("SdCardPath")
-public class FeedFragment extends ListFragment{
+public class FeedFragment extends ListFragment implements OnItemSelectedListener{
 	public List<String> comment;
 	public List<FeedsModel> feeds;
+	public String userName;
+	public Spinner spinner1;
 	
 	@Override
 	  public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    
 	    FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
+	    
+	    final ActionBar actionBar = getActivity().getActionBar();
+	    actionBar.setCustomView(R.layout.custom_actionbar);
+	    actionBar.setDisplayShowCustomEnabled(true);
+	    
+	    getUserName();
+	    
+	    addListenerOnSpinnerItemSelection();
 	    
 	    comment = comment();
 	    feeds = new ArrayList<FeedsModel>();
@@ -46,7 +68,7 @@ public class FeedFragment extends ListFragment{
 			String combined = combineImages(myCeleb,myCelebPic,"/sdcard/");
 			
 	    	//adds Inman
-	    	db.addContact(new FeedsModel("That is him", "Clayton Brady posted:", 3, 0, 2, null,combined));
+	    	db.addContact(new FeedsModel("That is him", "Clayton Brady posted:", 3, 0, 2, null,combined, "100000194227483"));
 	    	
 	    	myDrawable = getResources().getDrawable(R.drawable.urness);
 	    	celebDrawable = getResources().getDrawable(R.drawable.brosnan);
@@ -59,7 +81,7 @@ public class FeedFragment extends ListFragment{
 			combined = combineImages(myCeleb,myCelebPic,"/sdcard/");
 	    	
 	    	//adds Urness
-	    	db.addContact(new FeedsModel("That is him", "Sara Nelson posted:", 3, 0, 2, comment,combined));
+	    	db.addContact(new FeedsModel("That is him", "Sara Nelson posted:", 3, 0, 2, comment,combined, "111"));
 	    	
 	    	myDrawable = getResources().getDrawable(R.drawable.morrow);
 	    	celebDrawable = getResources().getDrawable(R.drawable.dunst);
@@ -72,27 +94,25 @@ public class FeedFragment extends ListFragment{
 			combined = combineImages(myCeleb,myCelebPic,"/sdcard/");
 	    	
 	    	//adds Amanda
-	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined));
+	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined, "101"));
 	    	
 	    }
-	    
 	    for (FeedsModel cn : contacts) {
 	    	
 	    	/*	uncomment below to delete all posts	*/
 	    	//db.deleteContact(cn);
-            
 	    	String log = "Id: "+cn.getId()+" ,Name: " + cn.getName() + " ,Caption: " + cn.getDesc() +
             		" ,Likes: " + cn.getUps() + ", Dislikes: " + cn.getDowns() + ", Comments: " + cn.getComments();
                 // Writing Contacts to log 
           Log.d("Name: ", log);
 	    }
 	    
-	    
-	    
 	    //
+	    contacts = db.getAllContacts();
 	    ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, contacts);
 	    
 	    setListAdapter(adapter);
+	    adapter.notifyDataSetChanged();
 	    
 	}
 	
@@ -153,6 +173,55 @@ public class FeedFragment extends ListFragment{
 		return list;
 	}
 	
+	public void filterMe() {
+		String me=null;
+		
+		me = userName;
+		Log.v("Feed", me);
+		
+		FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
+		List<FeedsModel> contacts = db.getMe(me);
+		
+		ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, contacts);
+	    setListAdapter(adapter);
+	    adapter.notifyDataSetChanged();
+	    
+	}
+	
+	public void getUserName(){
+		
+		//Log.v("FeedFragment", userName);
+		Session.openActiveSession(getActivity(), true, new Session.StatusCallback() {
+			////
+			          // callback when session changes state
+			          @Override
+			          public void call(Session session, SessionState state, Exception exception) {
+			            if (session.isOpened()) {
+			              // make request to the /me API
+			              Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+			            	  
+			                // callback after Graph API response with user object
+			                @Override
+			                public void onCompleted(GraphUser user, Response response) {
+			                  if (user != null) {
+			                    TextView welcome = (TextView) getActivity().findViewById(R.id.welcome);
+			                    //userName = user.getName();
+			                    welcome.setText(user.getName());
+			                   
+			                    setUserName(user.getId());
+			                  } 
+			                }
+			              });
+			              
+			              
+			            }
+			            //
+			          }
+			        });
+		
+	}
+	
+	
 	public void refresh(){
 		FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
 		List<FeedsModel> contacts = db.getAllContacts();
@@ -163,8 +232,17 @@ public class FeedFragment extends ListFragment{
 	    setListAdapter(adapter);
 	  }
 
-	  public FeedsModel get(String s,int ups, int downs, int comments, String image, String desc, List<String> commentList) {
-	    return new FeedsModel(s,ups,downs,comments, image,desc,commentList);
+	  public FeedsModel get(String s,int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid) {
+	    return new FeedsModel(s,ups,downs,comments, image,desc,commentList, fid);
+	  }
+	  
+	  public void setUserName(String name){
+		  this.userName = name;
+	  }
+	  
+	  public void addListenerOnSpinnerItemSelection() {
+			spinner1 = (Spinner) getActivity().findViewById(R.id.spinner1);
+			spinner1.setOnItemSelectedListener(this);
 	  }
 	  
 	  @Override
@@ -176,6 +254,23 @@ public class FeedFragment extends ListFragment{
 	public void onPause() {
 	    super.onPause();
 	  }
+
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
+			long arg3) {
+		Log.v("Feed", String.valueOf(pos));
+		
+		if(pos == 3){
+			filterMe();
+		}
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 }
