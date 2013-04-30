@@ -7,17 +7,12 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-<<<<<<< HEAD
 import android.app.ActionBar;
-=======
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-
->>>>>>> b3b17a5b646d44419d28c24e47bcc3cea61ed5e4
 import android.app.ListFragment;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
