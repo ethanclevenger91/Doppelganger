@@ -1,8 +1,15 @@
 package edu.Drake.doppelganger;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +25,32 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
  
 	private final List<CelebrityEntry> list;
 	private final Activity context;
+	Bitmap bimage=  null;
  
 	public CelebrityEntryAdapter(Activity context, List<CelebrityEntry> list) {
 		super(context, R.layout.activity_celebrity, list);
 		this.context = context;
 	    this.list = list;
 	}
+	
+
+	 public static Bitmap getBitmapFromURL(String src) {
+	        try {
+	            Log.e("src",src);
+	            URL url = new URL(src);
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	            connection.setDoInput(true);
+	            connection.connect();
+	            InputStream input = connection.getInputStream();
+	            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+	            Log.e("Bitmap","returned");
+	            return myBitmap;
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            Log.e("Exception",e.getMessage());
+	            return null;
+	        }
+	    }
  
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -54,7 +81,9 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	    
 	    ViewHolder holder = (ViewHolder) view.getTag();
 	    holder.titleView.setText(model.getName());
-        holder.imageView.setImageResource(model.getPic());
+	    bimage = getBitmapFromURL(model.getPic());
+	    Log.v(model.getPic(), model.getPic());
+        holder.imageView.setImageBitmap(bimage);
 		
 	return view;
 }

@@ -1,7 +1,17 @@
 package edu.Drake.doppelganger;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -21,6 +31,8 @@ public class Celebrities extends ListActivity {
 	
 	private EditText filterText = null;
 	ArrayAdapter<CelebrityEntry> adapter = null;
+	DefaultHttpClient httpclient = new DefaultHttpClient();
+	private Celebrities context;
 	private TextWatcher filterTextWatcher = new TextWatcher() {
 
 	    public void afterTextChanged(Editable s) {
@@ -46,14 +58,20 @@ public class Celebrities extends ListActivity {
 
 		//disables the up button
 		 getActionBar().setDisplayHomeAsUpEnabled(true);
-		 
+		 context = this;
 		 filterText = (EditText) findViewById(R.id.search_box);
 		 filterText.addTextChangedListener(filterTextWatcher);
-		 
-		 adapter = new CelebrityEntryAdapter(this, getModel());
-		 setListAdapter(adapter);
-		 
-		 
+		 new Thread(new Runnable(){
+			    public void run()
+			    {
+			    	try {
+			    		adapter = new CelebrityEntryAdapter(context, populate());
+			    	} catch (IOException e) {
+			    		e.printStackTrace();
+			    	}
+			    setListAdapter(adapter);
+			    }
+		 }).start();
 	}
 
 	@Override
@@ -102,9 +120,32 @@ public class Celebrities extends ListActivity {
     	finish();
 	}
 	
+	public List<CelebrityEntry> populate() throws IOException {
+		List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
+		HttpGet httppost = new HttpGet("http://www.ethanclevenger.com/MirrorMe/celebrity-master.txt");
+		HttpResponse response = httpclient.execute(httppost);
+        HttpEntity ht = response.getEntity();
+
+        BufferedHttpEntity buf = new BufferedHttpEntity(ht);
+
+        InputStream is = buf.getContent();
+
+
+        BufferedReader r = new BufferedReader(new InputStreamReader(is));
+
+        StringBuilder total = new StringBuilder();
+        String name;
+        String url;
+        while ((name = r.readLine()) != null) {
+        	url = r.readLine();
+            list.add(get(name, url));
+        }
+        return list;
+	}
 	
 	
-	private List<CelebrityEntry> getModel() {
+	
+	/*private List<CelebrityEntry> getModel() {
 	    List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
 	    list.add(get("Adam Savage",R.drawable.savage));
 	    list.add(get("Anne Hathaway",R.drawable.hathaway));
@@ -115,9 +156,9 @@ public class Celebrities extends ListActivity {
 	    list.add(get("Pierce Brosnan",R.drawable.brosnan));
 	    list.add(get("Zooey Deschanel",R.drawable.zooey));
 	    return list;
-	  }
+	  }*/
 	
-	private CelebrityEntry get(String name, int pic) {
+	private CelebrityEntry get(String name, String pic) {
     return new CelebrityEntry(name, pic);
   }
 	

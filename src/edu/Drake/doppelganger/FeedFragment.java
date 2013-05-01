@@ -32,7 +32,7 @@ public class FeedFragment extends ListFragment{
 	    feeds = new ArrayList<FeedsModel>();
 	    
 	    List<FeedsModel> contacts = db.getAllContacts();
-	    if(contacts.size()==0)
+	    /*if(contacts.size()==0)
 	    {
 	    	
 	    	Drawable myDrawable = getResources().getDrawable(R.drawable.inman);
@@ -74,7 +74,7 @@ public class FeedFragment extends ListFragment{
 	    	//adds Amanda
 	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined));
 	    	
-	    }
+	    }*/
 	    
 	    for (FeedsModel cn : contacts) {
 	    	
