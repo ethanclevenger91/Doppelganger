@@ -29,6 +29,7 @@ public class MoreInfo extends Activity {
 	private String image;
 	private String name;
 	private String fid;
+	private String time;
 	private List<String> commentList;
 	private String id;
 	private ShareActionProvider mShareActionProvider;
@@ -62,6 +63,8 @@ public class MoreInfo extends Activity {
 		name = getIntent().getStringExtra("name");
 		commentList = getIntent().getStringArrayListExtra("commentList");
 		fid= getIntent().getStringExtra("fid");
+		time = getIntent().getStringExtra("timestamp");
+		
 		
 		myUri = Uri.fromFile(new File(image));
 		
@@ -128,6 +131,7 @@ public class MoreInfo extends Activity {
 	    	intent.putExtra("name", name);
 	    	intent.putExtra("image",image);
 	    	intent.putExtra("fid", fid);
+	    	intent.putExtra("timestamp", time);
 	    	
 	    	if(commentList!=null) {
 	    		Log.v("Moreinfo", "putting comments in");

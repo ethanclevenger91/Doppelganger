@@ -11,6 +11,7 @@ public class FeedsModel {
 	  private boolean selected;
 	  private int id;
 	  private String fid;
+	  private long timestamp;
 	  private int ups;
 	  private int downs;
 	  private int comments;
@@ -22,10 +23,11 @@ public class FeedsModel {
 		  
 	  }
 	  
-	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid) {
+	  public FeedsModel(String name, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, Long timestamp) {
 	    this.name = name;
 	    this.fid = fid;
 	    this.ups = ups;
+	    this.timestamp = timestamp;
 	    this.downs=downs;
 	    this.comments=comments;
 	    this.imageId = image;
@@ -34,12 +36,13 @@ public class FeedsModel {
 	    selected = false;
 	  }
 	  
-	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, String allComments, String image, String fid) {
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, String allComments, String image, String fid, Long timestamp) {
 		  	this.id = id;
 		  	this.fid = fid;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
+		    this.timestamp = timestamp;
 		    this.desc = desc;
 		    this.comments = comments;
 		    this.imageId = image;
@@ -51,12 +54,13 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, List<String> allComments, String image, String fid) {
+	  public FeedsModel(int id, String desc, String name, int likes, int dislikes, int comments, List<String> allComments, String image, String fid, Long timestamp) {
 		  	this.id = id;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
+		    this.timestamp = timestamp;
 		    this.comments = comments;
 		    this.fid = fid;
 		    this.commentList = allComments;
@@ -64,11 +68,12 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments, List<String> commentList, String image, String fId) {
+	  public FeedsModel(String desc, String name, int likes, int dislikes, int comments, List<String> commentList, String image, String fId, Long timestamp) {
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
+		    this.timestamp = timestamp;
 		    this.comments = comments;
 		    this.commentList = commentList;
 		    this.imageId = image;
@@ -93,6 +98,16 @@ public class FeedsModel {
 	  
 	  public void setId(int id) {
 		  this.id=id;
+	  }
+	  
+	  public void setTimestamp(long timestamp)
+	  {
+		  this.timestamp = timestamp;
+	  }
+	  
+	  public long getTimestamp()
+	  {
+		  return this.timestamp;
 	  }
 	  
 	  /*

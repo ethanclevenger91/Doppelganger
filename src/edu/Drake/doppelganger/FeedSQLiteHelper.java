@@ -26,9 +26,10 @@ public class FeedSQLiteHelper extends SQLiteOpenHelper {
   public static final String COLUMN_PHOTO = "photo";
   public static final String COLUMN_CELEB = "celeb";
   public static final String COLUMN_FID = "facebook_id";
+  public static final String COLUMN_TIME = "timestamp";
 
   private static final String DATABASE_NAME = "commments.db";
-  private static final int DATABASE_VERSION = 5;
+  private static final int DATABASE_VERSION = 6;
   
   // Database creation sql statement
   private static final String DATABASE_CREATE = "create table "
@@ -37,7 +38,7 @@ public class FeedSQLiteHelper extends SQLiteOpenHelper {
       + " text not null, " + COLUMN_NAME + " text not null, " 
       + COLUMN_LIKE + " integer not null, " + COLUMN_DISLIKE + " integer not null, "
       + COLUMN_COMMENTS + " integer not null, " + COLUMN_ALL_COMMENTS + " text, " 
-      + COLUMN_PHOTO + " text, " + COLUMN_FID + " text);";
+      + COLUMN_PHOTO + " text, " + COLUMN_FID + " text, " + COLUMN_TIME + " long);";
 
   public FeedSQLiteHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -53,8 +54,8 @@ public class FeedSQLiteHelper extends SQLiteOpenHelper {
     Log.w(FeedSQLiteHelper.class.getName(),
         "Upgrading database from version " + oldVersion + " to "
             + newVersion + ", which will destroy all old data");
-    if(oldVersion <5) {
-    	final String ALTER_TBL = "ALTER TABLE " + TABLE_POSTS + " ADD COLUMN " + COLUMN_FID + " text;";
+    if(oldVersion <6) {
+    	final String ALTER_TBL = "ALTER TABLE " + TABLE_POSTS + " ADD COLUMN " + COLUMN_TIME + " long;";
     	db.execSQL(ALTER_TBL);
     }
   }
@@ -72,6 +73,7 @@ public void addContact(FeedsModel contact) {
     values.put(COLUMN_ALL_COMMENTS, contact.getAllComments());
     values.put(COLUMN_PHOTO, contact.getImageId());
     values.put(COLUMN_FID, contact.getFID());
+    values.put(COLUMN_TIME, contact.getTimestamp());
  
     // Inserting Row
     db.insert(TABLE_POSTS, null, values);
@@ -83,7 +85,7 @@ public FeedsModel getContact(int id) {
 	SQLiteDatabase db = this.getReadableDatabase();
 	 
     Cursor cursor = db.query(TABLE_POSTS, new String[] { COLUMN_ID,
-            COLUMN_CAPTION, COLUMN_NAME, COLUMN_LIKE, COLUMN_DISLIKE, COLUMN_COMMENTS, COLUMN_ALL_COMMENTS, COLUMN_PHOTO, COLUMN_FID }, COLUMN_ID + "=?",
+            COLUMN_CAPTION, COLUMN_NAME, COLUMN_LIKE, COLUMN_DISLIKE, COLUMN_COMMENTS, COLUMN_ALL_COMMENTS, COLUMN_PHOTO, COLUMN_FID, COLUMN_TIME }, COLUMN_ID + "=?",
             new String[] { String.valueOf(id) }, null, null, null, null);
     if (cursor != null)
         cursor.moveToFirst();
@@ -97,7 +99,8 @@ public FeedsModel getContact(int id) {
     		Integer.parseInt(cursor.getString(5)),
     		cursor.getString(6),
     		cursor.getString(7),
-    		cursor.getString(8));
+    		cursor.getString(8),
+    		Long.parseLong(cursor.getString(9)));
     
     // return contact
     return contact;
@@ -126,6 +129,7 @@ public List<FeedsModel> getMe(String me)
             contact.setAllComments(cursor.getString(6));
             contact.setImageId(cursor.getString(7));
             contact.setFID(cursor.getString(8));
+            contact.setTimestamp(Long.parseLong(cursor.getString(9)));
             // Adding contact to list
             contactList.add(contact);
         } while (cursor.moveToNext());
@@ -133,6 +137,39 @@ public List<FeedsModel> getMe(String me)
  
     // return contact list
     return contactList;
+}
+
+//filters the news feed for the 'Me' option
+public List<FeedsModel> getMostRecent()
+{
+	List<FeedsModel> contactList = new ArrayList<FeedsModel>();
+	
+	String selectQuery = "SELECT * FROM " + TABLE_POSTS + " ORDER BY " + COLUMN_TIME + " DESC";
+	
+	SQLiteDatabase db = this.getWritableDatabase();
+  Cursor cursor = db.rawQuery(selectQuery, null);
+
+  // looping through all rows and adding to list
+  if (cursor.moveToFirst()) {
+      do {
+          FeedsModel contact = new FeedsModel();
+          contact.setId(Integer.parseInt(cursor.getString(0)));
+          contact.setDesc(cursor.getString(1));
+          contact.setName(cursor.getString(2));
+          contact.setUps(Integer.parseInt(cursor.getString(3)));
+          contact.setDowns(Integer.parseInt(cursor.getString(4)));
+          contact.setComments(Integer.parseInt(cursor.getString(5)));
+          contact.setAllComments(cursor.getString(6));
+          contact.setImageId(cursor.getString(7));
+          contact.setFID(cursor.getString(8));
+          contact.setTimestamp(Long.parseLong(cursor.getString(9)));
+          // Adding contact to list
+          contactList.add(contact);
+      } while (cursor.moveToNext());
+  }
+
+  // return contact list
+  return contactList;
 }
 
 //Getting All Contacts
@@ -158,6 +195,7 @@ public List<FeedsModel> getAllContacts() {
             contact.setAllComments(cursor.getString(6));
             contact.setImageId(cursor.getString(7));
             contact.setFID(cursor.getString(8));
+            contact.setTimestamp(Long.parseLong(cursor.getString(9)));
             // Adding contact to list
             contactList.add(contact);
         } while (cursor.moveToNext());
@@ -194,6 +232,7 @@ public int updateContact(FeedsModel contact) {
     values.put(COLUMN_ALL_COMMENTS, contact.getAllComments());
     values.put(COLUMN_PHOTO, contact.getImageId());
     values.put(COLUMN_FID, contact.getFID());
+    values.put(COLUMN_TIME, contact.getTimestamp());
  
     // updating row
     return db.update(TABLE_POSTS, values, COLUMN_ID + " = ?",

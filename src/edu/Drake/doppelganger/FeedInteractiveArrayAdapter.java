@@ -82,10 +82,11 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 			        	String image = element.getImageId();
 			        	List<String> commentList = element.getCommentList();
 			        	String fid = element.getFID();
+			        	long timestamp = element.getTimestamp();
 			        	
 			        	FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
 			        	
-			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid);
+			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid, timestamp);
 			        	db.updateContact(newModel);
 	    		  	}
 				}
@@ -112,10 +113,11 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 			        	String image = element.getImageId();
 			        	List<String> commentList = element.getCommentList();
 			        	String fid = element.getFID();
+			        	long timestamp = element.getTimestamp();
 			        	
 			        	FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
 			        	
-			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid);
+			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid, timestamp);
 			        	db.updateContact(newModel);
 	                  
 	    		  }
@@ -140,6 +142,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    	            b.putString("id", String.valueOf(element.getId()));
 	    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 	    	            b.putString("fid", element.getFID());
+	    	            b.putString("timestamp", String.valueOf(element.getTimestamp()));
 	    	            
 	    	            intent.putExtras(b);
 	    	    		((Activity) v.getContext()).startActivityForResult(intent,1);
@@ -164,6 +167,8 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		    	            b.putString("id", String.valueOf(element.getId()));
 		    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 		    	            b.putString("fid", element.getFID());
+		    	            b.putString("timestamp", String.valueOf(element.getTimestamp()));
+		    	            
 		    	            intent.putExtras(b);
 		    	    		((Activity) v.getContext()).startActivityForResult(intent,1);
 		    		

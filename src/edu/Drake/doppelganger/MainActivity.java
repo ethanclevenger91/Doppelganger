@@ -2,6 +2,7 @@
 
 package edu.Drake.doppelganger;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -258,6 +259,7 @@ public class MainActivity extends Activity implements OnNavigationListener {
 		        	String name = data.getStringExtra("name");
 		        	String image = data.getStringExtra("image");
 		        	String fid = data.getStringExtra("fid");
+		        	String time = data.getStringExtra("timestamp");
 		        	
 		        	int commentCount=0;
 		        	List<String> commentList = new ArrayList<String>();
@@ -274,9 +276,10 @@ public class MainActivity extends Activity implements OnNavigationListener {
 		        	int idInt = Integer.parseInt(id);
 		        	int ups = Integer.parseInt(upCount);
 		        	int downs = Integer.parseInt(downCount);
+		        	long timestamp = Long.parseLong(time);
 		        	db = new FeedSQLiteHelper(this);
 		        	
-		        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid);
+		        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid, timestamp);
 		        	db.updateContact(newModel);
 		        	feedFragment.refresh();
 		        }
@@ -315,10 +318,11 @@ public class MainActivity extends Activity implements OnNavigationListener {
 									Log.v("Main", "what?");
 									if (user != null) {
 										Log.v("Main", "Nice");
+										long timestamp = Calendar.getInstance().getTimeInMillis();
 										String finalString = user.getName() + " posted: ";
 										String facebookId = user.getId();
 										Log.v("Main", "sweet");
-										db.addContact(new FeedsModel(myCaption,finalString,0,0,0,null,imagePath,facebookId));
+										db.addContact(new FeedsModel(myCaption,finalString,0,0,0,null,imagePath,facebookId,timestamp));
 										Log.v("Main", "yay");
 										feedFragment.refresh();
 										Log.v("Main", "refresh");
