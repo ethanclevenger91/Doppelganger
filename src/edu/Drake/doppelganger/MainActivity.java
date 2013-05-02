@@ -271,6 +271,7 @@ ImageLoader.getInstance().init(config);
 		        	String image = data.getStringExtra("image");
 		        	String fid = data.getStringExtra("fid");
 		        	String time = data.getStringExtra("timestamp");
+		        	String celeb = data.getStringExtra("celeb");
 		        	
 		        	int commentCount=0;
 		        	List<String> commentList = new ArrayList<String>();
