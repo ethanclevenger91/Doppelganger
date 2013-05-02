@@ -29,12 +29,9 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
  
 	private final List<CelebrityEntry> list;
 	private final Activity context;
-	private ImageLoader imageLoader;
  
 	public CelebrityEntryAdapter(Activity context, List<CelebrityEntry> list) {
 		super(context, R.layout.activity_celebrity, list);
-		imageLoader = ImageLoader.getInstance();
-	    imageLoader.init(ImageLoaderConfiguration.createDefault(context));
 		this.context = context;
 	    this.list = list;
 	}
@@ -67,6 +64,7 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	    
 	    ViewHolder holder = (ViewHolder) view.getTag();
 	    holder.titleView.setText(model.getName());
+	    ImageLoader imageLoader = ImageLoader.getInstance();
 	    imageLoader.displayImage(model.getPic(), holder.imageView);
 	    //new GetBitmapFromURL(holder).execute(model.getPic());
 		
