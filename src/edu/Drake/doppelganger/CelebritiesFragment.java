@@ -14,6 +14,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Context;
@@ -45,17 +46,18 @@ public class CelebritiesFragment extends ListFragment {
 	 @Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {
-		 Fragment mFragment = this;
-		 PopulateTask task = new PopulateTask(mFragment);
+		 Activity mActivity = this.getActivity();
+		 PopulateTask task = new PopulateTask(mActivity);
+		 
 		 task.execute(new String[] { "http://www.ethanclevenger.com/MirrorMe/celebrity-master.txt" });
 	        return inflater.inflate(R.layout.activity_celebrity, container, false);
 	    }
 	
 	 private class PopulateTask extends AsyncTask<String, Void, List<CelebrityEntry>> {   
-		 public Fragment mFragment;
+		 public Activity mActivity;
 
-		    PopulateTask(Fragment mFragment) {
-		        this.mFragment = mFragment;
+		    PopulateTask(Activity mActivity) {
+		        this.mActivity = mActivity;
 		    }
 		 @Override
 		    protected List<CelebrityEntry> doInBackground(String... urls) {
@@ -84,11 +86,11 @@ public class CelebritiesFragment extends ListFragment {
 
 		    @Override
 		    protected void onPostExecute(List<CelebrityEntry> result) {
-		    	if(mFragment.getActivity() == null)
+		    	if(mActivity == null)
 		    	{
 		    		Log.v("fuckity", "fuck");
 		    	}
-		      adapter = new CelebrityEntryAdapter(mFragment.getActivity(), result);
+		      adapter = new CelebrityEntryAdapter(mActivity, result);
 		      setListAdapter(adapter);
 			  filterTextWatcher = new TextWatcher() {
 
