@@ -6,6 +6,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,45 +29,15 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
  
 	private final List<CelebrityEntry> list;
 	private final Activity context;
+	private ImageLoader imageLoader;
  
 	public CelebrityEntryAdapter(Activity context, List<CelebrityEntry> list) {
 		super(context, R.layout.activity_celebrity, list);
+		imageLoader = ImageLoader.getInstance();
+	    imageLoader.init(ImageLoaderConfiguration.createDefault(context));
 		this.context = context;
 	    this.list = list;
 	}
-	
-	private class GetBitmapFromURL extends AsyncTask<String, Void, Bitmap> {
-
-		private ViewHolder mViewHolder = null;
-		
-		GetBitmapFromURL(ViewHolder mViewHolder)
-		{
-			this.mViewHolder = mViewHolder;
-		}
-		@Override
-		protected Bitmap doInBackground(String... params) {
-			
-			try {
-	            Log.v("src",params[0]);
-	            URL url = new URL(params[0]);
-	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-	            connection.setDoInput(true);
-	            connection.connect();
-	            InputStream input = connection.getInputStream();
-	            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-	            return myBitmap;
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            Log.e("Exception","error getting bitmap");
-	            return null;
-	        }
-		}
-		 @Override
-		    protected void onPostExecute(Bitmap result) {
-			 mViewHolder.imageView.setImageBitmap(result);
-		 }
-	}
-
  
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -94,9 +67,8 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	    
 	    ViewHolder holder = (ViewHolder) view.getTag();
 	    holder.titleView.setText(model.getName());
-	    Log.v("ethan", model.getName());
-	    Log.v("ethan", model.getPic());
-	    new GetBitmapFromURL(holder).execute(model.getPic());
+	    imageLoader.displayImage(model.getPic(), holder.imageView);
+	    //new GetBitmapFromURL(holder).execute(model.getPic());
 		
 	return view;
 }
@@ -109,6 +81,4 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 		public TextView titleView;
 		public ImageView imageView;
 	}
-	
-	
 }
