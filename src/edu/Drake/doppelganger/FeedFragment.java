@@ -63,7 +63,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 	    Log.v("FeedFragment", dateString);
 	    
 	    List<FeedsModel> contacts = db.getAllContacts();
-	    if(contacts.size()==0)
+	    /*if(contacts.size()==0)
 	    {
 	    	
 	    	Drawable myDrawable = getResources().getDrawable(R.drawable.inman);
@@ -110,11 +110,10 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			
 	    	//adds Amanda
 	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined, "101", timestamp));
-	    	
-	    }
+	    }*/
+
 	    for (FeedsModel cn : contacts) {
-	    	
-	    	/*	uncomment below to delete all posts	*/
+	    	//uncomment below to delete all posts
 	    	//db.deleteContact(cn);
 	    	String log = "Id: "+cn.getId()+" ,Name: " + cn.getName() + " ,Caption: " + cn.getDesc() +
             		" ,Likes: " + cn.getUps() + ", Dislikes: " + cn.getDowns() + ", Comments: " + cn.getComments();

@@ -1,13 +1,15 @@
 package edu.Drake.doppelganger;
 
+import android.graphics.drawable.Drawable;
+
 
 
 public final class CelebrityEntry {
 
 	private String name;
-	private int pic;
+	private String pic;
 	
-	public CelebrityEntry(String name, int pic) {
+	public CelebrityEntry(String name, String pic) {
 		this.name = name;
 		this.pic = pic;
 	}
@@ -27,9 +29,10 @@ public final class CelebrityEntry {
 	/**
 	 * @return picture of celebrity
 	 */
-	public int getPic() {
+	public String getPic() {
 		return pic;
 	}
+	
 
 }
 

@@ -3,13 +3,17 @@ package edu.Drake.doppelganger;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
@@ -34,14 +38,34 @@ public class Post extends Activity {
 	ImageView theImage;
 	String TAG = "path is: ";
 	public String returnString;
-	public int celebPath;
+	public String celebPath;
 	public int width;
 	Bitmap bitmap;
 	Bitmap myCeleb;
 	Bitmap myMap;
 	public int height;
+	Bitmap bimage=  null;
+	String url;
 	
 	private static int SELECT_FOR_PIC = 5713;
+	
+	public static Bitmap getBitmapFromURL(String src) {
+        try {
+            Log.e("src",src);
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.e("Bitmap","returned");
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception",e.getMessage());
+            return null;
+        }
+    }
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +77,9 @@ public class Post extends Activity {
           return;
         }
         theImage = (ImageView) findViewById(R.id.select_celeb);
-        theImage.setImageResource(extras.getInt("image"));
+        url = extras.getString("image");
+        bimage = getBitmapFromURL(url);
+        theImage.setImageBitmap(bimage);
         
         final EditText captionText = (EditText) findViewById(R.id.edit_text_caption);
         
@@ -145,8 +171,9 @@ public class Post extends Activity {
 
         }
 		//
-		Drawable myDrawable = getResources().getDrawable(celebPath);
-		myCeleb = ((BitmapDrawable) myDrawable).getBitmap();
+		//Drawable myDrawable = getResources().getDrawable(celebPath);
+		bimage = getBitmapFromURL(url);
+		myCeleb = bimage;
 		
 		myCeleb = Bitmap.createScaledBitmap(myCeleb, bitmap.getWidth(), bitmap.getHeight(), false);
 		
@@ -273,8 +300,9 @@ public class Post extends Activity {
 		        if(data.getExtras()!=null){
 		        	
 		        	theImage = (ImageView) findViewById(R.id.select_celeb);
-		        	int i = data.getIntExtra("image", 1);
-		            theImage.setImageResource(i);
+		        	String i = data.getStringExtra("image");
+		        	bimage = getBitmapFromURL(i);
+		            theImage.setImageBitmap(bimage);
 		            theImage.setScaleType(ScaleType.FIT_XY);
 		            celebPath = i;
 		        }
