@@ -39,7 +39,6 @@ public class CelebritiesFragment extends ListFragment {
 	private EditText filterText = null;
 	ArrayAdapter<CelebrityEntry> adapter = null;
 	DefaultHttpClient httpclient = new DefaultHttpClient();
-	private CelebritiesFragment context;
 	private TextWatcher filterTextWatcher = null;
 	List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
 	
@@ -48,7 +47,6 @@ public class CelebritiesFragment extends ListFragment {
 	            Bundle savedInstanceState) {
 		 Activity mActivity = this.getActivity();
 		 PopulateTask task = new PopulateTask(mActivity);
-		 
 		 task.execute(new String[] { "http://www.ethanclevenger.com/MirrorMe/celebrity-master.txt" });
 	        return inflater.inflate(R.layout.activity_celebrity, container, false);
 	    }
@@ -86,10 +84,6 @@ public class CelebritiesFragment extends ListFragment {
 
 		    @Override
 		    protected void onPostExecute(List<CelebrityEntry> result) {
-		    	if(mActivity == null)
-		    	{
-		    		Log.v("fuckity", "fuck");
-		    	}
 		      adapter = new CelebrityEntryAdapter(mActivity, result);
 		      setListAdapter(adapter);
 			  filterTextWatcher = new TextWatcher() {
@@ -110,7 +104,6 @@ public class CelebritiesFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		context = this;
 		filterText = (EditText) getView().findViewById(R.id.search_box);
 		final ActionBar actionBar = getActivity().getActionBar();
 	    actionBar.setCustomView(R.layout.custom_actionbar);
@@ -129,8 +122,8 @@ public class CelebritiesFragment extends ListFragment {
 	}
 	
 	
-	private List<CelebrityEntry> getModel() {
-	    List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
+	//private List<CelebrityEntry> getModel() {
+	    //List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
 	    //list.add(get("Adam Savage","http://www.ethanclevenger.com/MirrorMe/images/hanks.png"));
 	    /*list.add(getOrig("Anne Hathaway",R.drawable.hathaway));
 	    list.add(getOrig("Ellen Page",R.drawable.page));
@@ -139,26 +132,6 @@ public class CelebritiesFragment extends ListFragment {
 	    list.add(get("Emma Stone",R.drawable.stone));
 	    list.add(get("Pierce Brosnan",R.drawable.brosnan));
 	    list.add(get("Zooey Deschanel",R.drawable.zooey));*/
-	    return list;
-	  }
-	
-	public List<CelebrityEntry> populate() throws IOException {
-		HttpGet httppost = new HttpGet("http://www.ethanclevenger.com/MirrorMe/celebrity-master.txt");
-		HttpResponse response = httpclient.execute(httppost);
-        HttpEntity ht = response.getEntity();
-        
-        BufferedHttpEntity buf = new BufferedHttpEntity(ht);
-
-        InputStream is = buf.getContent();
-
-
-        BufferedReader r = new BufferedReader(new InputStreamReader(is));
-        String name;
-        String url;
-        while ((name = r.readLine()) != null) {
-        	url = r.readLine();
-            list.add(new CelebrityEntry(name, url));
-        }
-        return list;
-	}
+	    //return list;
+	 // }
 }
