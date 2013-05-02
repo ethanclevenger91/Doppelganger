@@ -50,7 +50,7 @@ public class Post extends Activity {
 	ImageView theImage;
 	String TAG = "path is: ";
 	public String returnString;
-	public String celebPath;
+	public String celebName;
 	public int width;
 	Bitmap bitmap;
 	Bitmap myCeleb;
@@ -190,8 +190,7 @@ public class Post extends Activity {
         catch (Exception e) {
 
         }
-		//
-		//Drawable myDrawable = getResources().getDrawable(celebPath);
+		
 		
 		myCeleb = Bitmap.createScaledBitmap(myCeleb, bitmap.getWidth(), bitmap.getHeight(), false);
 		
@@ -200,7 +199,7 @@ public class Post extends Activity {
 		
     	intent.putExtra("caption", myCaption.getText().toString());
     	intent.putExtra("photo", combined);
-    	intent.putExtra("celeb", String.valueOf(celebPath));
+    	intent.putExtra("celeb", celebName);
     	
     	Log.v("Post", combined);
     	
@@ -322,7 +321,7 @@ public class Post extends Activity {
 		        	new GetBitmapFromURL().execute(i);
 		            
 		            theImage.setScaleType(ScaleType.FIT_XY);
-		            celebPath = i;
+		            celebName = data.getStringExtra("celeb");
 		        }
 			}
 		}

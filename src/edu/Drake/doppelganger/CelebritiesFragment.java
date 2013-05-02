@@ -86,10 +86,8 @@ public class CelebritiesFragment extends ListFragment {
 		    protected void onPostExecute(List<CelebrityEntry> result) {
 		      adapter = new CelebrityEntryAdapter(mActivity, result);
 		      setListAdapter(adapter);
-			  
 		    }
 	 }
- 
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -118,6 +116,7 @@ public class CelebritiesFragment extends ListFragment {
 		CelebrityEntry celebrity = (CelebrityEntry) getListView().getItemAtPosition(position);
 		Intent makeAPost = new Intent(v.getContext(), Post.class);
 		makeAPost.putExtra("image", celebrity.getPic());
+		makeAPost.putExtra("celeb", celebrity.getName());
 		startActivity(makeAPost);
 		
 	}

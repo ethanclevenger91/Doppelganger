@@ -142,6 +142,7 @@ public class Celebrities extends ListActivity {
 		CelebrityEntry celebrity = (CelebrityEntry) getListView().getItemAtPosition(position);
 		Intent makeAPost = new Intent(v.getContext(), Post.class);
 		makeAPost.putExtra("image", celebrity.getPic());
+		makeAPost.putExtra("celeb", celebrity.getName());
 		
 		setResult(RESULT_OK,makeAPost);
     	finish();
