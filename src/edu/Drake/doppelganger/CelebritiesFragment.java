@@ -48,7 +48,7 @@ public class CelebritiesFragment extends ListFragment {
 		 Activity mActivity = this.getActivity();
 		 PopulateTask task = new PopulateTask(mActivity);
 		 task.execute(new String[] { "http://www.ethanclevenger.com/MirrorMe/celebrity-master.txt" });
-	        return inflater.inflate(R.layout.activity_celebrity, container, false);
+	     return inflater.inflate(R.layout.activity_celebrity, container, false);
 	    }
 	
 	 private class PopulateTask extends AsyncTask<String, Void, List<CelebrityEntry>> {   
@@ -86,25 +86,26 @@ public class CelebritiesFragment extends ListFragment {
 		    protected void onPostExecute(List<CelebrityEntry> result) {
 		      adapter = new CelebrityEntryAdapter(mActivity, result);
 		      setListAdapter(adapter);
-			  filterTextWatcher = new TextWatcher() {
-
-					public void afterTextChanged(Editable s) {
-				    }
-					public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-				    }
-					public void onTextChanged(CharSequence s, int start, int before, int count) {
-						adapter.getFilter().filter(s);
-				    }
-				};
-				filterText.addTextChangedListener(filterTextWatcher);
+			  
 		    }
-		  }
+	 }
  
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		filterText = (EditText) getView().findViewById(R.id.search_box);
+		filterTextWatcher = new TextWatcher() {
+
+			public void afterTextChanged(Editable s) {
+		    }
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		    }
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				adapter.getFilter().filter(s);
+		    }
+		};
+		filterText.addTextChangedListener(filterTextWatcher);
 		final ActionBar actionBar = getActivity().getActionBar();
 	    actionBar.setCustomView(R.layout.custom_actionbar);
 	    actionBar.setDisplayShowCustomEnabled(false);

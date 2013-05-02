@@ -72,6 +72,7 @@ public class Post extends Activity {
         }
         theImage = (ImageView) findViewById(R.id.select_celeb);
         url = extras.getString("image");
+        new GetBitmapFromURL().execute(url);
         
         final EditText captionText = (EditText) findViewById(R.id.edit_text_caption);
         

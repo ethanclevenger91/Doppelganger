@@ -222,18 +222,19 @@ containing a value of this type.
         public static final int hathaway=0x7f020025;
         public static final int ic_launcher=0x7f020026;
         public static final int inman=0x7f020027;
-        public static final int morrow=0x7f020028;
-        public static final int ndynamite=0x7f020029;
-        public static final int page=0x7f02002a;
-        public static final int post_button=0x7f02002b;
-        public static final int savage=0x7f02002c;
-        public static final int search=0x7f02002d;
-        public static final int social_share=0x7f02002e;
-        public static final int stone=0x7f02002f;
-        public static final int upload=0x7f020030;
-        public static final int upload_border=0x7f020031;
-        public static final int urness=0x7f020032;
-        public static final int zooey=0x7f020033;
+        public static final int loading=0x7f020028;
+        public static final int morrow=0x7f020029;
+        public static final int ndynamite=0x7f02002a;
+        public static final int page=0x7f02002b;
+        public static final int post_button=0x7f02002c;
+        public static final int savage=0x7f02002d;
+        public static final int search=0x7f02002e;
+        public static final int social_share=0x7f02002f;
+        public static final int stone=0x7f020030;
+        public static final int upload=0x7f020031;
+        public static final int upload_border=0x7f020032;
+        public static final int urness=0x7f020033;
+        public static final int zooey=0x7f020034;
     }
     public static final class id {
         public static final int button_capture=0x7f060049;

@@ -32,6 +32,8 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 
 
@@ -169,7 +171,8 @@ public class MainActivity extends Activity implements OnNavigationListener {
         actionBar.addTab(NoteTab);
         
         actionBar.setSelectedNavigationItem(1);
-        
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
+        ImageLoader.getInstance().init(config);
         
              // start Facebook Login
        Session.openActiveSession(this, true, new Session.StatusCallback() {
