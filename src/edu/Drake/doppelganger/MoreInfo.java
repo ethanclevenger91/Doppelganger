@@ -37,7 +37,7 @@ public class MoreInfo extends Activity {
 	
 	public void addComment(View v) {
 		
-		 Intent intent = new Intent(getBaseContext(), AddComment.class);
+		Intent intent = new Intent(getBaseContext(), AddComment.class);
  		startActivityForResult(intent,1);
  		overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up);
 		
@@ -200,6 +200,7 @@ public class MoreInfo extends Activity {
 	    Intent intent = new Intent(Intent.ACTION_SEND);
 	    intent.setType("image/*");
 	    intent.putExtra(Intent.EXTRA_STREAM, myUri);
+	    intent.putExtra(Intent.EXTRA_TEXT, "Made with the #MirrorMe app");
 	    mShareActionProvider.setShareIntent(intent);
 	  } 
 	
