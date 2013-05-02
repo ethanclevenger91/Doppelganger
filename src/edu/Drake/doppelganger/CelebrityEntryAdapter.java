@@ -26,7 +26,6 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
  
 	private final List<CelebrityEntry> list;
 	private final Activity context;
-	Bitmap bimage = null;
  
 	public CelebrityEntryAdapter(Activity context, List<CelebrityEntry> list) {
 		super(context, R.layout.activity_celebrity, list);
@@ -53,7 +52,6 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	            connection.connect();
 	            InputStream input = connection.getInputStream();
 	            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-	            Log.v("Bitmap","returned");
 	            return myBitmap;
 	        } catch (IOException e) {
 	            e.printStackTrace();
@@ -63,9 +61,7 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 		}
 		 @Override
 		    protected void onPostExecute(Bitmap result) {
-			 bimage = result;
-			 mViewHolder.imageView.setImageBitmap(bimage);
-			 Log.v("made it", "made it");
+			 mViewHolder.imageView.setImageBitmap(result);
 		 }
 	}
 
@@ -98,6 +94,8 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	    
 	    ViewHolder holder = (ViewHolder) view.getTag();
 	    holder.titleView.setText(model.getName());
+	    Log.v("ethan", model.getName());
+	    Log.v("ethan", model.getPic());
 	    new GetBitmapFromURL(holder).execute(model.getPic());
 		
 	return view;

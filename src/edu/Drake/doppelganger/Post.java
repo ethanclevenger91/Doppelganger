@@ -1,12 +1,21 @@
 package edu.Drake.doppelganger;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,7 +28,10 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -44,28 +56,10 @@ public class Post extends Activity {
 	Bitmap myCeleb;
 	Bitmap myMap;
 	public int height;
-	Bitmap bimage=  null;
 	String url;
 	
 	private static int SELECT_FOR_PIC = 5713;
 	
-	public static Bitmap getBitmapFromURL(String src) {
-        try {
-            Log.e("src",src);
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            Log.e("Bitmap","returned");
-            return myBitmap;
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Exception",e.getMessage());
-            return null;
-        }
-    }
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +72,6 @@ public class Post extends Activity {
         }
         theImage = (ImageView) findViewById(R.id.select_celeb);
         url = extras.getString("image");
-        bimage = getBitmapFromURL(url);
-        theImage.setImageBitmap(bimage);
         
         final EditText captionText = (EditText) findViewById(R.id.edit_text_caption);
         
@@ -118,6 +110,33 @@ public class Post extends Activity {
 		getMenuInflater().inflate(R.menu.activity_take_picture, menu);
 		
 		return true;
+	}
+	
+	private class GetBitmapFromURL extends AsyncTask<String, Void, Bitmap> {
+
+		@Override
+		protected Bitmap doInBackground(String... params) {
+			
+			try {
+	            Log.v("src",params[0]);
+	            URL url = new URL(params[0]);
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	            connection.setDoInput(true);
+	            connection.connect();
+	            InputStream input = connection.getInputStream();
+	            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+	            return myBitmap;
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            Log.e("Exception","error getting bitmap");
+	            return null;
+	        }
+		}
+		 @Override
+		    protected void onPostExecute(Bitmap result) {
+			 myCeleb = result;
+			 theImage.setImageBitmap(result);
+		 }
 	}
 	
 	@Override
@@ -172,8 +191,6 @@ public class Post extends Activity {
         }
 		//
 		//Drawable myDrawable = getResources().getDrawable(celebPath);
-		bimage = getBitmapFromURL(url);
-		myCeleb = bimage;
 		
 		myCeleb = Bitmap.createScaledBitmap(myCeleb, bitmap.getWidth(), bitmap.getHeight(), false);
 		
@@ -301,8 +318,8 @@ public class Post extends Activity {
 		        	
 		        	theImage = (ImageView) findViewById(R.id.select_celeb);
 		        	String i = data.getStringExtra("image");
-		        	bimage = getBitmapFromURL(i);
-		            theImage.setImageBitmap(bimage);
+		        	new GetBitmapFromURL().execute(i);
+		            
 		            theImage.setScaleType(ScaleType.FIT_XY);
 		            celebPath = i;
 		        }
