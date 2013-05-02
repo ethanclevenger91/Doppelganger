@@ -265,6 +265,7 @@ ImageLoader.getInstance().init(config);
 		        	String desc = data.getStringExtra("desc");
 		        	String name = data.getStringExtra("name");
 		        	String image = data.getStringExtra("image");
+		        	String celeb = data.getStringExtra("celeb");
 		        	
 		        	int commentCount=0;
 		        	List<String> commentList = new ArrayList<String>();
