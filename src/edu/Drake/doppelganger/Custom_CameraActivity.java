@@ -224,7 +224,10 @@ public class Custom_CameraActivity extends Activity {
 
 	private void Cleanup()
 	{    
-	    bitmap.recycle(); 
+		if(bitmap!=null)
+		{
+			bitmap.recycle();
+		}
 	}
     
 }

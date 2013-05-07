@@ -64,10 +64,13 @@ public final class CelebrityEntryAdapter extends ArrayAdapter<CelebrityEntry> {
 	    
 	    ViewHolder holder = (ViewHolder) view.getTag();
 	    holder.titleView.setText(model.getName());
+	    int id = context.getResources().getIdentifier("edu.Drake.doppelganger:drawable/" + "loading", null, null);
+	    holder.imageView.setImageResource(id);
+	    
 	    ImageLoader imageLoader = ImageLoader.getInstance();
 	    imageLoader.displayImage(model.getPic(), holder.imageView);
 	    //new GetBitmapFromURL(holder).execute(model.getPic());
-		
+		//
 	return view;
 }
 	
