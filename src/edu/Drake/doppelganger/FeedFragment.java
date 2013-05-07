@@ -63,7 +63,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 	    Log.v("FeedFragment", dateString);
 	    
 	    List<FeedsModel> contacts = db.getAllContacts();
-	    /*if(contacts.size()==0)
+	    if(contacts.size()==0)
 	    {
 	    	
 	    	Drawable myDrawable = getResources().getDrawable(R.drawable.inman);
@@ -110,7 +110,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			
 	    	//adds Amanda
 	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined, "101", timestamp));
-	    }*/
+	    }
 
 	    for (FeedsModel cn : contacts) {
 	    	//uncomment below to delete all posts
@@ -121,7 +121,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
           Log.d("Name: ", log);
 	    }
 	    
-	    //
+	    
 	    contacts = db.getAllContacts();
 	    ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, contacts);
 	    
@@ -225,13 +225,19 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			                // callback after Graph API response with user object
 			                @Override
 			                public void onCompleted(GraphUser user, Response response) {
-			                  if (user != null) {
-			                    TextView welcome = (TextView) getActivity().findViewById(R.id.welcome);
-			                    //userName = user.getName();
-			                    welcome.setText(user.getName());
+			                  if (user != null ) {
+			                	  
+			                	if (getActivity() != null)
+			                	{
+			                		TextView welcome = (TextView) getActivity().findViewById(R.id.welcome);
+			                    
+			                		//userName = user.getName();
+			                    	welcome.setText(user.getName());
 			                   
-			                    setUserName(user.getId());
-			                  } 
+			                    	setUserName(user.getId());
+			                  
+			                	}
+			                  }
 			                }
 			              });
 			              
