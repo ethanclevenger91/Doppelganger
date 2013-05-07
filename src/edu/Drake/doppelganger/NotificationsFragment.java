@@ -18,7 +18,6 @@ public class NotificationsFragment extends ListFragment {
 	  public void onActivityCreated(Bundle savedInstanceState) {
 	    super.onActivityCreated(savedInstanceState);
 	    
-	    ListView listView = (ListView) getActivity().findViewById(R.id.mylist);
 	    String[] values = new String[] { "Jessica Harris tagged you: Tom Cruise doppleganger (2hrs)", "Mike Roger comment on your Repert Grint doppleganger (4 hrs)", "Sarah Smith like your Rupert Grint doppleganger (yesterday)",
 	            "Jen Adams liked your Rupert Grint doppleganger (yesterday)", "Michael Jaes likes the Sarah Smith: Zooey Deschanel doppleganger you posted (Monday)", "Mike Roger commented on your Rupert Grint doppleganger (Sunday)" };
 	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),

@@ -1,7 +1,5 @@
 package edu.Drake.doppelganger;
 
-import android.graphics.drawable.Drawable;
-
 
 
 public final class CelebrityEntry {

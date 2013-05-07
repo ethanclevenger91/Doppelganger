@@ -22,8 +22,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -198,7 +196,6 @@ ImageLoader.getInstance().init(config);
                   if (user != null) {
                     TextView welcome = (TextView) findViewById(R.id.welcome);
                     welcome.setText(user.getName());
-                    ActionBar actionBar = getActionBar();
                     
                     //sets the actionbar title to user name, this verifies if Facebook is working
                     //if you see your name from facebook at the top of the screen, it is working

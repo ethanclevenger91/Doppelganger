@@ -9,7 +9,6 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -71,9 +70,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	                  viewHolder.upCount.setText(element.getUps());
 	                  element.setSelected(true);
 	                  
-	                  FeedFragment feedFragment = (FeedFragment) ((Activity) v.getContext()).getFragmentManager().findFragmentByTag("FEED");
-			        	
-			        	int ups = Integer.parseInt(element.getUps());
+	                  int ups = Integer.parseInt(element.getUps());
 			        	int downs = Integer.parseInt(element.getDowns());
 			        	int commentCount = Integer.parseInt(element.getComments());
 			        	String name = element.getName();
@@ -102,8 +99,6 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	                  viewHolder.downCount.setText(element.getDowns());
 	                  element.setSelected(true);
 	                  
-			        	FeedFragment feedFragment = (FeedFragment) ((Activity) v.getContext()).getFragmentManager().findFragmentByTag("FEED");
-			        	
 			        	int ups = Integer.parseInt(element.getUps());
 			        	int downs = Integer.parseInt(element.getDowns());
 			        	int commentCount = Integer.parseInt(element.getComments());

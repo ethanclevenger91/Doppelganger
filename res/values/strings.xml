@@ -26,4 +26,5 @@
         <item >Me</item>
         <item >Celebrity</item>
     </string-array>
+    <string name="menu_post">Post</string>
 </resources>

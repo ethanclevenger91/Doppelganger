@@ -1,22 +1,12 @@
 package edu.Drake.doppelganger;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,13 +15,9 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -40,6 +26,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
@@ -57,6 +44,8 @@ public class Post extends Activity {
 	Bitmap myMap;
 	public int height;
 	String url;
+	boolean userPic = false;
+	boolean celebPic = false;
 	
 	private static int SELECT_FOR_PIC = 5713;
 	
@@ -73,6 +62,7 @@ public class Post extends Activity {
         theImage = (ImageView) findViewById(R.id.select_celeb);
         url = extras.getString("image");
         new GetBitmapFromURL().execute(url);
+        celebPic = true;
         
         final EditText captionText = (EditText) findViewById(R.id.edit_text_caption);
         
@@ -321,6 +311,7 @@ public class Post extends Activity {
 		        	new GetBitmapFromURL().execute(i);
 		            
 		            theImage.setScaleType(ScaleType.FIT_XY);
+		            celebPic = true;
 		            celebName = data.getStringExtra("celeb");
 		        }
 			}
@@ -358,8 +349,14 @@ public class Post extends Activity {
 
 		            }
 		            myImage.setImageBitmap(bitmap);
+		            userPic = true;
 				}
 			}
+		}
+		if(userPic == true && celebPic == true)
+		{
+			ImageButton postButton = (ImageButton) findViewById(R.id.post_button);
+			postButton.setVisibility(View.VISIBLE);
 		}
     }
 	

@@ -8,7 +8,8 @@
     <item 
         android:id="@+id/menu_compose" 
         android:orderInCategory="1"
-        android:showAsAction="ifRoom"
-        android:icon="@drawable/contentedit"/>
+        android:showAsAction="ifRoom|withText"
+        android:icon="@drawable/contentedit"
+        android:title="@string/menu_post"/>
    
 </menu>
