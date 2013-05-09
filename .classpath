@@ -2,9 +2,15 @@
 <classpath>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+<<<<<<< HEAD
 	<classpathentry exported="true" kind="lib" path="libs/gson-2.2.3-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gson-2.2.3-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/gson-2.2.3.jar"/>
+=======
+	<classpathentry kind="lib" path="libs/gson-2.2.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.3-sources.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.3.jar"/>
+>>>>>>> d67c77a8c1d16fc283334ff77cdf412a4afa3370
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
