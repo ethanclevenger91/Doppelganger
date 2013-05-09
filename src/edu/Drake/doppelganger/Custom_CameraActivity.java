@@ -11,6 +11,7 @@ import java.util.Date;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
@@ -19,11 +20,14 @@ import android.hardware.Camera.ShutterCallback;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 
 public class Custom_CameraActivity extends Activity {
@@ -37,6 +41,10 @@ public class Custom_CameraActivity extends Activity {
     Uri myUri;
     Button useButton;
     Button retakeButton;
+    ImageButton gallery;
+    ImageButton captureButton;
+    private static int RESULT_LOAD_IMAGE = 1;
+    String picturePath = null;
 
     /** Called when the activity is first created. */
     @SuppressWarnings("deprecation")
@@ -64,9 +72,10 @@ public class Custom_CameraActivity extends Activity {
         mCameraPreview = new CameraPreview(this, mCamera);
         
         preview.addView(mCameraPreview);
-        final Button useButton = (Button) findViewById(R.id.button_use);
-        final Button retakeButton = (Button) findViewById(R.id.button_retake);
-        Button captureButton = (Button) findViewById(R.id.button_capture);
+        useButton = (Button) findViewById(R.id.button_use);
+        retakeButton = (Button) findViewById(R.id.button_retake);
+        captureButton = (ImageButton) findViewById(R.id.button_capture);
+        gallery = (ImageButton) findViewById(R.id.gallery);
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +83,8 @@ public class Custom_CameraActivity extends Activity {
             		mCamera.takePicture(shutterCallback, rawCallback, mPicture);
             		useButton.setVisibility(View.VISIBLE);
             		retakeButton.setVisibility(View.VISIBLE);
+            		captureButton.setVisibility(View.INVISIBLE);
+            		gallery.setVisibility(View.INVISIBLE);
             	}
             	else {
             		//mCamera.startPreview();
@@ -81,6 +92,15 @@ public class Custom_CameraActivity extends Activity {
             	}
             }
         });
+        ImageButton galleryButton = (ImageButton) findViewById(R.id.gallery);
+		galleryButton.setOnClickListener(new OnClickListener() {
+			 @Override
+			 public void onClick(View v) {
+				 Intent i = new Intent(
+						 Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				 			startActivityForResult(i, RESULT_LOAD_IMAGE);
+			 }
+		 });
         
     }
 
@@ -116,9 +136,6 @@ public class Custom_CameraActivity extends Activity {
             //
         }
     };
-    
-    
-    
 
     PictureCallback mPicture = new PictureCallback() {
         @Override
@@ -182,6 +199,32 @@ public class Custom_CameraActivity extends Activity {
         return mediaFile;
     }
     
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+ 
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+ 
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            //bitmap = BitmapHelper.decodeFile(new File(picturePath), theImage.getWidth(), theImage.getHeight(), false);
+            
+            Intent intent = getIntent();
+    		if(picturePath!=null)
+    		{
+    			intent.putExtra("return",picturePath);
+    		}
+        	setResult(RESULT_OK,intent);
+        	finish();
+        }
+	}
+    
     @Override
 	//this is used on the up button press
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -208,8 +251,7 @@ public class Custom_CameraActivity extends Activity {
 	
 	public void usePic(View v){
         Intent intent = new Intent();
-        String path = myUri.getEncodedPath();
-        intent.putExtra("imageUri", path);
+        intent.putExtra("return", myPath);
         setResult(RESULT_OK, intent); 
         
         super.finish();
@@ -220,6 +262,8 @@ public class Custom_CameraActivity extends Activity {
 		isPicTaken=false;
 		useButton.setVisibility(View.INVISIBLE);
 		retakeButton.setVisibility(View.INVISIBLE);
+		captureButton.setVisibility(View.VISIBLE);
+		gallery.setVisibility(View.VISIBLE);
 	}
 	
 	@Override

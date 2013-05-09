@@ -147,7 +147,7 @@ public class Post extends Activity {
 	}
 	
 	public void selectPic(View v) {
-		Intent intent = new Intent(v.getContext(), TakePicture.class);
+		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
 		startActivityForResult(intent,SELECT_FOR_PIC);
 	}
 	
@@ -248,8 +248,6 @@ public class Post extends Activity {
 
 	    comboImage.drawBitmap(myMap, 0f, 0f, null); 
 	    comboImage.drawBitmap(s, c.getWidth()+50, 0f, null);
-	    
-	    Log.v("Post", "here!!");
 
 	    // this is an extra bit I added, just in case you want to save the new image somewhere and then return the location 
 	    String tmpImg = String.valueOf(System.currentTimeMillis()) + ".png"; 
@@ -258,13 +256,9 @@ public class Post extends Activity {
 	    try { 
 	      os = new FileOutputStream(loc + tmpImg); 
 	      cs.compress(CompressFormat.PNG, 100, os); 
-	      Log.v("Post", "here!!!");
 	    } catch(IOException e) { 
 	      Log.e("combineImages", "problem combining images", e); 
-	      Log.v("Post", "here!!!!");
 	    }
-
-	    Log.v("Post", "it works");
 	    return (loc+tmpImg); 
 	  } 
 	
@@ -294,12 +288,10 @@ public class Post extends Activity {
 	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-		
+       
         super.onActivityResult(requestCode, resultCode, data);
         
         Log.v("post", "returned with code: " + requestCode);
-        
         if(requestCode==1)
 		{
 			if(resultCode==RESULT_OK)
