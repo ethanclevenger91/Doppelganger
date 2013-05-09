@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +49,7 @@ public class Post extends Activity {
 	boolean userPic = false;
 	boolean celebPic = false;
 	
+	private static int REAUTH_ACTIVITY_CODE = 1010101;
 	private static int SELECT_FOR_PIC = 5713;
 	
 	
@@ -300,6 +303,12 @@ public class Post extends Activity {
         
         Log.v("post", "returned with code: " + requestCode);
         
+        if (requestCode == REAUTH_ACTIVITY_CODE) {
+        	if(resultCode == RESULT_OK) {
+                // Do nothing for now
+            }
+        }
+        
         if(requestCode==1)
 		{
 			if(resultCode==RESULT_OK)
@@ -359,6 +368,18 @@ public class Post extends Activity {
 			postButton.setVisibility(View.VISIBLE);
 		}
     }
+	
+	private void startPickerActivity(Uri data, int requestCode) {
+	     Intent intent = new Intent();
+	     intent.setData(data);
+	     intent.setClass(this, PickerActivity.class);
+	     startActivityForResult(intent, requestCode);
+	 }
+	
+	public void findFriends(View v)
+	{
+		startPickerActivity(PickerActivity.FRIEND_PICKER, 1010101);
+	}
 	
 	@Override
 	public void onDestroy()

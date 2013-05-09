@@ -40,7 +40,11 @@
             android:name="edu.Drake.doppelganger.TakePicture"
             android:label="@string/title_activity_take_picture" >
         </activity>
-        <activity
+        <activity 
+            android:name="PickerActivity"
+          	android:label="@string/app_name" >
+        </activity>
+        <activity    
             android:name="edu.Drake.doppelganger.Celebrities"
             android:label="@string/title_activity_celebrities"
              >

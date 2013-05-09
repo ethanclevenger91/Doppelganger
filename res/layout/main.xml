@@ -18,19 +18,6 @@
       android:screenOrientation="portrait" />
 
   <Button
-      android:id="@+id/button_retake"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_weight="1"
-      android:layout_marginRight="20dp"
-      android:layout_marginBottom="50dp"
-      android:layout_alignParentRight="true"
-      android:layout_alignParentBottom="true"
-      android:onClick="retakePic"
-      android:visibility="invisible"
-      android:text="Retake" />
-
-  <Button
       android:id="@+id/button_capture"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

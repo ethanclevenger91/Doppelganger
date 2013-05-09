@@ -65,19 +65,20 @@ public class Custom_CameraActivity extends Activity {
         
         preview.addView(mCameraPreview);
         final Button useButton = (Button) findViewById(R.id.button_use);
-        final Button retakeButton = (Button) findViewById(R.id.button_retake);
-        Button captureButton = (Button) findViewById(R.id.button_capture);
+        final Button captureButton = (Button) findViewById(R.id.button_capture);
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             	if(!isPicTaken){
             		mCamera.takePicture(shutterCallback, rawCallback, mPicture);
             		useButton.setVisibility(View.VISIBLE);
-            		retakeButton.setVisibility(View.VISIBLE);
+            		captureButton.setText("Retake");
             	}
             	else {
-            		//mCamera.startPreview();
-            		//isPicTaken=false;
+            		mCamera.startPreview();
+            		isPicTaken=false;
+            		useButton.setVisibility(View.INVISIBLE);
+            		captureButton.setText("Capture");
             	}
             }
         });
@@ -213,13 +214,6 @@ public class Custom_CameraActivity extends Activity {
         setResult(RESULT_OK, intent); 
         
         super.finish();
-	}
-	
-	public void retakePic(View v) {
-		mCamera.startPreview();
-		isPicTaken=false;
-		useButton.setVisibility(View.INVISIBLE);
-		retakeButton.setVisibility(View.INVISIBLE);
 	}
 	
 	@Override
