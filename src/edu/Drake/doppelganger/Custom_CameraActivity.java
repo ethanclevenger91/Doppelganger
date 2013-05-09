@@ -72,34 +72,26 @@ public class Custom_CameraActivity extends Activity {
         mCameraPreview = new CameraPreview(this, mCamera);
         
         preview.addView(mCameraPreview);
-<<<<<<< HEAD
         final Button useButton = (Button) findViewById(R.id.button_use);
         final Button captureButton = (Button) findViewById(R.id.button_capture);
-=======
-        useButton = (Button) findViewById(R.id.button_use);
-        retakeButton = (Button) findViewById(R.id.button_retake);
-        captureButton = (ImageButton) findViewById(R.id.button_capture);
         gallery = (ImageButton) findViewById(R.id.gallery);
->>>>>>> d67c77a8c1d16fc283334ff77cdf412a4afa3370
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             	if(!isPicTaken){
             		mCamera.takePicture(shutterCallback, rawCallback, mPicture);
             		useButton.setVisibility(View.VISIBLE);
-<<<<<<< HEAD
             		captureButton.setText("Retake");
-=======
-            		retakeButton.setVisibility(View.VISIBLE);
-            		captureButton.setVisibility(View.INVISIBLE);
             		gallery.setVisibility(View.INVISIBLE);
->>>>>>> d67c77a8c1d16fc283334ff77cdf412a4afa3370
             	}
             	else {
+            		
             		mCamera.startPreview();
             		isPicTaken=false;
+            		gallery.setVisibility(View.VISIBLE);
             		useButton.setVisibility(View.INVISIBLE);
             		captureButton.setText("Capture");
+            		
             	}
             }
         });
@@ -268,18 +260,6 @@ public class Custom_CameraActivity extends Activity {
         super.finish();
 	}
 	
-<<<<<<< HEAD
-=======
-	public void retakePic(View v) {
-		mCamera.startPreview();
-		isPicTaken=false;
-		useButton.setVisibility(View.INVISIBLE);
-		retakeButton.setVisibility(View.INVISIBLE);
-		captureButton.setVisibility(View.VISIBLE);
-		gallery.setVisibility(View.VISIBLE);
-	}
-	
->>>>>>> d67c77a8c1d16fc283334ff77cdf412a4afa3370
 	@Override
 	public void onDestroy()
 	{   

@@ -295,16 +295,12 @@ public class Post extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         
         Log.v("post", "returned with code: " + requestCode);
-<<<<<<< HEAD
         
         if (requestCode == REAUTH_ACTIVITY_CODE) {
         	if(resultCode == RESULT_OK) {
                 // Do nothing for now
             }
         }
-        
-=======
->>>>>>> d67c77a8c1d16fc283334ff77cdf412a4afa3370
         if(requestCode==1)
 		{
 			if(resultCode==RESULT_OK)
