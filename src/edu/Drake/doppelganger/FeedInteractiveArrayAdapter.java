@@ -140,6 +140,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 	    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 	    	            b.putString("fid", element.getFID());
 	    	            b.putString("timestamp", String.valueOf(element.getTimestamp()));
+	    	            b.putString("celeb", element.getCeleb());
 	    	            
 	    	            intent.putExtras(b);
 	    	    		((Activity) v.getContext()).startActivityForResult(intent,1);
@@ -165,6 +166,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		    	            b.putStringArrayList("commentList", (ArrayList<String>) element.getCommentList());
 		    	            b.putString("fid", element.getFID());
 		    	            b.putString("timestamp", String.valueOf(element.getTimestamp()));
+		    	            b.putString("celeb", element.getCeleb());
 		    	            
 		    	            intent.putExtras(b);
 		    	    		((Activity) v.getContext()).startActivityForResult(intent,1);

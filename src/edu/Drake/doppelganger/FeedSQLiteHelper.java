@@ -148,7 +148,7 @@ public List<FeedsModel> getCeleb(String celeb)
 {
 	List<FeedsModel> contactList = new ArrayList<FeedsModel>();
 	
-	String selectQuery = "SELECT * FROM " + TABLE_POSTS + " WHERE " + COLUMN_CELEB + " LIKE '"+ celeb + "'";
+	String selectQuery = "SELECT * FROM " + TABLE_POSTS + " WHERE " + COLUMN_CELEB + "= '" + celeb + "'";
 	Log.v("ethan", selectQuery);
 	
 	SQLiteDatabase db = this.getWritableDatabase();

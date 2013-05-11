@@ -270,6 +270,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 					String fid = data.getStringExtra("fid");
 					String time = data.getStringExtra("timestamp");
 					String celeb = data.getStringExtra("celeb");
+					
 					if(celeb == null)
 					{
 						celeb = "Default Celebrity";
