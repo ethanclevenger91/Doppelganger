@@ -29,9 +29,11 @@ public class PickerActivity extends FragmentActivity {
 	    if (FRIEND_PICKER.equals(intentUri)) {
 	        if (savedInstanceState == null) {
 	            friendPickerFragment = new FriendPickerFragment(args);
+	            friendPickerFragment.setMultiSelect(false);
 	        } else {
 	            friendPickerFragment = 
 	                (FriendPickerFragment) manager.findFragmentById(R.id.picker_fragment);
+	            friendPickerFragment.setMultiSelect(false);
 	        }
 	        // Set the listener to handle errors
 	        friendPickerFragment.setOnErrorListener(new PickerFragment.OnErrorListener() {
