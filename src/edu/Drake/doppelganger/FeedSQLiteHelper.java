@@ -95,14 +95,14 @@ public FeedsModel getContact(int id) {
     		Integer.parseInt(cursor.getString(0)), 
     		cursor.getString(1), 
     		cursor.getString(2), 
-    		cursor.getString(10),
+    		cursor.getString(8),
     		Integer.parseInt(cursor.getString(3)), 
     		Integer.parseInt(cursor.getString(4)),
     		Integer.parseInt(cursor.getString(5)),
     		cursor.getString(6),
     		cursor.getString(7),
-    		cursor.getString(8),
-    		Long.parseLong(cursor.getString(9)));
+    		cursor.getString(9),
+    		Long.parseLong(cursor.getString(10)));
     
     // return contact
     return contact;

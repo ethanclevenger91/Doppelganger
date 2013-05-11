@@ -303,7 +303,7 @@ containing a value of this type.
         public static final int scroll_view1=0x7f06001c;
         public static final int search_box=0x7f060006;
         public static final int select_celeb=0x7f060025;
-        public static final int select_pic=0x7f060022;
+        public static final int select_pic=0x7f060023;
         public static final int sign_in_button=0x7f060018;
         public static final int signup=0x7f06002d;
         public static final int small=0x7f060000;
@@ -316,7 +316,7 @@ containing a value of this type.
         public static final int text_tag=0x7f06002b;
         public static final int text_up=0x7f06000d;
         public static final int welcome=0x7f060019;
-        public static final int you_friends=0x7f060023;
+        public static final int you_friends=0x7f060022;
     }
     public static final class layout {
         public static final int activity_celebrities=0x7f030000;
@@ -395,7 +395,9 @@ containing a value of this type.
         public static final int uploadright=0x7f050017;
         public static final int urness=0x7f050018;
         public static final int votedown=0x7f050019;
-        public static final int voteup=0x7f05001a;
+        public static final int votedownblue=0x7f05001a;
+        public static final int voteup=0x7f05001b;
+        public static final int voteupblue=0x7f05001c;
     }
     public static final class string {
         public static final int action_sign_in_register=0x7f070034;
