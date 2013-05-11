@@ -58,6 +58,9 @@ public class Post extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post);
 		
+		//shows the back button
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 	    Bundle extras = getIntent().getExtras();
         if (extras == null) {
           return;
