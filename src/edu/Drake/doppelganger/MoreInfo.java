@@ -146,6 +146,8 @@ public class MoreInfo extends Activity {
 	}
 	
 	public void upVote(View v) {
+		ImageButton upButton = (ImageButton) findViewById(R.id.image_up_vote);
+		upButton.setEnabled(false);
 		int ups = Integer.parseInt(upCount);
 		ups++;
 		upCount = String.valueOf(ups);

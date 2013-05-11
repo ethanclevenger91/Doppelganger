@@ -79,7 +79,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			timestamp = Calendar.getInstance().getTimeInMillis();
 			
 	    	//adds Inman
-	    	db.addContact(new FeedsModel("That is him", "Clayton Brady posted:", 3, 0, 2, null,combined, "100000194227483", timestamp));
+	    	db.addContact(new FeedsModel("That is him", "Clayton Brady posted:", "Adam Savage", 3, 0, 2, null,combined, "100000194227483", timestamp));
 	    	
 	    	myDrawable = getResources().getDrawable(R.drawable.urness);
 	    	celebDrawable = getResources().getDrawable(R.drawable.brosnan);
@@ -94,7 +94,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			timestamp = Calendar.getInstance().getTimeInMillis();
 			
 	    	//adds Urness
-	    	db.addContact(new FeedsModel("That is him", "Sara Nelson posted:", 3, 0, 2, comment,combined, "111", timestamp));
+	    	db.addContact(new FeedsModel("That is him", "Sara Nelson posted:", "Pierce Brosnan", 3, 0, 2, comment,combined, "111", timestamp));
 	    	
 	    	myDrawable = getResources().getDrawable(R.drawable.morrow);
 	    	celebDrawable = getResources().getDrawable(R.drawable.dunst);
@@ -109,7 +109,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			timestamp = Calendar.getInstance().getTimeInMillis();
 			
 	    	//adds Amanda
-	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", 3, 0, 2, null,combined, "101", timestamp));
+	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", "Kirsten Dunst", 3, 0, 2, null,combined, "101", timestamp));
 	    }
 
 	    for (FeedsModel cn : contacts) {
@@ -127,6 +127,12 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 	    
 	    setListAdapter(adapter);
 	    adapter.notifyDataSetChanged();
+	    if(MainActivity.filterByCeleb == true)
+	    {
+	    	filterCeleb(MainActivity.celebName);
+	    	spinner1.setSelection(4);
+	    	
+	    }
 	    
 	}
 	
@@ -201,6 +207,15 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 	    adapter.notifyDataSetChanged();
 	}
 	
+	public void filterCeleb(String celeb) {
+		FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
+		List<FeedsModel> contacts = db.getCeleb(celeb);
+		
+		ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, contacts);
+		setListAdapter(adapter);
+		adapter.notifyDataSetChanged();
+	}
+	
 	public void filterMostRecent() {
 		FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
 		List<FeedsModel> contacts = db.getMostRecent();
@@ -260,8 +275,8 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 	    setListAdapter(adapter);
 	  }
 
-	  public FeedsModel get(String s,int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, long timestamp) {
-	    return new FeedsModel(s,ups,downs,comments, image,desc,commentList, fid, timestamp);
+	  public FeedsModel get(String s, String celeb, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, long timestamp) {
+	    return new FeedsModel(s,celeb,ups,downs,comments, image,desc,commentList, fid, timestamp);
 	  }
 	  
 	  public void setUserName(String name){
@@ -290,10 +305,12 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 		
 		if(pos == 1)
 		{
+			MainActivity.filterByCeleb = false;
 			filterMostRecent();
 		}
 		if(pos == 3)
 		{
+			MainActivity.filterByCeleb = false;
 			filterMe();
 		}
 		

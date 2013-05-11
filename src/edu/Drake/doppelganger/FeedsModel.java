@@ -18,13 +18,13 @@ public class FeedsModel {
 	  private String imageId; // photo from camera or gallery
 	  private String desc;
 	  private List<String> commentList;
-	  //private String celeb;
+	  private String celeb;
 
 	  public FeedsModel() {
 		  
 	  }
 	  
-	  public FeedsModel(String name, /*String celeb, */int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, Long timestamp) {
+	  public FeedsModel(String name, String celeb, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, Long timestamp) {
 	    this.name = name;
 	    this.fid = fid;
 	    this.ups = ups;
@@ -34,11 +34,11 @@ public class FeedsModel {
 	    this.imageId = image;
 	    this.desc = desc;
 	    this.commentList = commentList;
-	    //this.celeb = celeb;
+	    this.celeb = celeb;
 	    selected = false;
 	  }
 	  
-	  public FeedsModel(int id, String desc, String name, /*String celeb, */int likes, int dislikes, int comments, String allComments, String image, String fid, Long timestamp) {
+	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, String allComments, String image, String fid, Long timestamp) {
 		  	this.id = id;
 		  	this.fid = fid;
 		    this.name = name;
@@ -48,7 +48,7 @@ public class FeedsModel {
 		    this.desc = desc;
 		    this.comments = comments;
 		    this.imageId = image;
-		    //this.celeb = celeb;
+		    this.celeb = celeb;
 		    Gson gson = new Gson();
 		    @SuppressWarnings("unchecked")
 			List<String> obj = gson.fromJson(allComments, ArrayList.class);
@@ -57,7 +57,7 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(int id, String desc, String name, /*String celeb, */int likes, int dislikes, int comments, List<String> allComments, String image, String fid, Long timestamp) {
+	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> allComments, String image, String fid, Long timestamp) {
 		  	this.id = id;
 		    this.name = name;
 		    this.ups = likes;
@@ -68,11 +68,11 @@ public class FeedsModel {
 		    this.fid = fid;
 		    this.commentList = allComments;
 		    this.imageId=image;
-		    //this.celeb = celeb;
+		    this.celeb = celeb;
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(String desc, String name, /*String celeb, */int likes, int dislikes, int comments, List<String> commentList, String image, String fId, Long timestamp) {
+	  public FeedsModel(String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> commentList, String image, String fId, Long timestamp) {
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
@@ -82,7 +82,7 @@ public class FeedsModel {
 		    this.commentList = commentList;
 		    this.imageId = image;
 		    this.fid = fId;
-		    //this.celeb = celeb;
+		    this.celeb = celeb;
 		    selected = false;
 		  }
 	  //
@@ -115,7 +115,7 @@ public class FeedsModel {
 		  return this.timestamp;
 	  }
 	  
-	  /*
+	  
 	  public String getCeleb() {
 		  return celeb;
 	  }
@@ -123,7 +123,7 @@ public class FeedsModel {
 	  public void setCeleb(String celeb) {
 		  this.celeb = celeb;
 	  }
-	  */
+	  
 	  
 	  public List<String> getCommentList() {
 		  return commentList;
