@@ -31,6 +31,7 @@ public class CelebritiesFragment extends ListFragment {
 	DefaultHttpClient httpclient = new DefaultHttpClient();
 	private TextWatcher filterTextWatcher = null;
 	List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
+	OnCelebritySelectedListener mListener;
 	
 	 @Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,24 +105,27 @@ public class CelebritiesFragment extends ListFragment {
 	{
 		
 		CelebrityEntry celebrity = (CelebrityEntry) getListView().getItemAtPosition(position);
-		Intent makeAPost = new Intent(v.getContext(), Post.class);
-		makeAPost.putExtra("image", celebrity.getPic());
-		makeAPost.putExtra("celeb", celebrity.getName());
-		startActivity(makeAPost);
+		mListener.onCelebritySelected(celebrity);
+		
+		//Intent makeAPost = new Intent(v.getContext(), Post.class);
+		//makeAPost.putExtra("image", celebrity.getPic());
+		//makeAPost.putExtra("celeb", celebrity.getName());
+		//startActivity(makeAPost);
 		
 	}
 	
 	
-	//private List<CelebrityEntry> getModel() {
-	    //List<CelebrityEntry> list = new ArrayList<CelebrityEntry>();
-	    //list.add(get("Adam Savage","http://www.ethanclevenger.com/MirrorMe/images/hanks.png"));
-	    /*list.add(getOrig("Anne Hathaway",R.drawable.hathaway));
-	    list.add(getOrig("Ellen Page",R.drawable.page));
-	    list.add(getOrig("Jon Heder/Napolean Dynamite",R.drawable.ndynamite));
-	    list.add(get("Kirsten Dunst",R.drawable.dunst));
-	    list.add(get("Emma Stone",R.drawable.stone));
-	    list.add(get("Pierce Brosnan",R.drawable.brosnan));
-	    list.add(get("Zooey Deschanel",R.drawable.zooey));*/
-	    //return list;
-	 // }
+	public interface OnCelebritySelectedListener {
+        public void onCelebritySelected(CelebrityEntry celebrity);
+    }
+	
+	@Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnCelebritySelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnCelebritySelectedListener");
+        }
+    }
 }

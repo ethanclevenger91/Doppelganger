@@ -38,7 +38,7 @@
                     android:layout_above="@+id/you_friends"
                     android:onClick="selectPic"
                     android:scaleType="fitXY"
-                    android:src="@raw/upload" />
+                    android:src="@raw/uploadleft" />
                 
                 <TextView
                     android:id="@+id/you_friends"
@@ -70,7 +70,7 @@
                     android:adjustViewBounds="true"
                     android:onClick="selectCeleb"
                     android:scaleType="fitXY"
-                    android:src="@raw/upload" />
+                    android:src="@raw/uploadright" />
 
                 <TextView
                     android:id="@+id/celeb_text"

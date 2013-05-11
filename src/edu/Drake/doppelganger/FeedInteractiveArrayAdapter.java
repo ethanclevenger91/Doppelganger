@@ -80,10 +80,11 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 			        	List<String> commentList = element.getCommentList();
 			        	String fid = element.getFID();
 			        	long timestamp = element.getTimestamp();
+			        	String celeb = element.getCeleb();
 			        	
 			        	FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
 			        	
-			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid, timestamp);
+			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp);
 			        	db.updateContact(newModel);
 	    		  	}
 				}
@@ -109,10 +110,11 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 			        	List<String> commentList = element.getCommentList();
 			        	String fid = element.getFID();
 			        	long timestamp = element.getTimestamp();
+			        	String celeb = element.getCeleb();
 			        	
 			        	FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
 			        	
-			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, ups, downs, commentCount, commentList, image, fid, timestamp);
+			        	FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp);
 			        	db.updateContact(newModel);
 	                  
 	    		  }
