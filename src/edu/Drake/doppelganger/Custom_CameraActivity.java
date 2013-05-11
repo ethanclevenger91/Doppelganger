@@ -22,12 +22,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ShareActionProvider;
 
 
 public class Custom_CameraActivity extends Activity {
@@ -39,12 +41,11 @@ public class Custom_CameraActivity extends Activity {
     int orientation;
     String myPath;
     Uri myUri;
-    Button useButton;
-    Button retakeButton;
     ImageButton gallery;
-    ImageButton captureButton;
+    Button captureButton;
     private static int RESULT_LOAD_IMAGE = 1;
     String picturePath = null;
+    boolean readyToUse = false;
 
     /** Called when the activity is first created. */
     @SuppressWarnings("deprecation")
@@ -72,25 +73,26 @@ public class Custom_CameraActivity extends Activity {
         mCameraPreview = new CameraPreview(this, mCamera);
         
         preview.addView(mCameraPreview);
-        final Button useButton = (Button) findViewById(R.id.button_use);
-        final Button captureButton = (Button) findViewById(R.id.button_capture);
+        captureButton = (Button) findViewById(R.id.button_capture);
         gallery = (ImageButton) findViewById(R.id.gallery);
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             	if(!isPicTaken){
             		mCamera.takePicture(shutterCallback, rawCallback, mPicture);
-            		useButton.setVisibility(View.VISIBLE);
+            		readyToUse = true;
             		captureButton.setText("Retake");
             		gallery.setVisibility(View.INVISIBLE);
+            		invalidateOptionsMenu();
             	}
             	else {
             		
             		mCamera.startPreview();
             		isPicTaken=false;
             		gallery.setVisibility(View.VISIBLE);
-            		useButton.setVisibility(View.INVISIBLE);
             		captureButton.setText("Capture");
+            		readyToUse = false;
+            		invalidateOptionsMenu();
             		
             	}
             }
@@ -106,6 +108,23 @@ public class Custom_CameraActivity extends Activity {
 		 });
         
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		MenuItem use = menu.findItem(R.id.menu_use);
+		if(readyToUse == true)
+		{
+			use.setEnabled(true);
+		}
+		else
+		{
+			use.setEnabled(false);
+		}
+		
+		 return true;
+	}
 
     /**
      * Helper method to access the camera returns null if it cannot get the
@@ -228,6 +247,14 @@ public class Custom_CameraActivity extends Activity {
         }
 	}
     
+    public void usePic(){
+        Intent intent = new Intent();
+        intent.putExtra("return", myPath);
+        setResult(RESULT_OK, intent); 
+        
+        super.finish();
+	}
+    
     @Override
 	//this is used on the up button press
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -243,6 +270,10 @@ public class Custom_CameraActivity extends Activity {
 	        case R.id.menu_cancel:
 	        	cancelMenuItem();
 	        	break;
+	        	
+	        case R.id.menu_use:
+	        	usePic();
+	        	break;
 	    }
 	    //returns the item selected, in this case the up button
 	    return super.onOptionsItemSelected(item);
@@ -252,13 +283,7 @@ public class Custom_CameraActivity extends Activity {
 		onBackPressed();
 	}
 	
-	public void usePic(View v){
-        Intent intent = new Intent();
-        intent.putExtra("return", myPath);
-        setResult(RESULT_OK, intent); 
-        
-        super.finish();
-	}
+	
 	
 	@Override
 	public void onDestroy()
