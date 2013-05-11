@@ -175,7 +175,7 @@ public class MoreInfo extends Activity {
 		 Intent intent = new Intent(Intent.ACTION_SEND);
 		 intent.setType("image/*");
 		 intent.putExtra(Intent.EXTRA_STREAM, myUri);
-		 intent.putExtra(Intent.EXTRA_TEXT, "Made with the #MirrorMe app");
+		 intent.putExtra(Intent.EXTRA_TEXT, desc + " - Made with the #MirrorMe app");
 		 mShareActionProvider.setShareIntent(intent);
 		 return true;
 	}
