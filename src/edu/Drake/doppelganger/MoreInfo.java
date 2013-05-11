@@ -170,7 +170,12 @@ public class MoreInfo extends Activity {
 		getMenuInflater().inflate(R.menu.activity_more_info, menu);
 		mShareActionProvider = (ShareActionProvider) menu.findItem(R.id.menu_share)
 		        .getActionProvider();
-		    return true;
+		 Intent intent = new Intent(Intent.ACTION_SEND);
+		 intent.setType("image/*");
+		 intent.putExtra(Intent.EXTRA_STREAM, myUri);
+		 intent.putExtra(Intent.EXTRA_TEXT, "Made with the #MirrorMe app");
+		 mShareActionProvider.setShareIntent(intent);
+		 return true;
 	}
 	
 	
@@ -186,27 +191,13 @@ public class MoreInfo extends Activity {
 	        	onBackPressed();
 	        		 
 	        	break;
-	        case R.id.menu_share:
-	              doShare();
-	              break;
 	    }
 	    //returns the item selected, in this case the up button
 	    return super.onOptionsItemSelected(item);
 	}
 	
-	@SuppressLint("NewApi")
-	public void doShare() {
-	    // Populare the share intent with data
-	    Intent intent = new Intent(Intent.ACTION_SEND);
-	    intent.setType("image/*");
-	    intent.putExtra(Intent.EXTRA_STREAM, myUri);
-	    intent.putExtra(Intent.EXTRA_TEXT, "Made with the #MirrorMe app");
-	    mShareActionProvider.setShareIntent(intent);
-	  } 
-	
 	@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
 		
         super.onActivityResult(requestCode, resultCode, data);
         
