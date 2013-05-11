@@ -92,6 +92,7 @@ public class Custom_CameraActivity extends Activity {
             		gallery.setVisibility(View.VISIBLE);
             		captureButton.setText("Capture");
             		readyToUse = false;
+            		invalidateOptionsMenu();
             		
             	}
             }
