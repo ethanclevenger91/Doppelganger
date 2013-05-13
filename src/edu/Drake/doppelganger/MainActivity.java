@@ -281,9 +281,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 					feedFragment = (FeedFragment) getFragmentManager().findFragmentByTag("FEED");
 
 					if(data.getStringExtra("comment") != null){
-						Log.v("MainActivity", "I am not null");
 						String comments = data.getStringExtra("comment");
-						Log.v("MainActivity", comments);
 						commentList= data.getStringArrayListExtra("commentList");
 						commentCount = Integer.parseInt(comments);
 					}

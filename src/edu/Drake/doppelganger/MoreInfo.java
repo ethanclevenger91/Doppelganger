@@ -35,6 +35,10 @@ public class MoreInfo extends Activity {
 	private String id;
 	private ShareActionProvider mShareActionProvider;
 	private Uri myUri;
+	ImageButton upButton;
+	ImageButton downButton;
+	boolean upVoted;
+	boolean downVoted;
 	
 	public void addComment(View v) {
 		
@@ -54,7 +58,10 @@ public class MoreInfo extends Activity {
 		TextView upView = (TextView) findViewById(R.id.text_up);
 		TextView downView = (TextView) findViewById(R.id.text_down);
 		ImageButton photoButton = (ImageButton) findViewById(R.id.image_button1);
-		Log.v("Here", "got views");
+		upButton = (ImageButton) findViewById(R.id.image_up_vote);
+		downButton = (ImageButton) findViewById(R.id.image_down_vote);
+		upVoted = false;
+		downVoted = false;
 		
 		upCount = getIntent().getStringExtra("ups");
 		downCount = getIntent().getStringExtra("downs");
@@ -84,7 +91,7 @@ public class MoreInfo extends Activity {
 		params.addRule(RelativeLayout.BELOW, R.id.textView1);
 		photoButton.setLayoutParams(params);
 		
-
+		
         
 		Bitmap bitmap = BitmapHelper.decodeFile(new File(image), newWidth, newWidth, false);
         photoButton.setImageBitmap(bitmap);
@@ -149,23 +156,79 @@ public class MoreInfo extends Activity {
 	}
 	
 	public void upVote(View v) {
-		ImageButton upButton = (ImageButton) findViewById(R.id.image_up_vote);
-		upButton.setEnabled(false);
-		int ups = Integer.parseInt(upCount);
-		ups++;
-		upCount = String.valueOf(ups);
-
 		TextView upView = (TextView) findViewById(R.id.text_up);
-		upView.setText(upCount);
+		if(!upVoted && !downVoted)
+		{
+			upButton.setImageResource(R.raw.voteupblue);
+			int ups = Integer.parseInt(upCount);
+			ups++;
+			upCount = String.valueOf(ups);
+			upView.setText(upCount);
+			upVoted = true;
+		}
+		else if(upVoted && !downVoted)
+		{
+			upButton.setImageResource(R.raw.voteup);
+			int ups = Integer.parseInt(upCount);
+			ups--;
+			upCount = String.valueOf(ups);
+			upView.setText(upCount);
+			upVoted = false;
+		}
+		else if(!upVoted && downVoted)
+		{
+			TextView downView = (TextView) findViewById(R.id.text_down);
+			downButton.setImageResource(R.raw.votedown);
+			upButton.setImageResource(R.raw.voteupblue);
+			int ups = Integer.parseInt(upCount);
+			int downs = Integer.parseInt(downCount);
+			ups++;
+			downs--;
+			upCount = String.valueOf(ups);
+			downCount = String.valueOf(downs);
+			upView.setText(upCount);
+			downView.setText(downCount);
+			downVoted = false;
+			upVoted = true;
+		}
 	}
 	
 	public void downVote(View v) {
-		int downs = Integer.parseInt(downCount);
-		downs++;
-		downCount = String.valueOf(downs);
-
 		TextView downView = (TextView) findViewById(R.id.text_down);
-		downView.setText(downCount);
+		if(!downVoted && !upVoted)
+		{
+			int downs = Integer.parseInt(downCount);
+			downs++;
+			downCount = String.valueOf(downs);
+			downView.setText(downCount);
+			downButton.setImageResource(R.raw.votedownblue);
+			downVoted = true;
+		}
+		else if(downVoted && !upVoted)
+		{
+			int downs = Integer.parseInt(downCount);
+			downs--;
+			downCount = String.valueOf(downs);
+			downView.setText(downCount);
+			downButton.setImageResource(R.raw.votedown);
+			downVoted = false;
+		}
+		else if(!downVoted && upVoted)
+		{
+			int downs = Integer.parseInt(downCount);
+			int ups = Integer.parseInt(upCount);
+			downs++;
+			ups--;
+			downCount = String.valueOf(downs);
+			upCount = String.valueOf(ups);
+			downView.setText(downCount);
+			TextView upView = (TextView) findViewById(R.id.text_up);
+			upView.setText(upCount);
+			upVoted = false;
+			downVoted = true;
+			downButton.setImageResource(R.raw.votedownblue);
+			upButton.setImageResource(R.raw.voteup);
+		}
 	}
 	
 	@SuppressLint("NewApi")
@@ -189,12 +252,8 @@ public class MoreInfo extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case android.R.id.home:
-	        		 
-	        	//disables the up button
 	        	getActionBar().setDisplayHomeAsUpEnabled(false);
-	        	
 	        	onBackPressed();
-	        		 
 	        	break;
 	    }
 	    //returns the item selected, in this case the up button

@@ -174,8 +174,16 @@ public class FeedsModel {
 		  this.ups++;
 	  }
 	  
+	  public void decrementUp() {
+		  this.ups--;
+	  }
+	  
 	  public void incrementDown() {
 		  this.downs++;
+	  }
+	  
+	  public void decrementDown() {
+		  this.downs--;
 	  }
 	  
 	  public void setDowns(int n) {
