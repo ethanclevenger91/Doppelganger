@@ -118,7 +118,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/you_friends"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="Caption:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="20sp" />
@@ -133,16 +133,15 @@
             android:layout_alignLeft="@+id/edit_text_tag"
             android:ems="10" />
 
-        <EditText
+        <TextView
             android:id="@+id/edit_text_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="false"
-            android:imeOptions="actionDone"
-       		android:inputType="text"
+            android:layout_marginTop="20dp"
             android:layout_alignLeft="@+id/post_button"
             android:layout_below="@+id/edit_text_caption"
-            android:ems="10" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/text_tag"

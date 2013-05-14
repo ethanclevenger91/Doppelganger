@@ -67,7 +67,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 	    {
 	    	
 	    	Drawable myDrawable = getResources().getDrawable(R.drawable.inman);
-	    	Drawable celebDrawable = getResources().getDrawable(R.drawable.savage);
+	    	Drawable celebDrawable = getResources().getDrawable(R.drawable.porterhouse);
 	    	
 			Bitmap myCeleb = ((BitmapDrawable) myDrawable).getBitmap();
 			Bitmap myCelebPic = ((BitmapDrawable) celebDrawable).getBitmap();

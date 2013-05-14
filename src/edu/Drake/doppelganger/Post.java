@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -34,6 +35,8 @@ import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.facebook.model.GraphUser;
+
 public class Post extends Activity {
 	
 	ImageView theImage;
@@ -48,7 +51,7 @@ public class Post extends Activity {
 	String url;
 	boolean userPic = false;
 	boolean celebPic = false;
-	
+	private List<GraphUser> selectedUsers;
 	private static int REAUTH_ACTIVITY_CODE = 1010101;
 	private static int SELECT_FOR_PIC = 5713;
 	
@@ -156,6 +159,41 @@ public class Post extends Activity {
 		Intent intent = new Intent(v.getContext(), Custom_CameraActivity.class);
 		startActivityForResult(intent,SELECT_FOR_PIC);
 	}
+	
+	private void setUsersText() {
+	    String text = null;
+	    if (selectedUsers != null) {
+	            // If there is one friend
+	        if (selectedUsers.size() == 1) {
+	            text = String.format(getResources()
+	                    .getString(R.string.single_user_selected),
+	                    selectedUsers.get(0).getName());
+	        } else if (selectedUsers.size() == 2) {
+	            // If there are two friends 
+	            text = String.format(getResources()
+	                    .getString(R.string.two_users_selected),
+	                    selectedUsers.get(0).getName(), 
+	                    selectedUsers.get(1).getName());
+	        } else if (selectedUsers.size() > 2) {
+	            // If there are more than two friends 
+	            text = String.format(getResources()
+	                    .getString(R.string.multiple_users_selected),
+	                    selectedUsers.get(0).getName(), 
+	                    (selectedUsers.size() - 1));
+	        }   
+	    }   
+	    if (text == null) {
+	        // If no text, use the placeholder text
+	        text = getResources()
+	        .getString(R.string.action_people_default);
+	    }   
+	    // Set the text in list element. This will notify the 
+	    // adapter that the data has changed to
+	    // refresh the list view.
+	   // setText2(text);
+	    TextView myText = (TextView) findViewById(R.id.edit_text_tag);
+	    myText.setText(text);
+	} 
 	
 	public void postToFeed(View v) {
 		Intent intent = getIntent();
@@ -301,7 +339,11 @@ public class Post extends Activity {
         
         if (requestCode == REAUTH_ACTIVITY_CODE) {
         	if(resultCode == RESULT_OK) {
-                // Do nothing for now
+        		selectedUsers = ((FriendApplication) this
+        	             .getApplication())
+        	             .getSelectedUsers();
+        	    setUsersText();
+        	    //notifyDataChanged();
             }
         }
         if(requestCode==1)

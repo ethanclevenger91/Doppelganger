@@ -226,15 +226,16 @@ containing a value of this type.
         public static final int morrow=0x7f020029;
         public static final int ndynamite=0x7f02002a;
         public static final int page=0x7f02002b;
-        public static final int post_button=0x7f02002c;
-        public static final int savage=0x7f02002d;
-        public static final int search=0x7f02002e;
-        public static final int social_share=0x7f02002f;
-        public static final int stone=0x7f020030;
-        public static final int upload=0x7f020031;
-        public static final int upload_border=0x7f020032;
-        public static final int urness=0x7f020033;
-        public static final int zooey=0x7f020034;
+        public static final int porterhouse=0x7f02002c;
+        public static final int post_button=0x7f02002d;
+        public static final int savage=0x7f02002e;
+        public static final int search=0x7f02002f;
+        public static final int social_share=0x7f020030;
+        public static final int stone=0x7f020031;
+        public static final int upload=0x7f020032;
+        public static final int upload_border=0x7f020033;
+        public static final int urness=0x7f020034;
+        public static final int zooey=0x7f020035;
     }
     public static final class id {
         public static final int button_capture=0x7f060047;
@@ -385,25 +386,27 @@ containing a value of this type.
         public static final int moreinfo=0x7f05000b;
         public static final int morrow=0x7f05000c;
         public static final int notifications=0x7f05000d;
-        public static final int postscreen=0x7f05000e;
-        public static final int selectceleb=0x7f05000f;
-        public static final int selectpic=0x7f050010;
-        public static final int signin=0x7f050011;
-        public static final int signup=0x7f050012;
-        public static final int start=0x7f050013;
-        public static final int takepicture=0x7f050014;
-        public static final int upload=0x7f050015;
-        public static final int uploadleft=0x7f050016;
-        public static final int uploadright=0x7f050017;
-        public static final int urness=0x7f050018;
-        public static final int votedown=0x7f050019;
-        public static final int votedownblue=0x7f05001a;
-        public static final int voteup=0x7f05001b;
-        public static final int voteupblue=0x7f05001c;
+        public static final int porterhouse=0x7f05000e;
+        public static final int postscreen=0x7f05000f;
+        public static final int selectceleb=0x7f050010;
+        public static final int selectpic=0x7f050011;
+        public static final int signin=0x7f050012;
+        public static final int signup=0x7f050013;
+        public static final int start=0x7f050014;
+        public static final int takepicture=0x7f050015;
+        public static final int upload=0x7f050016;
+        public static final int uploadleft=0x7f050017;
+        public static final int uploadright=0x7f050018;
+        public static final int urness=0x7f050019;
+        public static final int votedown=0x7f05001a;
+        public static final int votedownblue=0x7f05001b;
+        public static final int voteup=0x7f05001c;
+        public static final int voteupblue=0x7f05001d;
     }
     public static final class string {
-        public static final int action_sign_in_register=0x7f070034;
-        public static final int action_sign_in_short=0x7f070035;
+        public static final int action_people_default=0x7f07002e;
+        public static final int action_sign_in_register=0x7f070038;
+        public static final int action_sign_in_short=0x7f070039;
         public static final int app_id=0x7f07002a;
         public static final int app_name=0x7f070019;
         public static final int com_facebook_choose_friends=0x7f07000f;
@@ -431,32 +434,34 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_log_in_button=0x7f070008;
         public static final int com_facebook_usersettingsfragment_logged_in=0x7f070009;
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f07000a;
-        public static final int error_dialog_button_text=0x7f07002e;
-        public static final int error_dialog_title=0x7f07002d;
-        public static final int error_field_required=0x7f07003b;
-        public static final int error_incorrect_password=0x7f07003a;
-        public static final int error_invalid_email=0x7f070038;
-        public static final int error_invalid_password=0x7f070039;
+        public static final int error_dialog_button_text=0x7f070032;
+        public static final int error_dialog_title=0x7f070031;
+        public static final int error_field_required=0x7f07003f;
+        public static final int error_incorrect_password=0x7f07003e;
+        public static final int error_invalid_email=0x7f07003c;
+        public static final int error_invalid_password=0x7f07003d;
         public static final int hello_world=0x7f07001a;
-        public static final int login_progress_signing_in=0x7f070037;
+        public static final int login_progress_signing_in=0x7f07003b;
         public static final int menu_cancel=0x7f07001b;
-        public static final int menu_forgot_password=0x7f070036;
-        public static final int menu_post=0x7f07002f;
+        public static final int menu_forgot_password=0x7f07003a;
+        public static final int menu_post=0x7f070033;
         public static final int menu_settings=0x7f07001c;
-        public static final int menu_share=0x7f07002b;
-        public static final int menu_use=0x7f070030;
+        public static final int menu_share=0x7f07002f;
+        public static final int menu_use=0x7f070034;
+        public static final int multiple_users_selected=0x7f07002d;
         public static final int name_string=0x7f07001d;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f070032;
-        public static final int prompt_password=0x7f070033;
-        public static final int search_hint=0x7f07002c;
+        public static final int prompt_email=0x7f070036;
+        public static final int prompt_password=0x7f070037;
+        public static final int search_hint=0x7f070030;
+        public static final int single_user_selected=0x7f07002b;
         public static final int title_activity_camerademo=0x7f070024;
         public static final int title_activity_celebrities=0x7f070021;
         public static final int title_activity_celebrity_entry=0x7f070027;
         public static final int title_activity_celebrity_entry_adapter=0x7f070028;
         public static final int title_activity_facebook=0x7f070026;
-        public static final int title_activity_login=0x7f070031;
+        public static final int title_activity_login=0x7f070035;
         public static final int title_activity_more_info=0x7f07001e;
         public static final int title_activity_notifications=0x7f070022;
         public static final int title_activity_post=0x7f07001f;
@@ -464,6 +469,7 @@ containing a value of this type.
         public static final int title_activity_signin=0x7f070025;
         public static final int title_activity_take_picture=0x7f070020;
         public static final int title_comment=0x7f070029;
+        public static final int two_users_selected=0x7f07002c;
     }
     public static final class style {
         /** 
