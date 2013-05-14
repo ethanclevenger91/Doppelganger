@@ -55,7 +55,7 @@ public class MoreInfo extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_more_info);
 		
-		
+		TextView poster = (TextView) findViewById(R.id.textView1);
 		TextView descView = (TextView) findViewById(R.id.description);
 		TextView upView = (TextView) findViewById(R.id.text_up);
 		TextView downView = (TextView) findViewById(R.id.text_down);
@@ -123,7 +123,10 @@ public class MoreInfo extends Activity {
 		descView.setText(desc);
 		upView.setText(upCount);
 		downView.setText(downCount);
-
+		poster.setText(String.format(getResources().getString(R.string.user_posted),name));
+		
+		
+		
         //shows the back button
         getActionBar().setDisplayHomeAsUpEnabled(true);
 	

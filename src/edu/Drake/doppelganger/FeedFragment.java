@@ -224,6 +224,15 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 	    adapter.notifyDataSetChanged();
 	}
 	
+	public void filterTrending() {
+		FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
+		List<FeedsModel> contacts = db.getAllContacts();
+		
+		ArrayAdapter<FeedsModel> adapter = new FeedInteractiveArrayAdapter(this, contacts);
+	    setListAdapter(adapter);
+	    adapter.notifyDataSetChanged();
+	}
+	
 	public void getUserName(){
 		
 		//Log.v("FeedFragment", userName);
@@ -303,6 +312,11 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			long arg3) {
 		Log.v("Feed", String.valueOf(pos));
 		
+		if(pos == 0)
+		{
+			MainActivity.filterByCeleb = false;
+			filterTrending();
+		}
 		if(pos == 1)
 		{
 			MainActivity.filterByCeleb = false;

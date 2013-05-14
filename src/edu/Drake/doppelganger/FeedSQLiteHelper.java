@@ -269,7 +269,7 @@ public List<FeedsModel> getAllContacts() {
 	
 	List<FeedsModel> contactList = new ArrayList<FeedsModel>();
     // Select All Query
-    String selectQuery = "SELECT  * FROM " + TABLE_POSTS;
+    String selectQuery = "SELECT  * FROM " + TABLE_POSTS + " ORDER BY " + COLUMN_LIKE + " DESC";
  
     SQLiteDatabase db = this.getWritableDatabase();
     Cursor cursor = db.rawQuery(selectQuery, null);
