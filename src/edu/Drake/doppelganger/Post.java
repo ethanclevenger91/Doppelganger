@@ -47,6 +47,8 @@ public class Post extends Activity {
 	Bitmap bitmap;
 	Bitmap myCeleb;
 	Bitmap myMap;
+	boolean isTagged = false;
+	String tag = "10001";
 	public int height;
 	String url;
 	boolean userPic = false;
@@ -232,6 +234,16 @@ public class Post extends Activity {
 		Log.v("Post", returnString);
 		
     	intent.putExtra("caption", myCaption.getText().toString());
+    	
+    	if(isTagged)
+    	{
+    		intent.putExtra("tag", String.format(getResources()
+	                    .getString(R.string.single_user_selected),
+	                    selectedUsers.get(0).getId()));
+    	}
+    	else{
+    		intent.putExtra("tag", tag);
+    	}
     	intent.putExtra("photo", combined);
     	intent.putExtra("celeb", celebName);
     	
@@ -339,6 +351,7 @@ public class Post extends Activity {
         
         if (requestCode == REAUTH_ACTIVITY_CODE) {
         	if(resultCode == RESULT_OK) {
+        		isTagged = true;
         		selectedUsers = ((FriendApplication) this
         	             .getApplication())
         	             .getSelectedUsers();

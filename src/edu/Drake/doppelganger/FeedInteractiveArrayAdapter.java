@@ -81,10 +81,11 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 						String fid = element.getFID();
 						long timestamp = element.getTimestamp();
 						String celeb = element.getCeleb();
+						String tag = element.getTag();
 
 						FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
 
-						FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp);
+						FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag);
 						db.updateContact(newModel);
 					}
 				}
@@ -111,10 +112,11 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 						String fid = element.getFID();
 						long timestamp = element.getTimestamp();
 						String celeb = element.getCeleb();
+						String tag = element.getTag();
 
 						FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
 
-						FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp);
+						FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag);
 						db.updateContact(newModel);
 
 					}
@@ -140,6 +142,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 					b.putString("fid", element.getFID());
 					b.putString("timestamp", String.valueOf(element.getTimestamp()));
 					b.putString("celeb", element.getCeleb());
+					b.putString("tag", element.getTag());
 
 					intent.putExtras(b);
 					((Activity) v.getContext()).startActivityForResult(intent,1);
@@ -165,6 +168,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 					b.putString("fid", element.getFID());
 					b.putString("timestamp", String.valueOf(element.getTimestamp()));
 					b.putString("celeb", element.getCeleb());
+					b.putString("tag", element.getTag());
 
 					intent.putExtras(b);
 					((Activity) v.getContext()).startActivityForResult(intent,1);

@@ -15,6 +15,7 @@ public class FeedsModel {
 	  private int ups;
 	  private int downs;
 	  private int comments;
+	  private String tag;
 	  private String imageId; // photo from camera or gallery
 	  private String desc;
 	  private List<String> commentList;
@@ -24,7 +25,7 @@ public class FeedsModel {
 		  
 	  }
 	  
-	  public FeedsModel(String name, String celeb, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, Long timestamp) {
+	  public FeedsModel(String name, String celeb, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, Long timestamp, String tag) {
 	    this.name = name;
 	    this.fid = fid;
 	    this.ups = ups;
@@ -33,17 +34,19 @@ public class FeedsModel {
 	    this.comments=comments;
 	    this.imageId = image;
 	    this.desc = desc;
+	    this.tag = tag;
 	    this.commentList = commentList;
 	    this.celeb = celeb;
 	    selected = false;
 	  }
 	  
-	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, String allComments, String image, String fid, Long timestamp) {
+	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, String allComments, String image, String fid, Long timestamp, String tag) {
 		  	this.id = id;
 		  	this.fid = fid;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
+		    this.tag = tag;
 		    this.timestamp = timestamp;
 		    this.desc = desc;
 		    this.comments = comments;
@@ -57,13 +60,14 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> allComments, String image, String fid, Long timestamp) {
+	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> allComments, String image, String fid, Long timestamp, String tag) {
 		  	this.id = id;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
 		    this.timestamp = timestamp;
+		    this.tag = tag;
 		    this.comments = comments;
 		    this.fid = fid;
 		    this.commentList = allComments;
@@ -72,11 +76,12 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> commentList, String image, String fId, Long timestamp) {
+	  public FeedsModel(String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> commentList, String image, String fId, Long timestamp, String tag) {
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
+		    this.tag = tag;
 		    this.timestamp = timestamp;
 		    this.comments = comments;
 		    this.commentList = commentList;
@@ -95,6 +100,16 @@ public class FeedsModel {
 	  public String getFID()
 	  {
 		  return this.fid;
+	  }
+	  
+	  public void setTag(String tag)
+	  {
+		  this.tag =tag;
+	  }
+	  
+	  public String getTag()
+	  {
+		  return this.tag;
 	  }
 	  
 	  public int getId() {

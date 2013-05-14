@@ -30,6 +30,7 @@ public class MoreInfo extends Activity {
 	private String name;
 	private String celeb;
 	private String fid;
+	private String tag;
 	private String time;
 	private List<String> commentList;
 	private String id;
@@ -73,6 +74,7 @@ public class MoreInfo extends Activity {
 		fid= getIntent().getStringExtra("fid");
 		time = getIntent().getStringExtra("timestamp");
 		celeb= getIntent().getStringExtra("celeb");
+		tag = getIntent().getStringExtra("tag");
 		
 		myUri = Uri.fromFile(new File(image));
 		
@@ -141,6 +143,7 @@ public class MoreInfo extends Activity {
 	    	intent.putExtra("fid", fid);
 	    	intent.putExtra("timestamp", time);
 	    	intent.putExtra("celeb", celeb);
+	    	intent.putExtra("tag", tag);
 	    	
 	    	
 	    	if(commentList!=null) {

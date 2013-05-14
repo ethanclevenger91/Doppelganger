@@ -46,6 +46,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 	public static Context appContext;
 	public static String myName;
 	public String myCaption;
+	public String myTag;
 	public FeedFragment feedFragment;
 	public Spinner spinner1;
 	public FeedSQLiteHelper db;
@@ -270,6 +271,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 					String fid = data.getStringExtra("fid");
 					String time = data.getStringExtra("timestamp");
 					String celeb = data.getStringExtra("celeb");
+					String tag = data.getStringExtra("tag");
 					
 					if(celeb == null)
 					{
@@ -292,7 +294,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 					long timestamp = Long.parseLong(time);
 					db = new FeedSQLiteHelper(this);
 
-					FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp);
+					FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag);
 					db.updateContact(newModel);
 					feedFragment.refresh();
 				}
@@ -303,6 +305,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 			if(resultcode==RESULT_OK && null!=data)
 			{
 				myCaption = data.getStringExtra("caption");
+				myTag = data.getStringExtra("tag");
 				imagePath = data.getStringExtra("photo");
 				final String celeb = data.getStringExtra("celeb");
 
@@ -335,7 +338,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 										String finalString = user.getName() + " posted: ";
 										String facebookId = user.getId();
 										Log.v("Main", "sweet");
-										db.addContact(new FeedsModel(myCaption,finalString,celeb,0,0,0,null,imagePath,facebookId,timestamp));
+										db.addContact(new FeedsModel(myCaption,finalString,celeb,0,0,0,null,imagePath,facebookId,timestamp,myTag));
 										Log.v("Main", "yay");
 										feedFragment.refresh();
 										Log.v("Main", "refresh");
