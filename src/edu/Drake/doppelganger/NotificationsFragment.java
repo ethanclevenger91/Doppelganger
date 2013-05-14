@@ -23,7 +23,7 @@ public class NotificationsFragment extends ListFragment {
 	    final ActionBar actionBar = getActivity().getActionBar();
 		actionBar.setCustomView(R.layout.custom_actionbar);
 		actionBar.setDisplayShowCustomEnabled(false);
-	        
+	      
 	    filterMostRecent();
 	}
 	
@@ -35,6 +35,26 @@ public class NotificationsFragment extends ListFragment {
 	    setListAdapter(adapter);
 	    adapter.notifyDataSetChanged();
 	}
+	
+	public void refresh(){
+		FeedSQLiteHelper db = new FeedSQLiteHelper(this.getActivity().getBaseContext());
+		List<FeedsModel> contacts = db.getMostRecent(); //change to find posts user is tagged in
+		
+		ArrayAdapter<FeedsModel> adapter = new NotificationsArrayAdapter(this, contacts);
+	    setListAdapter(adapter);
+	    adapter.notifyDataSetChanged();
+	  }
+	
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    refresh();
+	  }
+
+	  @Override
+	public void onPause() {
+	    super.onPause();
+	  }
 	
 	
 /*

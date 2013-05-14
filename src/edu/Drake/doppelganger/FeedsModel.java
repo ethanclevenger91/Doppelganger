@@ -13,6 +13,7 @@ public class FeedsModel {
 	  private String fid;
 	  private long timestamp;
 	  private int ups;
+	  private String read;
 	  private int downs;
 	  private int comments;
 	  private String tag;
@@ -25,7 +26,7 @@ public class FeedsModel {
 		  
 	  }
 	  
-	  public FeedsModel(String name, String celeb, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, Long timestamp, String tag) {
+	  public FeedsModel(String name, String celeb, int ups, int downs, int comments, String image, String desc, List<String> commentList, String fid, Long timestamp, String tag, String read) {
 	    this.name = name;
 	    this.fid = fid;
 	    this.ups = ups;
@@ -33,6 +34,7 @@ public class FeedsModel {
 	    this.downs=downs;
 	    this.comments=comments;
 	    this.imageId = image;
+	    this.read = read;
 	    this.desc = desc;
 	    this.tag = tag;
 	    this.commentList = commentList;
@@ -40,12 +42,13 @@ public class FeedsModel {
 	    selected = false;
 	  }
 	  
-	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, String allComments, String image, String fid, Long timestamp, String tag) {
+	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, String allComments, String image, String fid, Long timestamp, String tag, String read) {
 		  	this.id = id;
 		  	this.fid = fid;
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
+		    this.read = read;
 		    this.tag = tag;
 		    this.timestamp = timestamp;
 		    this.desc = desc;
@@ -60,7 +63,7 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> allComments, String image, String fid, Long timestamp, String tag) {
+	  public FeedsModel(int id, String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> allComments, String image, String fid, Long timestamp, String tag, String read) {
 		  	this.id = id;
 		    this.name = name;
 		    this.ups = likes;
@@ -69,6 +72,7 @@ public class FeedsModel {
 		    this.timestamp = timestamp;
 		    this.tag = tag;
 		    this.comments = comments;
+		    this.read = read;
 		    this.fid = fid;
 		    this.commentList = allComments;
 		    this.imageId=image;
@@ -76,12 +80,13 @@ public class FeedsModel {
 		    selected = false;
 		  }
 	  
-	  public FeedsModel(String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> commentList, String image, String fId, Long timestamp, String tag) {
+	  public FeedsModel(String desc, String name, String celeb, int likes, int dislikes, int comments, List<String> commentList, String image, String fId, Long timestamp, String tag, String read) {
 		    this.name = name;
 		    this.ups = likes;
 		    this.downs=dislikes;
 		    this.desc = desc;
 		    this.tag = tag;
+		    this.read = read;
 		    this.timestamp = timestamp;
 		    this.comments = comments;
 		    this.commentList = commentList;
@@ -95,6 +100,16 @@ public class FeedsModel {
 	  public void setFID(String fid)
 	  {
 		  this.fid = fid;
+	  }
+	  
+	  public void setRead(String read)
+	  {
+		  this.read = read;
+	  }
+	  
+	  public String getRead()
+	  {
+		  return this.read;
 	  }
 	  
 	  public String getFID()

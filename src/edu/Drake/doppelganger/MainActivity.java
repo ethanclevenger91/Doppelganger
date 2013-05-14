@@ -272,6 +272,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 					String time = data.getStringExtra("timestamp");
 					String celeb = data.getStringExtra("celeb");
 					String tag = data.getStringExtra("tag");
+					String read = data.getStringExtra("read");
 					
 					if(celeb == null)
 					{
@@ -294,7 +295,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 					long timestamp = Long.parseLong(time);
 					db = new FeedSQLiteHelper(this);
 
-					FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag);
+					FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag, "true");
 					db.updateContact(newModel);
 					
 					if(feedFragment!=null)
@@ -342,7 +343,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 										String finalString = user.getName();
 										String facebookId = user.getId();
 										Log.v("Main", "sweet");
-										db.addContact(new FeedsModel(myCaption,finalString,celeb,0,0,0,null,imagePath,facebookId,timestamp,myTag));
+										db.addContact(new FeedsModel(myCaption,finalString,celeb,0,0,0,null,imagePath,facebookId,timestamp,myTag,"false"));
 										Log.v("Main", "yay");
 										feedFragment.refresh();
 										Log.v("Main", "refresh");

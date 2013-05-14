@@ -85,7 +85,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 
 						FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
 
-						FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag);
+						FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag, "true");
 						db.updateContact(newModel);
 					}
 				}
@@ -116,7 +116,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 
 						FeedSQLiteHelper db = new FeedSQLiteHelper(v.getContext());
 
-						FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag);
+						FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag, "true");
 						db.updateContact(newModel);
 
 					}
