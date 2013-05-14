@@ -79,7 +79,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			timestamp = Calendar.getInstance().getTimeInMillis();
 			
 	    	//adds Inman
-	    	db.addContact(new FeedsModel("That is him", "Clayton Brady posted:", "Adam Savage", 3, 0, 2, null,combined, "100000194227483", timestamp, "1000001"));
+	    	db.addContact(new FeedsModel("That is him", "Clayton Brady", "Adam Savage", 3, 0, 2, null,combined, "100000194227483", timestamp, "1000001"));
 	    	
 	    	myDrawable = getResources().getDrawable(R.drawable.urness);
 	    	celebDrawable = getResources().getDrawable(R.drawable.brosnan);
@@ -94,7 +94,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			timestamp = Calendar.getInstance().getTimeInMillis();
 			
 	    	//adds Urness
-	    	db.addContact(new FeedsModel("That is him", "Sara Nelson posted:", "Pierce Brosnan", 3, 0, 2, comment,combined, "111", timestamp, "100000194227483"));
+	    	db.addContact(new FeedsModel("That is him", "Sara Nelson", "Pierce Brosnan", 3, 0, 2, comment,combined, "111", timestamp, "100000194227483"));
 	    	
 	    	myDrawable = getResources().getDrawable(R.drawable.morrow);
 	    	celebDrawable = getResources().getDrawable(R.drawable.dunst);
@@ -109,7 +109,7 @@ public class FeedFragment extends ListFragment implements OnItemSelectedListener
 			timestamp = Calendar.getInstance().getTimeInMillis();
 			
 	    	//adds Amanda
-	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger posted:", "Kirsten Dunst", 3, 0, 2, null,combined, "101", timestamp, "12345"));
+	    	db.addContact(new FeedsModel("That is her", "Ethan Clevenger", "Kirsten Dunst", 3, 0, 2, null,combined, "101", timestamp, "12345"));
 	    }
 
 	    for (FeedsModel cn : contacts) {

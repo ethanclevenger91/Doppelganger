@@ -296,7 +296,11 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 
 					FeedsModel newModel = new FeedsModel(idInt, desc, name, celeb, ups, downs, commentCount, commentList, image, fid, timestamp, tag);
 					db.updateContact(newModel);
-					feedFragment.refresh();
+					
+					if(feedFragment!=null)
+					{
+						feedFragment.refresh();
+					}
 				}
 			}
 		}
@@ -335,7 +339,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 									if (user != null) {
 										Log.v("Main", "Nice");
 										long timestamp = Calendar.getInstance().getTimeInMillis();
-										String finalString = user.getName() + " posted: ";
+										String finalString = user.getName();
 										String facebookId = user.getId();
 										Log.v("Main", "sweet");
 										db.addContact(new FeedsModel(myCaption,finalString,celeb,0,0,0,null,imagePath,facebookId,timestamp,myTag));

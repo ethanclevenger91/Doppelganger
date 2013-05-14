@@ -203,7 +203,9 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		holder.upCount.setText(list.get(position).getUps());
 		holder.downCount.setText(list.get(position).getDowns());
 		holder.commentCount.setText(list.get(position).getComments());
-		holder.name.setText(list.get(position).getName());
+		holder.name.setText(String.format(view.getResources()
+                .getString(R.string.user_posted),
+                list.get(position).getName()));
 
 		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.5);
 		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();

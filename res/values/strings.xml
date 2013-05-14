@@ -19,13 +19,16 @@
     <string name="title_comment">Add Comment</string>
     <string name="app_id">548403725204948</string>
     <string name="single_user_selected">%1$s</string>
-<string name="two_users_selected">%1$s and %2$s</string>
-<string name="multiple_users_selected">%1$s and %2$s others</string>
-<string name="action_people_default">Select friends</string>
+	<string name="two_users_selected">%1$s and %2$s</string>
+	<string name="multiple_users_selected">%1$s and %2$s others</string>
+	<string name="tagged_in_post">%1$s tagged you in a doppelganger post!</string>
+	<string name="user_posted">%1$s posted:</string>
+	<string name="user_liked_post">%1$s liked a post you were tagged in</string>
+	<string name="action_people_default">Select friends</string>
     <string name="menu_share">Share</string>
     <string name="search_hint">Search celebrity</string>
     <string name="error_dialog_title">Error</string>
-<string name="error_dialog_button_text">OK</string>
+	<string name="error_dialog_button_text">OK</string>
     <string-array name="filter_array">
         <item >Trending</item>
         <item >Most Recent</item>
