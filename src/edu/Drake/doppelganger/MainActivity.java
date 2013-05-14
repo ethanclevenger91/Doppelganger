@@ -46,6 +46,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 	public static Context appContext;
 	public static String myName;
 	public String myCaption;
+	public static String myId;
 	public String myTag;
 	public FeedFragment feedFragment;
 	public Spinner spinner1;
@@ -202,7 +203,7 @@ public class MainActivity extends Activity implements OnNavigationListener, OnCe
 							if (user != null) {
 								TextView welcome = (TextView) findViewById(R.id.welcome);
 								welcome.setText(user.getName());
-
+								myId = user.getId();
 								//sets the actionbar title to user name, this verifies if Facebook is working
 								//if you see your name from facebook at the top of the screen, it is working
 								//actionBar.setTitle(user.getName());

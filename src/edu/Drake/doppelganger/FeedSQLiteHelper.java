@@ -154,6 +154,43 @@ public List<FeedsModel> getMe(String me)
     return contactList;
 }
 
+public List<FeedsModel> getNotifications(String myTag)
+{
+List<FeedsModel> contactList = new ArrayList<FeedsModel>();
+
+String selectQuery = "SELECT * FROM " + TABLE_POSTS + " WHERE " + COLUMN_TAG + "= "+ myTag;
+Log.v("ethan", selectQuery);
+
+SQLiteDatabase db = this.getWritableDatabase();
+Cursor cursor = db.rawQuery(selectQuery, null);
+
+// looping through all rows and adding to list
+if (cursor.moveToFirst()) {
+    do {
+        FeedsModel contact = new FeedsModel();
+        contact.setId(Integer.parseInt(cursor.getString(0)));
+        contact.setDesc(cursor.getString(1));
+        contact.setName(cursor.getString(2));
+        contact.setUps(Integer.parseInt(cursor.getString(3)));
+        contact.setDowns(Integer.parseInt(cursor.getString(4)));
+        contact.setComments(Integer.parseInt(cursor.getString(5)));
+        contact.setAllComments(cursor.getString(6));
+        contact.setImageId(cursor.getString(7));
+        contact.setCeleb(cursor.getString(8));
+        contact.setFID(cursor.getString(9));
+        contact.setTimestamp(Long.parseLong(cursor.getString(10)));
+        contact.setTag(cursor.getString(11));
+        contact.setRead(cursor.getString(12));
+        
+        // Adding contact to list
+        contactList.add(contact);
+    } while (cursor.moveToNext());
+}
+
+// return contact list
+return contactList;
+}
+
 public List<FeedsModel> getCeleb(String celeb)
 {
 	List<FeedsModel> contactList = new ArrayList<FeedsModel>();
