@@ -28,6 +28,7 @@ public class NotificationsFragment extends ListFragment {
 	    final ActionBar actionBar = getActivity().getActionBar();
 		actionBar.setCustomView(R.layout.custom_actionbar);
 		actionBar.setDisplayShowCustomEnabled(false);
+		actionBar.setTitle("Notifications");
 		
 		// start Facebook Login
 				Session.openActiveSession(getActivity(), true, new Session.StatusCallback() {

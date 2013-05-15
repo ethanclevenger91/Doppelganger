@@ -10,7 +10,8 @@
        android:layout_height="wrap_content"
        android:layout_alignParentLeft="true"
        android:layout_alignParentTop="true"
-       android:layout_marginLeft="29dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginLeft="12dp"
        android:text="Clayton Brady"
        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
@@ -35,6 +36,18 @@
        android:scaleType="fitCenter"
        android:background="@android:color/transparent"
        android:src="@raw/voteup" />
+
+   <TextView
+       android:id="@+id/image_caption"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content" 
+       android:layout_below="@+id/image_up_vote"
+       android:layout_marginTop="5dp"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       android:layout_marginBottom="25dp"
+       android:textAppearance="?android:attr/textAppearanceMedium"
+       android:text="This is the caption for a post" />
    
    <TextView
        android:id="@+id/text_up"
@@ -51,8 +64,8 @@
        android:id="@+id/image_comment"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
        android:layout_toRightOf="@+id/text_down"
+       android:layout_alignBottom="@+id/image_up_vote"
        android:adjustViewBounds="true"
        android:scaleType="fitCenter"
        android:background="@android:color/transparent"
@@ -73,8 +86,8 @@
        android:id="@+id/image_down_vote"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
        android:layout_toRightOf="@+id/text_up"
+       android:layout_alignBottom="@+id/image_up_vote"
        android:adjustViewBounds="true"
        android:scaleType="fitCenter"
        android:background="@android:color/transparent"

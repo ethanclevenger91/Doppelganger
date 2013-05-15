@@ -98,7 +98,7 @@ public class NotificationsArrayAdapter extends ArrayAdapter<FeedsModel> {
 		{
 			holder.selected = false;
 			//holder.notification.setBackgroundColor(Color.RED);
-			view.setBackgroundColor(Color.GRAY);
+			view.setBackgroundColor(Color.LTGRAY);
 		}
 
 		return view;

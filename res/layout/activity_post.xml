@@ -15,7 +15,7 @@
             android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:orientation="horizontal" >
 
@@ -139,7 +139,7 @@
             android:layout_height="wrap_content"
             android:singleLine="false"
             android:layout_marginTop="20dp"
-            android:layout_alignLeft="@+id/post_button"
+            android:layout_toRightOf="@+id/text_caption"
             android:layout_below="@+id/edit_text_caption"
             android:textSize="20sp" />
 
@@ -159,7 +159,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edit_text_tag"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="27dp"
             android:onClick="findFriends"
             android:text="Tag Friends" />
@@ -169,7 +170,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/edit_text_tag"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
             android:layout_marginTop="27dp"
             android:onClick="postToFeed"
             android:src="@drawable/post_button"

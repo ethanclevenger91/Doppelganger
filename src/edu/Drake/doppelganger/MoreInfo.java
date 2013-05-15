@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -55,6 +57,9 @@ public class MoreInfo extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_more_info);
 		
+		final ActionBar actionBar = getActionBar();
+	    actionBar.setTitle("More Information");
+		
 		TextView poster = (TextView) findViewById(R.id.textView1);
 		TextView descView = (TextView) findViewById(R.id.description);
 		TextView upView = (TextView) findViewById(R.id.text_up);
@@ -62,6 +67,27 @@ public class MoreInfo extends Activity {
 		ImageButton photoButton = (ImageButton) findViewById(R.id.image_button1);
 		upButton = (ImageButton) findViewById(R.id.image_up_vote);
 		downButton = (ImageButton) findViewById(R.id.image_down_vote);
+		TextView addComment = (TextView) findViewById(R.id.create_comment);
+		
+    	addComment.setTextSize(20);
+    	addComment.setBackgroundResource(R.drawable.blueback);
+    	addComment.setPadding(20,20,20,20);
+    	
+    	LinearLayout.LayoutParams llp1 = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        llp1.setMargins(0, 10, 0, 0); // llp.setMargins(left, top, right, bottom);
+    	addComment.setLayoutParams(llp1);
+		
+		addComment.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			
+				Intent intent = new Intent(getBaseContext(), AddComment.class);
+		 		startActivityForResult(intent,1);
+		 		overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up);
+		 		
+			}
+		});
+		
 		upVoted = false;
 		downVoted = false;
 		

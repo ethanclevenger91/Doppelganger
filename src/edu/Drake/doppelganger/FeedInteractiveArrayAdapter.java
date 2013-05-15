@@ -34,6 +34,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		protected TextView upCount;
 		protected TextView downCount;
 		protected TextView commentCount;
+		protected TextView caption;
 		protected ImageButton upButton;
 		protected ImageButton downButton;
 		protected ImageButton commentsButton;
@@ -59,6 +60,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 			viewHolder.downButton = (ImageButton) view.findViewById(R.id.image_down_vote);
 			viewHolder.photoButton = (ImageButton) view.findViewById(R.id.image_button1);
 			viewHolder.commentsButton = (ImageButton) view.findViewById(R.id.image_comment);
+			viewHolder.caption = (TextView) view.findViewById(R.id.image_caption);
 
 			viewHolder.upButton.setOnClickListener(new OnClickListener() {
 				@Override
@@ -184,6 +186,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 			viewHolder.downCount.setTag(list.get(position));
 			viewHolder.downButton.setTag(list.get(position));
 			viewHolder.photoButton.setTag(list.get(position));
+			viewHolder.caption.setTag(list.get(position));
 
 			//view.setTag(viewHolder);
 		} else {
@@ -194,6 +197,7 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 			((ViewHolder) view.getTag()).downButton.setTag(list.get(position));
 			((ViewHolder) view.getTag()).photoButton.setTag(list.get(position));
 			((ViewHolder) view.getTag()).commentCount.setTag(list.get(position));
+			((ViewHolder) view.getTag()).caption.setTag(list.get(position));
 
 		}
 		// ViewHolder holder = (ViewHolder) view.getTag();
@@ -206,7 +210,8 @@ public class FeedInteractiveArrayAdapter extends ArrayAdapter<FeedsModel> {
 		holder.name.setText(String.format(view.getResources()
                 .getString(R.string.user_posted),
                 list.get(position).getName()));
-
+		holder.caption.setText(list.get(position).getDesc());
+		
 		int newHeight = (int) (((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getHeight() /2.5);
 		int newWidth = ((Activity) view.getContext()).getWindowManager().getDefaultDisplay().getWidth();
 

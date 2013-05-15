@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -107,6 +108,9 @@ public class Custom_CameraActivity extends Activity {
 			 }
 		 });
         
+		
+		final ActionBar actionBar = getActionBar();
+	    actionBar.setTitle("Camera");
     }
     
     @Override

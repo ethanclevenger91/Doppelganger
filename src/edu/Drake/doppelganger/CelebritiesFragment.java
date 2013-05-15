@@ -97,6 +97,7 @@ public class CelebritiesFragment extends ListFragment {
 		filterText.addTextChangedListener(filterTextWatcher);
 		final ActionBar actionBar = getActivity().getActionBar();
 	    actionBar.setCustomView(R.layout.custom_actionbar);
+	    actionBar.setTitle("Celebrities");
 	    actionBar.setDisplayShowCustomEnabled(false);
     }
 	
